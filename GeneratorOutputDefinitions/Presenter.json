@@ -1,0 +1,58 @@
+
+
+{
+   "__comment":"
+      This file should outline the Filename (to be saved) each field to be created (field type) the 
+      Data Type, 
+      Data Pulled (ie Firstname, Surname etc)
+      Percentage of Null values?
+      Percentage of equal parts ie 50% Yes: 50% No  or 45% Yes: 45% No; 10% NULL etc.  More thought required.
+   
+      ColumnNullablePercentage : <indicates the number of records to be NULL>
+                     0     -> No record is to be NULL
+                     100   -> All records are to be NULL
+                     10    -> 10% of records are to be NULL
+                     
+      ColumnRatios : 
+                     0     -> All records may be randomly chosen
+                     50/50 -> Even parts A/B (Yet randomly chosen)
+                     100   -> All Records are to be different
+          
+ 
+   ",
+   
+   "OutputFilename": "Presenter",
+   "Filetype": "CSV",
+   "Delimeter": ",",
+     
+   "TotalNumberOfColumns": 2,
+   "FirstRowNumberContainingData": 2,
+   "TotalRecordCount": 50,
+   
+   "ColumnDefinitions": [
+      {
+         "ColumnPosition": 1,
+         "ColumnName": "Presenter_SK",
+         "ColumnIdentityField":"Yes",
+         
+         "MockSourceDataFilename" : NULL
+         
+         "ColumnNullablePercentage": "0",
+         "ColumnRatios" : "100",
+   
+      },
+      {
+         "ColumnPosition": 2,
+         "ColumnName": "Obtained",
+         "ColumnIdentityField":"No",
+         
+         "MockSourceDataFilename" : "YesNo.txt"
+         
+         "ColumnNullablePercentage":"10"
+         
+         "ColumnRatios" : "50/50",
+
+      },
+      
+   ]
+}
