@@ -67,13 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conversions\StringConversions.cs" />
+    <Compile Include="File\ReadFile.cs" />
     <Compile Include="HardCoded\app_Const.cs" />
     <Compile Include="HardCoded\ColumnDefinition.cs" />
     <Compile Include="Conversions\ContainsSwitch.cs" />
     <Compile Include="Conversions\SaveFile.cs" />
     <Compile Include="Conversions\Mathematics.cs" />
     <Compile Include="DG_Controller.cs" />
-    <Compile Include="Instantiate\RawFileMetaData.cs" />
+    <Compile Include="Instantiate\OutputDefinitions.cs" />
     <Compile Include="HardCoded\Parameter.cs" />
     <Compile Include="HardCoded\ParameterTuple.cs" />
     <Compile Include="Program.cs" />
@@ -95,6 +96,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets" Condition="Exists('..\packages\Microsoft.SqlServer.SqlManagementObjects.150.18208.0\build\net45\Microsoft.SqlServer.SqlManagementObjects.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
