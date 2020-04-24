@@ -34,10 +34,11 @@
          "ColumnPosition": 1,
          "ColumnName": "Presenter_SK",
          "ColumnIdentityField":"Yes",
+         "ColumnDataType":"INT",
          
-         "MockSourceDataFilename" : NULL
+         "MockSourceDataFilename" : "",
          
-         "ColumnNullablePercentage": "0",
+         "ColumnNullablePercentage":0,
          "ColumnRatios" : "100",
    
       },
@@ -45,10 +46,11 @@
          "ColumnPosition": 2,
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
+         "ColumnDataType":"INT",
          
-         "MockSourceDataFilename" : "YesNo.txt"
+         "MockSourceDataFilename" : "YesNo.txt",
          
-         "ColumnNullablePercentage":"10"
+         "ColumnNullablePercentage":10,
          
          "ColumnRatios" : "50/50",
 
