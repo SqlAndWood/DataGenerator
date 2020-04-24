@@ -8,6 +8,9 @@
       public const char doubleQuotes = '\u0022';
 
 
+      public const int MaxLoopSampling = 3;
+
+
 
    }
 }

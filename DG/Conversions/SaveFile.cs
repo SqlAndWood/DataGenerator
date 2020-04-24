@@ -18,7 +18,7 @@ namespace DG
        * preferene for arrays, asthis is compatible with the SQL class
      
          string Path = (string)parameters.getParameterValue(rfs.Parameters, "Path");
-         string fn =  Path + @"\observed." + rfs.Filetype.ToLower();
+         string fn =  Path + @"\observed." + rfs.FileType.ToLower();
 
          string[] parameterNames = new string[] { "heading one", "heading two" };
          dynamic[] values = new dynamic[] { 1, "2" };
