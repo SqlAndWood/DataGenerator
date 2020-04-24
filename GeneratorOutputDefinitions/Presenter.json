@@ -25,9 +25,9 @@
    "Filetype": "CSV",
    "Delimeter": ",",
      
-   "TotalNumberOfColumns": 2,
-   "FirstRowNumberContainingData": 2,
-   "TotalRecordCount": 50,
+   "TotalNumberOfColumns":3,
+   "FirstRowNumberContainingData": 0,
+   "TotalRecordCount": 500000,
    
    "ColumnDefinitions": [
       {
@@ -41,7 +41,8 @@
          "ColumnNullablePercentage":0,
          "ColumnRatios" : "100",
    
-      },
+      }
+      ,
       {
          "ColumnPosition": 2,
          "ColumnName": "Obtained",
@@ -54,7 +55,22 @@
          
          "ColumnRatios" : "50/50",
 
-      },
+      }
+      ,
+      {
+         "ColumnPosition": 3,
+         "ColumnName": "Fingers",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"INT",
+         
+         "MockSourceDataFilename" : "1234567890.txt",
+         
+         "ColumnNullablePercentage":10,
+         
+         "ColumnRatios" : "100",
+
+      }
       
+   
    ]
 }
