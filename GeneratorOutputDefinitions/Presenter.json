@@ -21,8 +21,7 @@
    "Filetype": "CSV",
    "Delimeter": ",",
      
-   "TotalNumberOfColumns":3,
-   "FirstRowNumberContainingData": 0,
+   "TotalNumberOfColumns":5,
    "TotalRecordCount": 500000,
    
    "ColumnDefinitions": [
@@ -42,7 +41,7 @@
          "ColumnPosition": 2,
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
-         "ColumnDataType":"INT",
+         "ColumnDataType":"STRING",
          
          "MockSourceDataFilename" : "YesNo.txt",
          
@@ -63,7 +62,32 @@
          
          "ColumnRatios" : "100",
       }
-      
+      ,
+      {
+         "ColumnPosition": 4,
+         "ColumnName": "HasLunch",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"BOOLEAN",
+         
+         "MockSourceDataFilename" : "TrueFalse.txt",
+         
+         "ColumnNullablePercentage":10,
+         
+         "ColumnRatios" : "100",
+      }
+            ,
+      {
+         "ColumnPosition": 5,
+         "ColumnName": "Multiplicity",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"DECIMAL",
+         
+         "MockSourceDataFilename" : "",
+         
+         "ColumnNullablePercentage":10,
+         
+         "ColumnRatios" : "0,100",
+      }
    ]
    
 }
