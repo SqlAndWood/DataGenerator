@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DG
+﻿namespace DG
 {
 
    class EController
@@ -21,8 +19,7 @@ namespace DG
          CreateRandomRecords crr = new CreateRandomRecords(Parameters, ObtainColumnDefinitions);
 
          //Save to GeneratedData
-         SaveGeneratedData sgd = new SaveGeneratedData(crr);
-
+         SaveGeneratedData sgd = new SaveGeneratedData(crr.DTable, ObtainColumnDefinitions);
 
       }
 

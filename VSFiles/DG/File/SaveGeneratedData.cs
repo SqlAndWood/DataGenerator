@@ -1,28 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DG
 {
-   //List<dynamic>[] randomData = CRR.RandomData;
+
    class SaveGeneratedData
    {
 
-      public SaveGeneratedData(CreateRandomRecords crr)
+      public SaveGeneratedData(DataTable dt, ObtainColumnDefinitions obtainColumnDefinitions)
       {
 
+         StringBuilder sb = new StringBuilder();
+
+         string[] columnNames = dt.Columns.Cast<DataColumn>().
+            Select(column => column.ColumnName).
+            ToArray();
+
+         sb.AppendLine(string.Join(",", columnNames));
+
+         foreach (DataRow row in dt.Rows)
+         {
+            string[] fields = row.ItemArray.Select(field => field.ToString()).
+               ToArray();
+
+            sb.AppendLine(string.Join(",", fields));
+         }
+
+         //this is a parameter 
+         string filename = "C:\\git\\DataGenerator\\GeneratedData\\" +  obtainColumnDefinitions.SourceFilename + ".csv";
          
-         //IEnumerable<dynamic> crr;
-        //string csv = String.Join(",", crr.RandomData[0].Select(x => x.ToString()).ToArray());
+         File.WriteAllText(filename, sb.ToString());
 
-        //for (int i = 0; i < crr.RandomData.Length; i++)
-        //{
-        //   var n = 0;
-        //}
-
-       // var n = 0;
       }
    }
 }
