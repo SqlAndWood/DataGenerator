@@ -16,6 +16,17 @@ namespace DG
          return minValue + (next * (maxValue - minValue));
       }
 
+      //This is a safe function, to divide by zero 
+      public static double SfDivideByZero(int renumerator, int denominator)
+      {
+         double preventDivisionError = (double)denominator;
+         if (Math.Abs((double)denominator) < 0.001)
+         {
+            preventDivisionError = 1;
+         }
+         return ((double)renumerator / preventDivisionError) * 100;
+
+      }
       //this does not answer to:from
       //public static int NextInt32(this Random rng)
       //{
