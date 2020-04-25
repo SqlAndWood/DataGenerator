@@ -1,4 +1,6 @@
-﻿namespace DG
+﻿using System.Collections.Generic;
+
+namespace DG
 {
 
    class EController
@@ -14,10 +16,14 @@
          Parameters = new Parameter();
          ObtainColumnDefinitions = new ObtainColumnDefinitions(Parameters);
 
+         //For each File in ObjectDefinition... or.. Read all files in a folder.
+         //Pretend this has happened with : C:\git\DataGenerator\GeneratorOutputDefinitions\Presentor.json
+         CreateRandomRecords crr = new CreateRandomRecords(Parameters, ObtainColumnDefinitions);
 
-         //Read all files in a folder. PRetend this has happened with : C:\git\DataGenerator\GeneratorOutputDefinitions\Presentor.json
-         ReadFiles rfs = new ReadFiles(Parameters, ObtainColumnDefinitions);
-         
+         //Save to GeneratedData
+         SaveGeneratedData sgd = new SaveGeneratedData(crr);
+
+
       }
 
    }

@@ -69,7 +69,8 @@
     <Compile Include="Conversions\StringConversions.cs" />
     <Compile Include="Dynamic\DynObject.cs" />
     <Compile Include="Dynamic\GeneralMethods.cs" />
-    <Compile Include="File\ReadFile.cs" />
+    <Compile Include="File\CreateRandomRecords.cs" />
+    <Compile Include="File\SaveGeneratedData.cs" />
     <Compile Include="HardCoded\app_Const.cs" />
     <Compile Include="HardCoded\OutputColumnDefinition.cs" />
     <Compile Include="Conversions\ContainsSwitch.cs" />

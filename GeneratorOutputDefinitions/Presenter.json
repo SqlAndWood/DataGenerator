@@ -22,7 +22,7 @@
    "Delimeter": ",",
      
    "TotalNumberOfColumns":5,
-   "TotalRecordCount": 500000,
+   "TotalRecordCount": 50,
    
    "ColumnDefinitions": [
       {
@@ -75,7 +75,7 @@
          
          "ColumnRatios" : "100",
       }
-            ,
+      ,
       {
          "ColumnPosition": 5,
          "ColumnName": "Multiplicity",

@@ -6,18 +6,18 @@ using System.Linq;
 namespace DG
 {
 
-   //For each File in ObjectDefinition...
-   //    Then; for each Column... 
-
-   class ReadFiles
+   class CreateRandomRecords
    {
+      // Rather than using an array List, This may be better to be an Object. 
+      // or perhaps just add the objects as they come into a data table, one row at a time?
 
+      public List<dynamic>[] RandomData { get; set; }  //Unsure if I should make this an object
 
       private readonly ObtainColumnDefinitions _od;
       private readonly OutputColumnDefinition _colDef;
       private readonly int _columnNullablePercentage;
-
-      public ReadFiles(Parameter parameter, ObtainColumnDefinitions obtainColumnDefinitions)
+      
+      public CreateRandomRecords(Parameter parameter, ObtainColumnDefinitions obtainColumnDefinitions)
       {
          _od = obtainColumnDefinitions;
 
@@ -25,12 +25,8 @@ namespace DG
          int TotalNumberOfColumns = _od.TotalNumberOfColumns;
          int totalRecordCount = _od.TotalRecordCount;
 
-         //To be returned to the calling routine.  Public?
-         //Should be a dynamic object oif type <t>?
-         //needs to be an array : matching column positions
-          List<dynamic>[] randomData = new List<dynamic>[TotalNumberOfColumns];
-
-
+         RandomData = new List<dynamic>[TotalNumberOfColumns];
+         
          foreach (var colDef in _od.ColumnDefinitions)
          {
             _colDef = colDef;
@@ -46,18 +42,18 @@ namespace DG
             string mockSourceDataFilename = colDef.MockSourceDataFilename;
             string columnRatios = colDef.ColumnRatios;
 
-
+            
             if (columnIdentityField.ToUpper() == "YES".ToUpper())
             {
 
-               randomData[colDef.ColumnPosition - 1] = new List<dynamic>(_od.TotalRecordCount);
+               RandomData[colDef.ColumnPosition - 1] = new List<dynamic>(_od.TotalRecordCount);
    
-              // var items = Enumerable.Range(0, _od.TotalRecordCount).ToList();
-              // randomData[colDef.ColumnPosition - 1] = items;
+              //If this was a data table, this step is obsolete.
+
                ////it might be possible to do this in one step, rather than a loop.
                for (int i = 0; i < _od.TotalRecordCount; ++i) //in C# ++i is faster than i++
                {
-                  randomData[colDef.ColumnPosition - 1].Add(i);
+                  RandomData[colDef.ColumnPosition - 1].Add(i);
                }
             }
             else
@@ -65,24 +61,24 @@ namespace DG
 
                string fileNameAndPath = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
 
-               randomData[colDef.ColumnPosition - 1] = new List<dynamic>();
+               RandomData[colDef.ColumnPosition - 1] = new List<dynamic>();
 
                //Only do this if not a IDENTITY Column
 
                //Dynamic object to store what ever 'list' of the object i need. String, INT, Decimals, Date, DateTime...
                List<string> allData = File.ReadLines(fileNameAndPath).ToList();
 
-               if (_columnNullablePercentage == 0)
+               switch (_columnNullablePercentage)
                {
-                  NoNullsRequired( allData, randomData[colDef.ColumnPosition-1]);
-               }
-               else if (_columnNullablePercentage == 100)
-               {
-                  AllNullsRequired(randomData[colDef.ColumnPosition-1]);
-               }
-               else
-               {
-                  PercentageNullsRequired(allData, randomData[colDef.ColumnPosition-1]);
+                  case 0:
+                     NoNullsRequired( allData, RandomData[colDef.ColumnPosition-1]);
+                     break;
+                  case 100:
+                     AllNullsRequired(RandomData[colDef.ColumnPosition-1]);
+                     break;
+                  default:
+                     PercentageNullsRequired(allData, RandomData[colDef.ColumnPosition-1]);
+                     break;
                }
 
             }
@@ -169,14 +165,6 @@ namespace DG
          }
 
       }
-
-
-
-      //public static double RandomDouble(Random rand, double start, double end)
-      //{
-      //   return (rand.NextDouble() * Math.Abs(end - start)) + start;
-      //}
-
 
    }
 

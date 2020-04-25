@@ -21,6 +21,10 @@ namespace DG
 
          //Issue here will be expanding to multiple Source JSON and multiple MockData Files.
          ParameterTuple.AddNewParameterString(ListOfParameterStrings, "OutputDefinitionsPathAndName", (string)@"C:\git\DataGenerator\GeneratorOutputDefinitions\Presenter.json", "Represents the file to be processed today.");
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "GeneratedData", (string)@"C:\git\DataGenerator\GeneratedData\", "Represents the file to be processed today.");
+
+         
+
          //ParameterTuple.AddNewParameterString(ListOfParameterStrings, "MockDataPath", parameterValue:(string)@"C:\git\DataGenerator\MockData\", ".");
 
 
