@@ -67,14 +67,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conversions\StringConversions.cs" />
+    <Compile Include="Dynamic\DynObject.cs" />
+    <Compile Include="Dynamic\GeneralMethods.cs" />
     <Compile Include="File\ReadFile.cs" />
     <Compile Include="HardCoded\app_Const.cs" />
-    <Compile Include="HardCoded\ColumnDefinition.cs" />
+    <Compile Include="HardCoded\OutputColumnDefinition.cs" />
     <Compile Include="Conversions\ContainsSwitch.cs" />
     <Compile Include="Conversions\SaveFile.cs" />
     <Compile Include="Conversions\Mathematics.cs" />
     <Compile Include="DG_Controller.cs" />
-    <Compile Include="Instantiate\OutputDefinitions.cs" />
+    <Compile Include="Instantiate\ObtainColumnDefinitions.cs" />
     <Compile Include="HardCoded\Parameter.cs" />
     <Compile Include="HardCoded\ParameterTuple.cs" />
     <Compile Include="Program.cs" />

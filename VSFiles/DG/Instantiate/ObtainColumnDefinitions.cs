@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DG
 {
-   class OutputDefinitions
+   class ObtainColumnDefinitions
     {
 
       private const string Param = "OutputDefinitionsPathAndName";
@@ -22,11 +22,11 @@ namespace DG
       public int TotalRecordCount{ get; private set; }
       public int TotalNumberOfColumns{ get; private set; }
 
-      public List<ColumnDefinition> ColumnDefinitions{ get; private set; }
+      public List<OutputColumnDefinition> ColumnDefinitions{ get; private set; }
 
       private JObject _jsonToken;
 
-      public OutputDefinitions( Parameter p)
+      public ObtainColumnDefinitions( Parameter p)
       {
 
         // string ClassName = MethodBase.GetCurrentMethod().DeclaringType.Name;
@@ -47,13 +47,13 @@ namespace DG
          if (FileType != null) FileType = FileType.ToLower();
 
          TotalNumberOfColumns = (int)_jsonToken["TotalNumberOfColumns"];
-         FirstRowNumberContainingData = (int)_jsonToken["FirstRowNumberContainingData"];
+       
          TotalRecordCount = (int)_jsonToken["TotalRecordCount"];
 
          //calculate start and end for each field
          //List<defineColumnPositions> columnPositions = new List<defineColumnPositions>();
 
-         ColumnDefinitions = new List<ColumnDefinition>();
+         ColumnDefinitions = new List<OutputColumnDefinition>();
 
          for (int i = 0; i <= TotalNumberOfColumns - 1; i++)
          {
@@ -72,7 +72,7 @@ namespace DG
            
             string columnRatios = ConvertToken(_jsonToken["ColumnDefinitions"][i]["ColumnRatios"], JTokenType.String, defaultString);
 
-            ColumnDefinitions.Add(new ColumnDefinition()
+            ColumnDefinitions.Add(new OutputColumnDefinition()
             {
 
                ColumnPosition = columnPos,

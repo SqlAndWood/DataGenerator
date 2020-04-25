@@ -1,6 +1,6 @@
 ﻿namespace DG
 {
-   class ColumnDefinition
+   class OutputColumnDefinition
    {
      
       public int ColumnPosition { get; set; }
@@ -14,7 +14,7 @@
       public int ColumnNullablePercentage { get; set; }
       public string ColumnRatios { get; set; }
       
-      public ColumnDefinition()  { }
+      public OutputColumnDefinition()  { }
 
    }
    

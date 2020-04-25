@@ -6,15 +6,17 @@
 
       public Parameter Parameters { get; set; }
 
-      public OutputDefinitions OutputDefinitions { get; set; }
+      public ObtainColumnDefinitions ObtainColumnDefinitions { get; set; }
       
       public EController()
       {
 
          Parameters = new Parameter();
-         OutputDefinitions = new OutputDefinitions(Parameters);
+         ObtainColumnDefinitions = new ObtainColumnDefinitions(Parameters);
 
-         ReadFiles rfs = new ReadFiles(Parameters, OutputDefinitions);
+
+         //Read all files in a folder. PRetend this has happened with : C:\git\DataGenerator\GeneratorOutputDefinitions\Presentor.json
+         ReadFiles rfs = new ReadFiles(Parameters, ObtainColumnDefinitions);
          
       }
 
