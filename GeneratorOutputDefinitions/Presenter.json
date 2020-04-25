@@ -45,7 +45,7 @@
          
          "MockSourceDataFilename" : "YesNo.txt",
          
-         "ColumnNullablePercentage":10,
+         "ColumnNullablePercentage":15,
          
          "ColumnRatios" : "50/50",
       }
@@ -84,7 +84,7 @@
          
          "MockSourceDataFilename" : "",
          
-         "ColumnNullablePercentage":10,
+         "ColumnNullablePercentage":15,
          
          "ColumnRatios" : "0,100",
       }

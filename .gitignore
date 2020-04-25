@@ -6,3 +6,7 @@ DG/bin/
 .vs/
 
 DataGenerator.sln.DotSettings.user
+
+VSFiles/DG/bin/
+
+VSFiles/DG/obj/

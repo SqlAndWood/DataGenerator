@@ -133,33 +133,14 @@ namespace DG
       {
          var random = new Random();
 
-      
-         //Create an object that matches the ColumnDataType
-
-
-         //Just a general between two numbers, hovering around the NullablePercentage
-         //int randomNumber = random.Next((_columnNullablePercentage / 2) + 1, _columnNullablePercentage + (_columnNullablePercentage / 2));
-
-
-         //int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
-
          for (int i = 0; i < _od.TotalRecordCount; i++)
          {
-         
+            //Roll a random number. If the Random number is LESS THAN the ColumnNullablePercentage, then create the NULL Value.
             int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
-            //some work required on this, it is just a gap filler for now.
-            //when n is divisible by ColumnNullablePercentage then force a null value.
-
-            //Roll a rancom number. If the Random number is LESS THAN the ColumnNullablePercentage, then create the NULL Value.
-            //if (i % randomNumber == 0)
 
             if (randomNumber <= _columnNullablePercentage)
             {
-
                randomData.Add(null);
-               //randomNumber = random.Next((_columnNullablePercentage / 2) + 1 , _columnNullablePercentage + (_columnNullablePercentage / 2));
-              
-
             }
             else //Do not add Null
             {
