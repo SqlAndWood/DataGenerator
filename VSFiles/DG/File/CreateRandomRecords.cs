@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 
@@ -8,160 +9,107 @@ namespace DG
 
    class CreateRandomRecords
    {
-      // Rather than using an array List, This may be better to be an Object. 
-      // or perhaps just add the objects as they come into a data table, one row at a time?
-
-      public List<dynamic>[] RandomData { get; set; }  //Unsure if I should make this an object
-
+     
+      public DataTable DTable { get; set; }
       private readonly ObtainColumnDefinitions _od;
-      private readonly OutputColumnDefinition _colDef;
-      private readonly int _columnNullablePercentage;
       
       public CreateRandomRecords(Parameter parameter, ObtainColumnDefinitions obtainColumnDefinitions)
       {
          _od = obtainColumnDefinitions;
 
-         string outputFilename = _od.SourceFilename;
-         int TotalNumberOfColumns = _od.TotalNumberOfColumns;
-         int totalRecordCount = _od.TotalRecordCount;
+         DTable = DefineDataTable.Create(obtainColumnDefinitions);
 
-         RandomData = new List<dynamic>[TotalNumberOfColumns];
-         
+         //This still might prove to be more useful as an Object, but will that just be storing the same inforamtion yet again?
+         List<dynamic>[] rrd = new List<dynamic>[_od.TotalNumberOfColumns]; //Unsure if I should make this an object
+
          foreach (var colDef in _od.ColumnDefinitions)
          {
-            _colDef = colDef;
 
-            //is this ok? ie: Class level parameter changing each loop.
-            _columnNullablePercentage = colDef.ColumnNullablePercentage;
-
-            //available from colDef
-            int columnPosition = colDef.ColumnPosition;
-            string columnName = colDef.ColumnName;
-            string columnIdentityField = colDef.ColumnIdentityField;
-            string columnDataType = colDef.ColumnDataType;
             string mockSourceDataFilename = colDef.MockSourceDataFilename;
-            string columnRatios = colDef.ColumnRatios;
 
-            
-            if (columnIdentityField.ToUpper() == "YES".ToUpper())
+            if (mockSourceDataFilename != "")
             {
+               string file = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
 
-               RandomData[colDef.ColumnPosition - 1] = new List<dynamic>(_od.TotalRecordCount);
-   
-              //If this was a data table, this step is obsolete.
-
-               ////it might be possible to do this in one step, rather than a loop.
-               for (int i = 0; i < _od.TotalRecordCount; ++i) //in C# ++i is faster than i++
+               rrd[colDef.ColumnPosition - 1] = new List<dynamic>
                {
-                  RandomData[colDef.ColumnPosition - 1].Add(i);
-               }
-            }
-            else
-            {
-
-               string fileNameAndPath = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
-
-               RandomData[colDef.ColumnPosition - 1] = new List<dynamic>();
-
-               //Only do this if not a IDENTITY Column
-
-               //Dynamic object to store what ever 'list' of the object i need. String, INT, Decimals, Date, DateTime...
-               List<string> allData = File.ReadLines(fileNameAndPath).ToList();
-
-               switch (_columnNullablePercentage)
-               {
-                  case 0:
-                     NoNullsRequired( allData, RandomData[colDef.ColumnPosition-1]);
-                     break;
-                  case 100:
-                     AllNullsRequired(RandomData[colDef.ColumnPosition-1]);
-                     break;
-                  default:
-                     PercentageNullsRequired(allData, RandomData[colDef.ColumnPosition-1]);
-                     break;
-               }
+                  File.ReadLines(file).ToList()
+               };
 
             }
-
+            else //this is not necessary.
+            {
+               rrd[colDef.ColumnPosition - 1] = new List<dynamic>();
+            }
          }
 
-      }
-
-      private void NoNullsRequired(List<string> allData, List<dynamic> randomData)
-      {
          var random = new Random();
 
          dynamic value = "";
 
+         //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
+         int startingValue = 0;
+         int incrementingValue = 3;
+
+         //Now populate the details with data read into the file.  Using _od.TotalRecordCount
          for (int i = 0; i < _od.TotalRecordCount; i++)
          {
-            //is there a better way to perform this action?
-            switch (_colDef.ColumnDataType.ToUpper())
+
+            DataRow dr = DTable.NewRow();
+
+            int columnCount = 1;
+
+            //Loop each known column
+            foreach (var colDef in _od.ColumnDefinitions)
             {
 
-               case "INT": value = Int32.Parse(allData[random.Next(allData.Count)]); break;
-               case "STRING": value = allData[random.Next(allData.Count)].ToString(); break;
-               case "BOOLEAN": value = Convert.ToBoolean(allData[random.Next(allData.Count)]); break;
-               case "DECIMAL":
-                  var n = _colDef.ColumnRatios;
-                  var arMinMax = n.Split(',');
-                  value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]), Int32.Parse(arMinMax[1]));
-                  break; 
 
-               default: break;
-            }
-
-            randomData.Add(value);
-
-         }
-      }
-
-      private void AllNullsRequired(List<dynamic> randomData)
-      {
-         for (int i = 0; i < _od.TotalRecordCount; i++)
-         {
-            randomData.Add(null);
-         }
-
-      }
-
-      private void PercentageNullsRequired(List<string> allData, List<dynamic> randomData)
-      {
-         var random = new Random();
-
-         for (int i = 0; i < _od.TotalRecordCount; i++)
-         {
-            //Roll a random number. If the Random number is LESS THAN the ColumnNullablePercentage, then create the NULL Value.
-            int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
-
-            if (randomNumber <= _columnNullablePercentage)
-            {
-               randomData.Add(null);
-            }
-            else //Do not add Null
-            {
-               dynamic value = "";
-               //is there a more elegant way to 'cast' the datatype?
-               switch (_colDef.ColumnDataType.ToUpper())
+               //  rrd[colDef.ColumnPosition - 1].
+               if (colDef.ColumnIdentityField.ToUpper() == "YES".ToUpper())
                {
-                     
-                  case "INT": value = Int32.Parse(allData[random.Next(allData.Count)]); break;
-                  case "STRING": value = allData[random.Next(allData.Count)].ToString(); break;
-                  case "BOOLEAN":  value = Convert.ToBoolean(allData[random.Next(allData.Count)]); break;
-                  //case "DECIMAL": value = GeneralMethods.NextDecimal(random); break;
-                  case "DECIMAL":
-                     var n = _colDef.ColumnRatios;
-                     var arMinMax = n.Split(',');
-                     value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]), Int32.Parse(arMinMax[1])); 
-                     break;
-                     
-                  default: break;
+                  dr[colDef.ColumnName] = startingValue; //dont perform a test with this one.
+                  startingValue += incrementingValue;
                }
-               
-               randomData.Add(value);
+               else
+               {
+                  int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
+                  
+                  if      ( (colDef.ColumnNullablePercentage == 100) || (randomNumber <= colDef.ColumnNullablePercentage ) ) { value = DBNull.Value; }
+                  //else if?
+                  else if ( (colDef.ColumnNullablePercentage == 0  ) || (randomNumber >= colDef.ColumnNullablePercentage ) ) 
+                  {
+                  
+                     //is there a better way to perform this action?
+                     switch (colDef.ColumnDataType.ToUpper())
+                     {
 
+                        case "INT":
+                           value = Int32.Parse(rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)]);
+                           break;
+                        case "STRING":
+                           value = rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)].ToString();
+                           break;
+                        case "BOOLEAN":
+                           value = Convert.ToBoolean(rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)]);
+                           break;
+                        case "DECIMAL":
+                           var n = colDef.ColumnRatios;
+                           var arMinMax = n.Split(',');
+                           value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]), Int32.Parse(arMinMax[1]));
+                           break;
+
+                        default: break;
+                     }
+
+                  }
+                  columnCount += 1;
+
+                  dr[colDef.ColumnName] = value;
+       
+               }
             }
 
+            DTable.Rows.Add(dr);
          }
 
       }
