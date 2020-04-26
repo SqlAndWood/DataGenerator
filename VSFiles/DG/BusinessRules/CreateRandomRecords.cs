@@ -14,12 +14,12 @@ namespace DG
 
       public CreateRandomRecords( ObtainDataDefinitions obtainDataDefinitions)
       {
-         var od = obtainDataDefinitions;
+         var od = obtainDataDefinitions.TableDefinition;
          
          DTable = DefineDataTable.Create(obtainDataDefinitions);
 
          //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
-         List<dynamic>[] rrd = new List<dynamic>[od.ColumnDefinitions[0].OutputColumnCount]; //Unsure if I should make this an object
+         List<dynamic>[] rrd = new List<dynamic>[od.OutputColumnCount]; //Unsure if I should make this an object
 
          foreach (var colDef in od.ColumnDefinitions)
          {
@@ -46,11 +46,11 @@ namespace DG
          dynamic value = "";
 
          //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
-         int startingValue = od.ColumnDefinitions[0].OutputIdentityStartValue;
-         int incrementingValue = od.ColumnDefinitions[0].OutputIncrementValue;
+         int startingValue = od.OutputIdentityStartValue;
+         int incrementingValue = od.OutputIncrementValue;
          
          //Now populate the details with data read into the file.  Using _od.TotalRecordCount
-         for (int i = 0; i < od.ColumnDefinitions[0].OutputRecordCount; i++)
+         for (int i = 0; i < od.OutputRecordCount; i++)
          {
 
             DataRow dr = DTable.NewRow();

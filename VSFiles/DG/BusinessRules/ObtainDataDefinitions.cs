@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
 namespace DG
 {
@@ -15,21 +14,21 @@ namespace DG
    class ObtainDataDefinitions
    {
 
-      public List<OutputColumnDefinition> ColumnDefinitions{ get;  set; }
-
-      public ObtainDataDefinitions( Parameter p)
+      //TODO:  once we start to utilise >1 JSON DataDefinition File, this would be best utilised as an Array.
+      public TableDefinition TableDefinition { get; set; }
+      
+     //TODO: This should be looped for all files in teh DataDefinitions Folder
+      public ObtainDataDefinitions( Parameter p, DataDefinitionFiles dataDefinitionFiles,  string fileName)
       {
 
-         var dataFoldersLocation = (string)Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
+         //TODO: These two lines of code have aleady been performed in 
+         var dataFoldersLocation = dataDefinitionFiles.DataFoldersLocation; //Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
 
-         var dataDefinitionsPath = dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
-
-         //TODO: for the moment, Hard coded to "Presenter.json"  -> Upgrade to loop each Definition.
-         var tempDataDefinitionPathAndFile = dataDefinitionsPath + "Presenter.json";
+         var dataDefinitionsPath = dataDefinitionFiles.DataDefinitionsPath; // dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
 
          JObject jsonToken;
 
-         using (System.IO.StreamReader reader = System.IO.File.OpenText(tempDataDefinitionPathAndFile))
+         using (System.IO.StreamReader reader = System.IO.File.OpenText(fileName))
          {
             //https://www.newtonsoft.com/json/help/html/LINQtoJSON.htm
             jsonToken = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
@@ -50,7 +49,20 @@ namespace DG
 
          var outputIncrementValue = (int)jsonToken["OutputIncrementValue"];
 
-         ColumnDefinitions = new List<OutputColumnDefinition>();
+         TableDefinition = new TableDefinition
+         {
+            OutputFilename = outputFilename,
+            OutputColumnCount = outputColumnCount,
+            OutputFileType = outputFileType,
+            OutputDelimiter = outputDelimiter,
+            OutputRecordCount = outputRecordCount,
+            OutputIdentityStartValue = outputIdentityStartValue,
+            OutputIncrementValue = outputIncrementValue,
+            DataFoldersLocation = dataFoldersLocation,
+            DataGeneratedPath = dataFoldersLocation + DataFolders.DataGenerated + "\\",
+            DataDefinitionsPath = dataDefinitionsPath
+         };
+
 
          var defaultInteger = (int)Parameter.GetParameterValue(p, ParameterNames.DefaultInteger.ToString() );
          var defaultString = (string)Parameter.GetParameterValue(p, ParameterNames.DefaultString.ToString() );
@@ -72,19 +84,9 @@ namespace DG
            
             string columnRatios = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnRatios"], JTokenType.String, defaultString);
 
-            ColumnDefinitions.Add(new OutputColumnDefinition()
+            TableDefinition.ColumnDefinitions.Add (new ColumnDefinition()
             {
-               //Outputs (TODO: separate object)
-               OutputFilename = outputFilename,
-               OutputColumnCount = outputColumnCount,
-               OutputFileType = outputFileType,
-               OutputDelimiter = outputDelimiter,
-               OutputRecordCount = outputRecordCount,
 
-               OutputIdentityStartValue = outputIdentityStartValue,
-               OutputIncrementValue = outputIncrementValue,
-
-               //Column Specific
                ColumnPosition = columnPosition,
                ColumnName = columnName,
 
@@ -96,13 +98,7 @@ namespace DG
 
                ColumnDataMimicPathFileName = dataFoldersLocation + DataFolders.DataMimic + "\\" + mimicFilename,
                ColumnMimicFilename = mimicFilename,
-               //Data Location Specific
-
-               DataFoldersLocation = dataFoldersLocation,
-
-               DataGeneratedPath = dataFoldersLocation + DataFolders.DataGenerated + "\\",
-               DataDefinitionsPath = dataDefinitionsPath,
-      
+ 
             });
 
          }

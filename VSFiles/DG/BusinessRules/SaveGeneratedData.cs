@@ -31,7 +31,7 @@ namespace DG
          }
 
          //this is a parameter 
-         string filename = obtainDataDefinitions.ColumnDefinitions[0].DataGeneratedPath  + obtainDataDefinitions.ColumnDefinitions[0].OutputFilename + "." + obtainDataDefinitions.ColumnDefinitions[0].OutputFileType;
+         string filename = obtainDataDefinitions.TableDefinition.DataGeneratedPath + obtainDataDefinitions.TableDefinition.OutputFilename + "." + obtainDataDefinitions.TableDefinition.OutputFileType;
 
          File.WriteAllText(filename, sb.ToString());
 
