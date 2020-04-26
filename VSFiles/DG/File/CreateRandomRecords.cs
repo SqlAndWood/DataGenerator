@@ -11,26 +11,24 @@ namespace DG
    {
      
       public DataTable DTable { get; set; }
-      private readonly ObtainColumnDefinitions _od;
-      
-      public CreateRandomRecords(Parameter parameter, ObtainColumnDefinitions obtainColumnDefinitions)
+
+      public CreateRandomRecords( ObtainDataDefinitions obtainDataDefinitions)
       {
-         _od = obtainColumnDefinitions;
+         var od = obtainDataDefinitions;
+         
+         DTable = DefineDataTable.Create(obtainDataDefinitions);
 
-         DTable = DefineDataTable.Create(obtainColumnDefinitions);
+         //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
+         List<dynamic>[] rrd = new List<dynamic>[od.ColumnDefinitions[0].OutputColumnCount]; //Unsure if I should make this an object
 
-         //This still might prove to be more useful as an Object, but will that just be storing the same inforamtion yet again?
-         List<dynamic>[] rrd = new List<dynamic>[_od.TotalNumberOfColumns]; //Unsure if I should make this an object
-
-         foreach (var colDef in _od.ColumnDefinitions)
+         foreach (var colDef in od.ColumnDefinitions)
          {
 
-            string mockSourceDataFilename = colDef.MockSourceDataFilename;
-
-            if (mockSourceDataFilename != "")
+            if (colDef.ColumnMimicFilename != "")
             {
-               string file = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
-
+               //string file = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
+               var file = colDef.ColumnDataMimicPathFileName;
+               
                rrd[colDef.ColumnPosition - 1] = new List<dynamic>
                {
                   File.ReadLines(file).ToList()
@@ -48,11 +46,11 @@ namespace DG
          dynamic value = "";
 
          //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
-         int startingValue = 0;
-         int incrementingValue = 3;
-
+         int startingValue = od.ColumnDefinitions[0].OutputIdentityStartValue;
+         int incrementingValue = od.ColumnDefinitions[0].OutputIncrementValue;
+         
          //Now populate the details with data read into the file.  Using _od.TotalRecordCount
-         for (int i = 0; i < _od.TotalRecordCount; i++)
+         for (int i = 0; i < od.ColumnDefinitions[0].OutputRecordCount; i++)
          {
 
             DataRow dr = DTable.NewRow();
@@ -60,14 +58,13 @@ namespace DG
             int columnCount = 1;
 
             //Loop each known column
-            foreach (var colDef in _od.ColumnDefinitions)
+            foreach (var colDef in od.ColumnDefinitions)
             {
-
-
+               
                //  rrd[colDef.ColumnPosition - 1].
                if (colDef.ColumnIdentityField.ToUpper() == "YES".ToUpper())
                {
-                  dr[colDef.ColumnName] = startingValue; //dont perform a test with this one.
+                  dr[colDef.ColumnName] = startingValue; //don't perform a test with this one.
                   startingValue += incrementingValue;
                }
                else
@@ -82,12 +79,13 @@ namespace DG
                      //is there a better way to perform this action?
                      switch (colDef.ColumnDataType.ToUpper())
                      {
-
+                        //When a field contains a comma, we need to surround THAT field with " "A Comma, Provided Value" "
                         case "INT":
                            value = Int32.Parse(rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)]);
                            break;
                         case "STRING":
-                           value = rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)].ToString();
+                           //This does not solve the real issue.
+                           value = rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)].ToString().Replace(",", string.Empty); 
                            break;
                         case "BOOLEAN":
                            value = Convert.ToBoolean(rrd[columnCount][0][random.Next(rrd[columnCount][0].Count)]);
@@ -98,7 +96,7 @@ namespace DG
                            value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]), Int32.Parse(arMinMax[1]));
                            break;
 
-                        default: break;
+                        default: value = DBNull.Value;  break;
                      }
 
                   }

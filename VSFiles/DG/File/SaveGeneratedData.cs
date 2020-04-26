@@ -9,28 +9,30 @@ namespace DG
    class SaveGeneratedData
    {
 
-      public SaveGeneratedData(DataTable dt, ObtainColumnDefinitions obtainColumnDefinitions)
+      public SaveGeneratedData(DataTable dt, ObtainDataDefinitions obtainDataDefinitions)
       {
 
          StringBuilder sb = new StringBuilder();
+
+        // var Quote = '\u0022';
 
          string[] columnNames = dt.Columns.Cast<DataColumn>().
             Select(column => column.ColumnName).
             ToArray();
 
-         sb.AppendLine(string.Join(",", columnNames));
+         sb.AppendLine(string.Join( "," , columnNames));
 
          foreach (DataRow row in dt.Rows)
          {
             string[] fields = row.ItemArray.Select(field => field.ToString()).
                ToArray();
 
-            sb.AppendLine(string.Join(",", fields));
+            sb.AppendLine(string.Join( "," , fields));
          }
 
          //this is a parameter 
-         string filename = "C:\\git\\DataGenerator\\GeneratedData\\" +  obtainColumnDefinitions.SourceFilename + ".csv";
-         
+         string filename = obtainDataDefinitions.ColumnDefinitions[0].DataGeneratedPath  + obtainDataDefinitions.ColumnDefinitions[0].OutputFilename + "." + obtainDataDefinitions.ColumnDefinitions[0].OutputFileType;
+
          File.WriteAllText(filename, sb.ToString());
 
       }

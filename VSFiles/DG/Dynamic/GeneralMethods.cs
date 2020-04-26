@@ -4,7 +4,6 @@ namespace DG
 {
    public static class GeneralMethods
    {
-      //private static readonly Random random = new Random();
 
       private static readonly Random Random = new Random();
 
@@ -17,36 +16,15 @@ namespace DG
       }
 
       //This is a safe function, to divide by zero 
-      public static double SfDivideByZero(int renumerator, int denominator)
-      {
-         double preventDivisionError = (double)denominator;
-         if (Math.Abs((double)denominator) < 0.001)
-         {
-            preventDivisionError = 1;
-         }
-         return ((double)renumerator / preventDivisionError) * 100;
-
-      }
-      //this does not answer to:from
-      //public static int NextInt32(this Random rng)
+      //public static double SfDivideByZero(int numerator , int denominator)
       //{
-      //   unchecked
+      //   double preventDivisionError = (double)denominator;
+      //   if (Math.Abs((double)denominator) < 0.001)
       //   {
-      //      int firstBits = rng.Next(0, 1 << 4) << 28;
-      //      int lastBits = rng.Next(0, 1 << 28);
-      //      return firstBits | lastBits;
+      //      preventDivisionError = 1;
       //   }
-      //}
+      //   return ((double)numerator  / preventDivisionError) * 100;
 
-      //public static decimal NextDecimal(this Random rng)
-      //{
-      //   byte scale = (byte)rng.Next(29);
-      //   bool sign = rng.Next(2) == 1;
-      //   return new decimal(rng.NextInt32(),
-      //      rng.NextInt32(),
-      //      rng.NextInt32(),
-      //      sign,
-      //      scale);
       //}
 
    }

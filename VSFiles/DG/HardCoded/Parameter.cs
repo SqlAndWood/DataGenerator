@@ -1,46 +1,35 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 
 namespace DG
 {
+
+   public enum ParameterNames
+   {
+      DataFolders,
+      DefaultInteger,
+      DefaultString
+   }
+   
    public class Parameter
    {
       
       public List<ParameterTuple> ListOfParameterStrings { get;  set; }
-
+      
       public Parameter()
       {
          ListOfParameterStrings = new List<ParameterTuple>();
-
-         //Testing accessibility of files in a folder.
-         string curDirectory = Directory.GetCurrentDirectory();
-         string path = $"C:\\git\\DataGenerator\\GeneratorOutputDefinitions";
-         string[] filesInDir = Directory.GetFiles(path);
-
-         //Store as much of this in a configuration file; app.config?
-
-         //Issue here will be expanding to multiple Source JSON and multiple MockData Files.
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "OutputDefinitionsPathAndName", (string)@"C:\git\DataGenerator\GeneratorOutputDefinitions\Presenter.json", "Represents the file to be processed today.");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "GeneratedData", (string)@"C:\git\DataGenerator\GeneratedData\", "Represents the file to be processed today.");
-
          
-
-         //ParameterTuple.AddNewParameterString(ListOfParameterStrings, "MockDataPath", parameterValue:(string)@"C:\git\DataGenerator\MockData\", ".");
-
-
-         //These will not be here, eventually they will be preloaded as part of the startup phase.
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "123YN.txt", parameterValue: (string)@"C:\git\DataGenerator\MockData\123YN.txt", ".");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "Surname.txt", parameterValue: (string)@"C:\git\DataGenerator\MockData\Surname.txt", ".");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "1234567890.txt", parameterValue: (string)@"C:\git\DataGenerator\MockData\1234567890.txt", ".");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "YesNo.txt", parameterValue: (string)@"C:\git\DataGenerator\MockData\YesNo.txt", ".");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "TrueFalse.txt", parameterValue: (string)@"C:\git\DataGenerator\MockData\TrueFalse.txt", ".");
-
-
+         //For the End User: Enter the Path to these folders.
+            //DataGenerated
+            //DataDefinitions
+            //DataMimic
+    
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"C:\git\DataGenerator", "This is the location where ");
          
-
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "DefaultInteger", (int)-99, "");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, "DefaultString", (string)@"", "Represents the file to be processed today.");
-
+         //Coders parameters. 
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultInteger.ToString(), -99, "A default value when expecting an INTEGER");
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultString.ToString(), @"", "A default value when expecting a STRING.");
+       
       }
       
       public static dynamic GetParameterValue(Parameter p, string parameterName)
@@ -54,7 +43,6 @@ namespace DG
          else
          {
             return "";
-
          }
 
       }

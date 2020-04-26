@@ -10,10 +10,10 @@ namespace DG
 
       public string ParameterDescription { get; set; }
 
-      public static void AddNewParameterString(List<ParameterTuple> ParameterString, string parameterName, dynamic parameterValue, string parameterDescription)
+      public static void AddNewParameterString(List<ParameterTuple> parameterString, string parameterName, dynamic parameterValue, string parameterDescription)
       {
         
-         ParameterString.Add(new ParameterTuple
+         parameterString.Add(new ParameterTuple
          {
             ParameterName = parameterName.ToLower(),
             ParameterValue = parameterValue,
@@ -22,8 +22,6 @@ namespace DG
          });
                               
       }
-
-
 
    }
 

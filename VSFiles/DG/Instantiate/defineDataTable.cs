@@ -8,27 +8,21 @@ namespace DG
    class DefineDataTable
    {
 
-      public static DataTable Create( ObtainColumnDefinitions ocd)
+      //at present this is only designed for ONE file. Need to scale.
+      public static DataTable Create(ObtainDataDefinitions ocd)
       {
          
-         var PrimaryKeyColumns = new List<string>();
-         DataTable DTable = new DataTable(ocd.SourceFilename);
-
-         DataColumn column;
-         
+         DataTable DTable = new DataTable(ocd.ColumnDefinitions[0].OutputFilename);
 
          foreach (OutputColumnDefinition cd in ocd.ColumnDefinitions)
          {
             string s = SystemDataTypes.GetSystemType(cd.ColumnDataType);
-            column = new DataColumn(cd.ColumnName) {DataType = System.Type.GetType(s), ReadOnly = true, Unique = false};
-
-
-
+            var column = new DataColumn(cd.ColumnName) {DataType = System.Type.GetType(s), ReadOnly = true, Unique = false};
+            
             if (cd.ColumnIdentityField.ToUpper() == "YES")
             {
-               PrimaryKeyColumns.Add(cd.ColumnName);
                column.AllowDBNull = false;
-               AddPrimaryKey(cd, PrimaryKeyColumns, DTable);
+               AddPrimaryKey(cd, new List<string> { cd.ColumnName }, DTable);
             }
             else
             {
@@ -42,7 +36,6 @@ namespace DG
          return DTable;
 
       }
-
 
       private static void AddPrimaryKey(OutputColumnDefinition cd, List<string> PrimaryKeyColumns, DataTable table)
       {

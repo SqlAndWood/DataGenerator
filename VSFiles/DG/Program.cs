@@ -5,10 +5,7 @@
 
       private static void Main()
       {
-
          new EController();
-
-
       }
 
 

@@ -4,22 +4,23 @@
    class EController
    {
 
-      public Parameter Parameters { get; set; }
+    //  public Parameter Parameters { get; set; }
 
-      public ObtainColumnDefinitions ObtainColumnDefinitions { get; set; }
+   //   public ObtainDataDefinitions ObtainDataDefinitions { get; set; }
       
       public EController()
       {
 
-         Parameters = new Parameter();
-         ObtainColumnDefinitions = new ObtainColumnDefinitions(Parameters);
+         Parameter p = new Parameter();
 
-         //For each File in ObjectDefinition... or.. Read all files in a folder.
-         //Pretend this has happened with : C:\git\DataGenerator\GeneratorOutputDefinitions\Presentor.json
-         CreateRandomRecords crr = new CreateRandomRecords(Parameters, ObtainColumnDefinitions);
+         ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(p);
 
-         //Save to GeneratedData
-         SaveGeneratedData sgd = new SaveGeneratedData(crr.DTable, ObtainColumnDefinitions);
+         //AT the moment, this is locked to one file only. Yet to expand to 'all' files within the DataDefinition folder.
+         CreateRandomRecords crr = new CreateRandomRecords(dataDefinitions);
+
+         ////Save to GeneratedData: BTW this needs to be a loop per 'DataDefinition' provided file.
+         new SaveGeneratedData(crr.DTable, dataDefinitions);
+
 
       }
 
