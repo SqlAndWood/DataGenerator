@@ -17,13 +17,18 @@
                      100   -> All Records are to be different
           
    ",
-   "OutputFilename": "Presenter",
-   "Filetype": "CSV",
-   "Delimeter": ",",
-     
-   "TotalNumberOfColumns":5,
-   "TotalRecordCount": 50,
    
+   "OutputFilename": "Presenter",
+   "OutputColumnCount":9,
+   
+   "OutputFileType":"CSV",
+   "OutputDelimeter": ",",
+     
+   "OutputRecordCount": 50000,
+   
+    "OutputIdentityStartValue":0,
+    "OutputIncrementValue":1,
+         
    "ColumnDefinitions": [
       {
          "ColumnPosition": 1,
@@ -31,7 +36,7 @@
          "ColumnIdentityField":"Yes",
          "ColumnDataType":"INT",
          
-         "MockSourceDataFilename" : "",
+         "MimicFilename" : "",
          
          "ColumnNullablePercentage":0,
          "ColumnRatios" : "100",
@@ -43,7 +48,7 @@
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
          
-         "MockSourceDataFilename" : "YesNo.txt",
+         "MimicFilename" : "YesNo.txt",
          
          "ColumnNullablePercentage":15,
          
@@ -56,7 +61,7 @@
          "ColumnIdentityField":"No",
          "ColumnDataType":"INT",
          
-         "MockSourceDataFilename" : "1234567890.txt",
+         "MimicFilename" : "1234567890.txt",
          
          "ColumnNullablePercentage":10,
          
@@ -69,7 +74,7 @@
          "ColumnIdentityField":"No",
          "ColumnDataType":"BOOLEAN",
          
-         "MockSourceDataFilename" : "TrueFalse.txt",
+         "MimicFilename" : "TrueFalse.txt",
          
          "ColumnNullablePercentage":10,
          
@@ -78,16 +83,69 @@
       ,
       {
          "ColumnPosition": 5,
-         "ColumnName": "Multiplicity",
+         "ColumnName": "AtomicNucleusZiffNumber",
          "ColumnIdentityField":"No",
          "ColumnDataType":"DECIMAL",
          
-         "MockSourceDataFilename" : "",
+         "MimicFilename" : "",
          
          "ColumnNullablePercentage":15,
          
          "ColumnRatios" : "0,100",
       }
+       ,
+      {
+         "ColumnPosition": 6,
+         "ColumnName": "Firstname",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         
+         "MimicFilename" : "Firstname.txt",
+         
+         "ColumnNullablePercentage":0,
+         
+         "ColumnRatios" : "100",
+      }
+      ,
+      {
+         "ColumnPosition": 7,
+         "ColumnName": "Middlename",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         
+         "MimicFilename" : "Firstname.txt",
+         
+         "ColumnNullablePercentage":90,
+         
+         "ColumnRatios" : "99",
+      }
+       ,
+      {
+         "ColumnPosition": 8,
+         "ColumnName": "Surname",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         
+         "MimicFilename" : "Firstname.txt",
+         
+         "ColumnNullablePercentage":1,
+         
+         "ColumnRatios" : "100",
+      }
+      ,
+      {
+         "ColumnPosition": 9,
+         "ColumnName": "IdentifiedByBob",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         
+         "MimicFilename" : "123YN.txt",
+         
+         "ColumnNullablePercentage":7,
+         
+         "ColumnRatios" : "100",
+      }
+      
    ]
    
 }
