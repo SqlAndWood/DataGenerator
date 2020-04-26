@@ -12,9 +12,9 @@ namespace DG
       public static DataTable Create(ObtainDataDefinitions ocd)
       {
          
-         DataTable DTable = new DataTable(ocd.ColumnDefinitions[0].OutputFilename);
+         DataTable DTable = new DataTable(ocd.TableDefinition.OutputFilename);
 
-         foreach (OutputColumnDefinition cd in ocd.ColumnDefinitions)
+         foreach (ColumnDefinition cd in ocd.TableDefinition.ColumnDefinitions)
          {
             string s = SystemDataTypes.GetSystemType(cd.ColumnDataType);
             var column = new DataColumn(cd.ColumnName) {DataType = System.Type.GetType(s), ReadOnly = true, Unique = false};
@@ -37,7 +37,7 @@ namespace DG
 
       }
 
-      private static void AddPrimaryKey(OutputColumnDefinition cd, List<string> PrimaryKeyColumns, DataTable table)
+      private static void AddPrimaryKey(ColumnDefinition cd, List<string> PrimaryKeyColumns, DataTable table)
       {
 
          if (cd.ColumnIdentityField.ToUpper() == "YES")
