@@ -22,3 +22,5 @@ DG/bin/
 .vs/
 VSFiles/DG/bin/
 VSFiles/DG/obj/
+
+DataGenerated/
