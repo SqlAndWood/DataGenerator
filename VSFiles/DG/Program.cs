@@ -5,11 +5,8 @@
 
       private static void Main()
       {
-         new EController();
+         new DataGeneratorController();
       }
-
-
-
 
    }
 }
