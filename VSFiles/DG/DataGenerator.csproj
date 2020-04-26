@@ -59,16 +59,18 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dynamic\GeneralMethods.cs" />
-    <Compile Include="File\CreateRandomRecords.cs" />
-    <Compile Include="Instantiate\DefineDataTable.cs" />
-    <Compile Include="File\SaveGeneratedData.cs" />
-    <Compile Include="Instantiate\OutputColumnDefinition.cs" />
-    <Compile Include="DG_Controller.cs" />
-    <Compile Include="Instantiate\ObtainDataDefinitions.cs" />
-    <Compile Include="HardCoded\Parameter.cs" />
-    <Compile Include="HardCoded\ParameterTuple.cs" />
-    <Compile Include="Instantiate\SystemDataTypes.cs" />
+    <Compile Include="General\GeneralMethods.cs" />
+    <Compile Include="BusinessRules\CreateRandomRecords.cs" />
+    <Compile Include="BusinessRules\DataDefinitionFiles.cs" />
+    <Compile Include="General\DefineDataTable.cs" />
+    <Compile Include="BusinessRules\SaveGeneratedData.cs" />
+    <Compile Include="ObjectDefinition\ColumnDefinition.cs" />
+    <Compile Include="DataGeneratorController.cs" />
+    <Compile Include="BusinessRules\ObtainDataDefinitions.cs" />
+    <Compile Include="Parameters\Parameter.cs" />
+    <Compile Include="Parameters\ParameterTuple.cs" />
+    <Compile Include="General\SystemDataTypes.cs" />
+    <Compile Include="ObjectDefinition\TableDefinition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
