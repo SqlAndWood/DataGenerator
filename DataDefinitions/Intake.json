@@ -24,7 +24,7 @@
    "OutputFileType":"csv",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": 50000,
+   "OutputRecordCount": 10000,
    
     "OutputIdentityStartValue":0,
     "OutputIncrementValue":1,
@@ -70,13 +70,13 @@
       ,
       {
          "ColumnPosition": 4,
-         "ColumnName": "InterpreterRequired",
+         "ColumnName": "ReviewDate",
          "ColumnIdentityField":"No",
-         "ColumnDataType":"BOOLEAN",
+         "ColumnDataType":"STRING",
          
-         "MimicFilename" : "TrueFalse.txt",
+         "MimicFilename" : "DatesYoungPerson.txt",
          
-         "ColumnNullablePercentage":40,
+         "ColumnNullablePercentage":0,
          
          "ColumnRatios" : "100",
       }

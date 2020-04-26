@@ -18,13 +18,13 @@
          foreach (string fileName in dataDefinitionFiles.FilesInDirectory)
          {
 
-            //TODO: Loop all known Files in the DataDefinition. 
+            //TODO: each loop should de reference these objects. 
             ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(p, dataDefinitionFiles, fileName);
 
             CreateRandomRecords crr = new CreateRandomRecords(dataDefinitions);
 
             new SaveGeneratedData(crr.DTable, dataDefinitions);
-
+            
          }
 
       }
