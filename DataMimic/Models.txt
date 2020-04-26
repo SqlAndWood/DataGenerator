@@ -1,4 +1,3 @@
-Australian
 British Leyland
 Chrysler
 Ford
@@ -6,6 +5,5 @@ Holden
 Mitsubishi
 Nissan
 Renault
-Rootes
 Toyota
 Volkswagen
