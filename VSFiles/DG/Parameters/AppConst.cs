@@ -26,7 +26,7 @@
       public enum DefaultNumberRanges
       {
          StartNumber = 0,
-         EndNumber = 999999999
+         EndNumber = 1000000
       }
 
       public enum DefaultTimeRange
@@ -40,10 +40,15 @@
       {
          StartNumber = 0,
          EndNumber = 50,
-         DecimalPlaces = 4
+         DecimalPlaces = 3
       }
 
-
+      public enum LoadDataMimicMethod
+      {
+         File,
+         Incremental,
+         Random 
+      }
 
    }
 }

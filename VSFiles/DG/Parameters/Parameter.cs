@@ -3,13 +3,6 @@
 namespace DG
 {
 
-   public enum ParameterNames
-   {
-      DataFolders,
-      DefaultInteger,
-      DefaultString
-   }
-   
    public class Parameter
    {
       
@@ -25,13 +18,13 @@ namespace DG
             //DataMimic
     
             //I'd rather use referential referencing. but with Visual Studio, unsure how to perform this action.
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"C:\git\DataGenerator", "This is the location where ");
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, AppConst.ParameterNames.DataFolders.ToString(), @"C:\git\DataGenerator", "This is the location where ");
 
          //  ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"B:\Users\wooda01.ADMINSRVAD\git\Applications\DataGenerator", "This is the location where ");
 
          //Coders parameters. 
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultInteger.ToString(), -99, "A default value when expecting an INTEGER");
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultString.ToString(), @"", "A default value when expecting a STRING.");
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, AppConst.ParameterNames.DefaultInteger.ToString(), -99, "A default value when expecting an INTEGER");
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, AppConst.ParameterNames.DefaultString.ToString(), @"", "A default value when expecting a STRING.");
        
       }
       
