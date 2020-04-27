@@ -8,16 +8,12 @@ namespace DG
    class ObtainDataDefinitions
    {
 
-      //TODO:  once we start to utilise >1 JSON DataDefinition File, this would be best utilised as an Array.
       public TableDefinition TableDefinition { get; set; }
       
-     //TODO: This should be looped for all files in teh DataDefinitions Folder
       public ObtainDataDefinitions( Parameter p, DataDefinitionFiles dataDefinitionFiles,  string fileName)
       {
 
-         //TODO: These two lines of code have aleady been performed in 
          var dataFoldersLocation = dataDefinitionFiles.DataFoldersLocation; //Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
-
          var dataDefinitionsPath = dataDefinitionFiles.DataDefinitionsPath; // dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
 
          JObject jsonToken;
@@ -87,7 +83,7 @@ namespace DG
 
             string columnEndWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["EndWith"], JTokenType.String, defaultString);
 
-            string columnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnLength"], JTokenType.String, defaultString);
+            string columnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["Length"], JTokenType.String, defaultString);
 
             TableDefinition.ColumnDefinitions.Add (new ColumnDefinition()
             {
