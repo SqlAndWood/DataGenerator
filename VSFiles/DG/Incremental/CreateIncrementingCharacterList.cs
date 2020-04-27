@@ -5,25 +5,16 @@ namespace DG
 {
     public class CreateIncrementingCharacterList
     {
+      //    CreateIncrementingCharacterList idt = new CreateIncrementingCharacterList();
+      //    List<dynamic> CharactersIncremental = new List<dynamic>();
+      //    CharactersIncremental = idt.GenerateIncrementalCharacterList( AppConst.DefaultNumberRanges.EndNumber);
 
-        //public void TestCreationOfIncrementalCharacters()
-        //{
-
-        //    //Test only to create a Incremental CHARACTER data type A-Z, AA-ZZ, AAA-ZZZ etc.
-        //    CreateIncrementingCharacterList idt = new CreateIncrementingCharacterList();
-
-        //    List<dynamic> CharactersIncremental = new List<dynamic>();
-        //    CharactersIncremental = idt.GenerateIncrementalCharacterList(500000);
-
-        //}
-
-
-        public List<dynamic> GenerateIncrementalCharacterList(int arrayLength)
+        public List<dynamic> GenerateIncrementalCharacterList(int end)
         {
 
             List <dynamic> charactersIncremental = new List<dynamic>();
 
-            foreach (var s in Generate().Take(arrayLength))
+            foreach (var s in Generate().Take(end))
             {
                 charactersIncremental.Add(s);
             }
@@ -44,9 +35,6 @@ namespace DG
             if (i == 0) return ""; i--;
             return ToBase26(i / 26) + (char)('A' + i % 26);
         }
-
-
-
 
     }
 }
