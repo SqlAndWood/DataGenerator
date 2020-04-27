@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -61,7 +62,8 @@ namespace DG
                         LoadIncrementalTime(colDef);
                         break;
 
-                     case "INTEGER": 
+                     case "INTEGER":
+                     case "NUMBER":
                      case "INT":
                         LoadIncrementalNumber(colDef);
                         break;
@@ -100,14 +102,18 @@ namespace DG
       // INCREMENTAL => Data Type { Date, Time, Number, Decimal (up to 1 decimal place only)}
       private void LoadIncrementalDate(ColumnDefinition colDef)
       {
-    
+         
+         var startDate = colDef.ColumnStartWith == ""
+            ? (int) AppConst.DefaultDateRanges.StartDate
+            : int.Parse(colDef.ColumnStartWith);
+
+         var endDate = colDef.ColumnEndWith == ""
+            ? (int) AppConst.DefaultDateRanges.EndDate
+            : int.Parse(colDef.ColumnEndWith);
+
          CreateIncrementingDateList idt = new CreateIncrementingDateList();
 
-         //TODO: Replace Start/End with actual parameteres. Ie test for valid parameters first.
-         var datesIncremental = idt.GenerateIncrementingDateList(
-            (int)AppConst.DefaultDateRanges.StartDate,
-            (int)AppConst.DefaultDateRanges.EndDate
-         );
+         var datesIncremental = idt.GenerateIncrementingDateList(startDate, endDate);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(datesIncremental);
          
@@ -116,14 +122,18 @@ namespace DG
       private void LoadIncrementalTime(ColumnDefinition colDef)
       {
 
+         var startTime = colDef.ColumnStartWith == ""
+            ? (int)AppConst.DefaultTimeRange.StartTime
+            : int.Parse(colDef.ColumnStartWith);
+
+         var endTime = colDef.ColumnEndWith == ""
+            ? (int)AppConst.DefaultTimeRange.EndTime
+            : int.Parse(colDef.ColumnEndWith);
+         
          CreateIncrementingTimeList idt = new CreateIncrementingTimeList();
 
-         //TODO: Replace Start/End with actual parameteres. Ie test for valid parameters first.
-         var ti = idt.GenerateIncrementingTimeList(
-            (int)AppConst.DefaultTimeRange.StartTime,
-            (int)AppConst.DefaultTimeRange.EndTime
-         );
-
+         var ti = idt.GenerateIncrementingTimeList(startTime, endTime);
+      
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(ti);
 
       }
@@ -131,13 +141,17 @@ namespace DG
       private void LoadIncrementalNumber(ColumnDefinition colDef)
       {
 
+         var startNumber = colDef.ColumnStartWith == ""
+            ? (int)AppConst.DefaultNumberRanges.StartNumber
+            : int.Parse(colDef.ColumnStartWith);
+
+         var endNumber = colDef.ColumnEndWith == ""
+            ? (int)AppConst.DefaultNumberRanges.EndNumber
+            : int.Parse(colDef.ColumnEndWith);
+
          CreateIncrementingNumberList idt = new CreateIncrementingNumberList();
 
-         //TODO: Replace Start/End with actual parameteres. Ie test for valid parameters first.
-         var numbersIncremental = idt.GenerateIncrementingNumberList(
-            (int) AppConst.DefaultNumberRanges.StartNumber,
-            (int)AppConst.DefaultNumberRanges.EndNumber
-         );
+         var numbersIncremental = idt.GenerateIncrementingNumberList(startNumber, endNumber);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(numbersIncremental);
 
@@ -146,15 +160,21 @@ namespace DG
       private void LoadIncrementalDecimal(ColumnDefinition colDef)
       {
 
+         var startNumber = colDef.ColumnStartWith == ""
+            ? (int)AppConst.DefaultDecimalRanges.StartNumber
+            : int.Parse(colDef.ColumnStartWith);
+
+         var endNumber = colDef.ColumnEndWith == ""
+            ? (int)AppConst.DefaultDecimalRanges.EndNumber
+            : int.Parse(colDef.ColumnEndWith);
+
+         var decimalPlaces = colDef.ColumnLength == ""
+            ? (int)AppConst.DefaultDecimalRanges.DecimalPlaces
+            : int.Parse(colDef.ColumnLength);
+
          CreateIncrementingDecimalList idt = new CreateIncrementingDecimalList();
 
-         //TODO: Replace Start/End with actual parameteres. Ie test for valid parameters first.
-         var ld = idt.GenerateIncrementingDecimalList(
-            (int)AppConst.DefaultDecimalRanges.StartNumber,
-            (int)AppConst.DefaultDecimalRanges.EndNumber,
-            (int)AppConst.DefaultDecimalRanges.DecimalPlaces
-         );
-
+         var ld = idt.GenerateIncrementingDecimalList(startNumber, endNumber, decimalPlaces);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(ld);
 
@@ -171,20 +191,21 @@ namespace DG
 
       }
 
-
       private void LoadIncrementalString(ColumnDefinition colDef)
       {
 
+         var length = colDef.ColumnLength == ""
+            ? (int)AppConst.DefaultNumberRanges.Length
+            : int.Parse(colDef.ColumnLength);
 
          CreateIncrementingStringList idt = new CreateIncrementingStringList();
          List<dynamic> rs = new List<dynamic>();
-         rs = idt.GenerateIncrementalStringList((int)AppConst.DefaultNumberRanges.EndNumber);
+
+         rs = idt.GenerateIncrementalStringList(length);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(rs);
-
-
+         
       }
-
 
    }
 
