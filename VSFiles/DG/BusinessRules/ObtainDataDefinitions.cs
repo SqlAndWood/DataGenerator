@@ -43,7 +43,7 @@ namespace DG
 
          var outputRecordCount = (int)jsonToken["OutputRecordCount"];
 
-         var outputColumnCount = (int)jsonToken["OutputColumnCount"];
+         //var outputColumnCount = (int)jsonToken["OutputColumnCount"];
 
          var outputIdentityStartValue = (int)jsonToken["OutputIdentityStartValue"];
 
@@ -52,7 +52,7 @@ namespace DG
          TableDefinition = new TableDefinition
          {
             OutputFilename = outputFilename,
-            OutputColumnCount = outputColumnCount,
+           // OutputColumnCount = outputColumnCount,
             OutputFileType = outputFileType,
             OutputDelimiter = outputDelimiter,
             OutputRecordCount = outputRecordCount,
@@ -63,9 +63,17 @@ namespace DG
             DataDefinitionsPath = dataDefinitionsPath
          };
 
-
          var defaultInteger = (int)Parameter.GetParameterValue(p, ParameterNames.DefaultInteger.ToString() );
          var defaultString = (string)Parameter.GetParameterValue(p, ParameterNames.DefaultString.ToString() );
+
+        //   I'm sure there is a better way, but this works for now.
+        var outputColumnCount = 0;
+        foreach (var obj in jsonToken["ColumnDefinitions"] )
+        {
+                outputColumnCount += 1;
+        }
+        //Still considering the layout of this.
+        TableDefinition.ColumnDefinitionCount = outputColumnCount;
 
          for (int i = 0; i <= outputColumnCount - 1; i++)
          {

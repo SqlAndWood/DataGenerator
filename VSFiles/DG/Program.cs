@@ -2,7 +2,6 @@
 {
    class Program
    {
-
       private static void Main()
       {
          new DataGeneratorController();

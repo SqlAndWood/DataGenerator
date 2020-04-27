@@ -10,7 +10,7 @@ namespace DG
       public string OutputFileType { get; set; }
       public string OutputDelimiter { get; set;}
 
-      public int OutputColumnCount { get; set; }  //Potentially deprecated, as we can manually count the number of Columns in the JSON file.
+      public int ColumnDefinitionCount { get; set; } 
       public int OutputRecordCount { get; set; }
 
       public int OutputIdentityStartValue { get; set; }

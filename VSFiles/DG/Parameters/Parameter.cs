@@ -24,10 +24,12 @@ namespace DG
             //DataDefinitions
             //DataMimic
     
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"C:\git\DataGenerator", "This is the location where ");
-         
-         //Coders parameters. 
-         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultInteger.ToString(), -99, "A default value when expecting an INTEGER");
+       //  ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"C:\git\DataGenerator", "This is the location where ");
+
+         ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DataFolders.ToString(), @"B:\Users\wooda01.ADMINSRVAD\git\Applications\DataGenerator", "This is the location where ");
+
+            //Coders parameters. 
+            ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultInteger.ToString(), -99, "A default value when expecting an INTEGER");
          ParameterTuple.AddNewParameterString(ListOfParameterStrings, ParameterNames.DefaultString.ToString(), @"", "A default value when expecting a STRING.");
        
       }

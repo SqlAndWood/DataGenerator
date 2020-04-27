@@ -18,8 +18,9 @@ namespace DG
          
          DTable = DefineDataTable.Create(obtainDataDefinitions);
 
-         //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
-         List<dynamic>[] rrd = new List<dynamic>[od.OutputColumnCount]; //Unsure if I should make this an object
+        //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
+        //obtainDataDefinitions.TableDefinition.ColumnDefinitionCount
+        List<dynamic>[] rrd = new List<dynamic>[obtainDataDefinitions.TableDefinition.ColumnDefinitions.Count()]; //Unsure if I should make this an object
 
          foreach (var colDef in od.ColumnDefinitions)
          {
