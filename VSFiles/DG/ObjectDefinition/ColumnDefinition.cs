@@ -19,6 +19,7 @@
 
       public string ColumnStartWith { get; set; }
       public string ColumnEndWith { get; set; }
+      public string ColumnLength { get; set; }
 
    }
    

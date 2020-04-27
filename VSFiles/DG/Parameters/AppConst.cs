@@ -26,7 +26,8 @@
       public enum DefaultNumberRanges
       {
          StartNumber = 0,
-         EndNumber = 1000000
+         EndNumber = 1000000,
+         Length = 24
       }
 
       public enum DefaultTimeRange

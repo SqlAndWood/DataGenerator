@@ -56,8 +56,9 @@
 
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
-         "StartWith":"",
+         "StartWith":"1",
          "EndWith":"",
+         "Length":"",
          
       }
       ,
@@ -65,14 +66,15 @@
          "ColumnPosition": "2",
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
-         "ColumnDataType":"STRING",
+         "ColumnDataType":"NUMBER",
          "ColumnNullablePercentage":"15",
          "ColumnRatios" : "50/50", 
 
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
-         "StartWith":"",
-         "EndWith":"",
+         "StartWith":"56",
+         "EndWith":"99",
+         "Length":"",
          
       }
       ,
@@ -88,6 +90,7 @@
          "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
+         "Length":"",
       }
       ,
       {
@@ -102,6 +105,7 @@
          "DataMimicFilename" : "", 
          "StartWith":"",
          "EndWith":"",
+         "Length":"",
       }
       ,
       {
@@ -116,6 +120,7 @@
          "DataMimicFilename" : "",
          "StartWith":"1.0",
          "EndWith":"100.0",
+         "Length":"",
       }
     
    ]

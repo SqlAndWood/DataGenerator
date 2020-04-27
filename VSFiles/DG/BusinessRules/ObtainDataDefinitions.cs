@@ -87,6 +87,8 @@ namespace DG
 
             string columnEndWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["EndWith"], JTokenType.String, defaultString);
 
+            string columnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnLength"], JTokenType.String, defaultString);
+
             TableDefinition.ColumnDefinitions.Add (new ColumnDefinition()
             {
 
@@ -106,6 +108,7 @@ namespace DG
                 
                ColumnStartWith = columnStartWith,
                ColumnEndWith = columnEndWith,
+               ColumnLength = columnLength,
 
             });
 
