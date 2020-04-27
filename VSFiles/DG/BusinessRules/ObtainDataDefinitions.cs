@@ -5,13 +5,6 @@ using Newtonsoft.Json.Linq;
 namespace DG
 {
 
-   public enum DataFolders
-   {
-      DataGenerated,
-      DataDefinitions,
-      DataMimic
-   }
-
    class ObtainDataDefinitions
    {
 
@@ -60,12 +53,12 @@ namespace DG
             OutputIdentityStartValue = outputIdentityStartValue,
             OutputIncrementValue = outputIncrementValue,
             DataFoldersLocation = dataFoldersLocation,
-            DataGeneratedPath = dataFoldersLocation + DataFolders.DataGenerated + "\\",
+            DataGeneratedPath = dataFoldersLocation + AppConst.DataFolders.DataGenerated + "\\",
             DataDefinitionsPath = dataDefinitionsPath
          };
 
-         var defaultInteger = (int)Parameter.GetParameterValue(p, ParameterNames.DefaultInteger.ToString() );
-         var defaultString = (string)Parameter.GetParameterValue(p, ParameterNames.DefaultString.ToString() );
+         var defaultInteger = (int)Parameter.GetParameterValue(p, AppConst.ParameterNames.DefaultInteger.ToString() );
+         var defaultString = (string)Parameter.GetParameterValue(p, AppConst.ParameterNames.DefaultString.ToString() );
 
          //This will be in its own method?
          var outputColumnCount = TableDefinition.ColumnDefinitionCount;
@@ -109,7 +102,7 @@ namespace DG
                ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
                ColumnDataMimicFilename = columnDataMimicFilename,
 
-               ColumnDataMimicPathFileName = dataFoldersLocation + DataFolders.DataMimic + "\\" + columnDataMimicFilename,
+               ColumnDataMimicPathFileName = dataFoldersLocation + AppConst.DataFolders.DataMimic + "\\" + columnDataMimicFilename,
                 
                ColumnStartWith = columnStartWith,
                ColumnEndWith = columnEndWith,

@@ -13,9 +13,9 @@ namespace DG
       public DataDefinitionFiles(Parameter p)
       {
 
-         DataFoldersLocation = (string) Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
+         DataFoldersLocation = (string) Parameter.GetParameterValue(p, AppConst.ParameterNames.DataFolders.ToString()) + "\\";
 
-         DataDefinitionsPath = DataFoldersLocation  + DataFolders.DataDefinitions + "\\";
+         DataDefinitionsPath = DataFoldersLocation  + AppConst.DataFolders.DataDefinitions + "\\";
 
          FilesInDirectory = Directory.GetFiles(DataDefinitionsPath);
 

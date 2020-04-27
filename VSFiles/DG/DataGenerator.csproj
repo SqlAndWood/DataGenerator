@@ -59,9 +59,18 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneratePopulate\GeneratePopulateController.cs" />
+    <Compile Include="GeneratePopulate\PopulateData.cs" />
+    <Compile Include="Incremental\CreateIncrementingBooleanList.cs" />
+    <Compile Include="Incremental\CreateIncrementingStringList.cs" />
+    <Compile Include="Incremental\CreateIncrementingDecimalList.cs" />
+    <Compile Include="Incremental\CreateIncrementingTimeList.cs" />
+    <Compile Include="Parameters\AppConst.cs" />
+    <Compile Include="Incremental\CreateIncrementingDateList.cs" />
+    <Compile Include="Incremental\CreateIncrementingNumberList.cs" />
     <Compile Include="Incremental\CreateIncrementingCharacterList.cs" />
     <Compile Include="General\GeneralMethods.cs" />
-    <Compile Include="BusinessRules\CreateRandomRecords.cs" />
+    <Compile Include="GeneratePopulate\GeneratePreLoadData.cs" />
     <Compile Include="BusinessRules\DataDefinitionFiles.cs" />
     <Compile Include="General\DefineDataTable.cs" />
     <Compile Include="BusinessRules\SaveGeneratedData.cs" />

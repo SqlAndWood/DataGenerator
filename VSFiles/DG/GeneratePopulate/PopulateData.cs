@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+
+namespace DG
+{
+   class PopulateData
+   {
+
+      public DataTable DTable { get; set; }
+
+      public PopulateData(ObtainDataDefinitions dd, List<dynamic>[] preLoadedFieldData)
+      {
+         DTable = DefineDataTable.Create(dd);
+         
+         var od = dd.TableDefinition;
+
+         var random = new Random();
+
+         dynamic value = "";
+
+         //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
+         int startingValue = od.OutputIdentityStartValue;
+         int incrementingValue = od.OutputIncrementValue;
+
+         //Now populate the details with data read into the file.  Using _od.TotalRecordCount
+         for (int i = 0; i < od.OutputRecordCount; i++)
+         {
+
+            DataRow dr = DTable.NewRow();
+
+            int columnCount = 1;
+
+            //Loop each known column
+            foreach (var colDef in od.ColumnDefinitions)
+            {
+
+               //  rrd[colDef.ColumnPosition - 1].
+               if (colDef.ColumnIdentityField.ToUpper() == "YES".ToUpper())
+               {
+                  dr[colDef.ColumnName] = startingValue; //don't perform a test with this one.
+                  startingValue += incrementingValue;
+               }
+               else
+               {
+                  int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
+
+                  if ((colDef.ColumnNullablePercentage == 100) || (randomNumber <= colDef.ColumnNullablePercentage))
+                  {
+                     value = DBNull.Value;
+                  }
+                  //else if?
+                  else if ((colDef.ColumnNullablePercentage == 0) || (randomNumber >= colDef.ColumnNullablePercentage))
+                  {
+
+                     //is there a better way to perform this action?
+                     switch (colDef.ColumnDataType.ToUpper())
+                     {
+                        //When a field contains a comma, we need to surround THAT field with " "A Comma, Provided Value" "
+                        case "INT":
+                           value = Int32.Parse(preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)]);
+                           break;
+                        case "STRING":
+                           //This does not solve the real issue.
+                           value = preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)].ToString()
+                              .Replace(",", string.Empty);
+                           break;
+                        case "BOOLEAN":
+                           value = Convert.ToBoolean(preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)]);
+                           break;
+                        case "DECIMAL":
+                           var n = colDef.ColumnRatios;
+                           var arMinMax = n.Split(',');
+                           value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]),
+                              Int32.Parse(arMinMax[1]));
+                           break;
+
+                        default:
+                           value = DBNull.Value;
+                           break;
+                     }
+
+                  }
+
+                  columnCount += 1;
+
+                  dr[colDef.ColumnName] = value;
+
+               }
+            }
+
+            DTable.Rows.Add(dr);
+         }
+
+      }
+
+   }
+}

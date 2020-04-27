@@ -1,13 +1,11 @@
 ﻿namespace DG
 {
-    class Program
+   class Program
    {
       private static void Main()
       {
 
-     
-            new DataGeneratorController();
-
+         new DataGeneratorController();
 
       }
 

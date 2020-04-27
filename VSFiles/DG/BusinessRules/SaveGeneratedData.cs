@@ -14,8 +14,6 @@ namespace DG
 
          StringBuilder sb = new StringBuilder();
 
-        // var Quote = '\u0022';
-
          string[] columnNames = dt.Columns.Cast<DataColumn>().
             Select(column => column.ColumnName).
             ToArray();

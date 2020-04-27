@@ -11,19 +11,15 @@
 
          var dataDefinitionFiles = new DataDefinitionFiles(p);
 
-         //If i am passng dataDefinitionFiles, I could pass an integer Pos i.  (not used at present
-         //var lbound = dataDefinitionFiles.FilesInDirectory.GetLowerBound(0);
-         //var Ubound = dataDefinitionFiles.FilesInDirectory.GetUpperBound(0);
-
          foreach (string fileName in dataDefinitionFiles.FilesInDirectory)
          {
 
             //TODO: each loop should de reference these objects. 
             ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(p, dataDefinitionFiles, fileName);
+            
+            GeneratePopulateController GPC = new GeneratePopulateController(dataDefinitions);
 
-            CreateRandomRecords crr = new CreateRandomRecords(dataDefinitions);
-
-            new SaveGeneratedData(crr.DTable, dataDefinitions);
+            new SaveGeneratedData(GPC.DTable, dataDefinitions);
             
          }
 

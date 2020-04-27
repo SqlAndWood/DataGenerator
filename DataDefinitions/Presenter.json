@@ -18,6 +18,8 @@
                      
                      
       LoadDataMimicMethod  : {FILE, INCREMENTAL, RANDOM}
+                                INCREMENTAL DataTypes {Date, Time, Number, Decimal (up to 1 decimal place only)} are automated.
+      
 
       DataMimicFilename    : IF LoadDataMimicMethod = 'FILE' Then this must referencre a file by filename.filetype ie; Numbers.txt
                                 Entries are ignored for {INCREMENTAL, RANDOM}
@@ -40,8 +42,8 @@
      
    "OutputRecordCount": "50000",
    
-    "OutputIdentityStartValue":"0",
-    "OutputIncrementValue":"1",
+   "OutputIdentityStartValue":"0",
+   "OutputIncrementValue":"1",
          
    "ColumnDefinitions": [
       {
@@ -67,8 +69,8 @@
          "ColumnNullablePercentage":"15",
          "ColumnRatios" : "50/50", 
 
-         "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "YesNo.txt",
+         "LoadDataMimicMethod":"INCREMENTAL",
+         "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
          
@@ -78,12 +80,12 @@
          "ColumnPosition": "3",
          "ColumnName": "Fingers",
          "ColumnIdentityField":"No",
-         "ColumnDataType":"INT",
+         "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
          "ColumnRatios" : "100",
          
-         "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "1234567890.txt",
+         "LoadDataMimicMethod":"RANDOM",
+         "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
       }
@@ -96,8 +98,8 @@
          "ColumnNullablePercentage":"10",
          "ColumnRatios" : "100",
 
-         "LoadDataMimicMethod": "FILE",
-         "DataMimicFilename" : "TrueFalse.txt", 
+         "LoadDataMimicMethod": "RANDOM",
+         "DataMimicFilename" : "", 
          "StartWith":"",
          "EndWith":"",
       }
@@ -116,8 +118,6 @@
          "EndWith":"100.0",
       }
     
-
-      
    ]
    
 }
