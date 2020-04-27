@@ -29,38 +29,19 @@
          EndNumber = 999999999
       }
 
+      public enum DefaultTimeRange
+      {
+         StartTime = 0,
+         EndTime = 86400  //24 hours * 3600
+      }
 
-
-      //public enum Result { Success, Fail };
-
-      //public enum ColumnDefinitionType { Schema, Column };
-
-      //public enum Action_Type { Extract, Transform, Load };
-
-      //public enum SaveTo { File, SQL, All };
-
-      //public enum SaveFileState { New, Append };
-
-      //public const bool ForceFileProcessing = true;
-
-      //public const bool saveToSQLdb = true;
-
-      //public const bool saveToFile = false;
-
-      //public const bool saveFileAsBinary = false;
-
-      //public const bool saveTimer = true;
-
-
-      //public const char doubleQuotes = '\u0022';
-
-      //public const int MaxLoopSampling = 3;
-
-      //public const bool RandomiseTable = true;
-
-
-      //An implementationnexists in SaveFile, however it needs work and not sure of the benifits
-      //public const bool saveFileNameAsBinary = true;
+      //There needs to be a warning on this, as it is a x^y function due to the decimal places.
+      public enum DefaultDecimalRanges
+      {
+         StartNumber = 0,
+         EndNumber = 50,
+         DecimalPlaces = 4
+      }
 
 
 
