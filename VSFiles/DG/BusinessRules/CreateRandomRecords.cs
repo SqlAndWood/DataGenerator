@@ -25,7 +25,7 @@ namespace DG
          foreach (var colDef in od.ColumnDefinitions)
          {
 
-            if (colDef.ColumnMimicFilename != "")
+            if (colDef.ColumnDataMimicFilename != "")
             {
                //this expects a file. Future will enable a on the fly creation of Random or Incremental as deisired.
                var file = colDef.ColumnDataMimicPathFileName;

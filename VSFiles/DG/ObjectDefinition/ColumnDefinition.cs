@@ -12,8 +12,13 @@
       public string ColumnRatios { get; set; }
 
       //This information is useful per Column.
-      public string ColumnMimicFilename { get; set; }
+      public string ColumnLoadDataMimicMethod { get; set; }
+
+      public string ColumnDataMimicFilename { get; set; }
       public string ColumnDataMimicPathFileName { get; set; }
+
+      public string ColumnStartWith { get; set; }
+      public string ColumnEndWith { get; set; }
 
    }
    

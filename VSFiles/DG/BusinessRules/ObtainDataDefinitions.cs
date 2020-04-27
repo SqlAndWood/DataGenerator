@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace DG
@@ -43,16 +44,16 @@ namespace DG
 
          var outputRecordCount = (int)jsonToken["OutputRecordCount"];
 
-         //var outputColumnCount = (int)jsonToken["OutputColumnCount"];
-
          var outputIdentityStartValue = (int)jsonToken["OutputIdentityStartValue"];
 
          var outputIncrementValue = (int)jsonToken["OutputIncrementValue"];
 
+         var colCount = (int)(jsonToken["ColumnDefinitions"] ?? 0).Count();
+
          TableDefinition = new TableDefinition
          {
             OutputFilename = outputFilename,
-           // OutputColumnCount = outputColumnCount,
+            ColumnDefinitionCount = colCount,
             OutputFileType = outputFileType,
             OutputDelimiter = outputDelimiter,
             OutputRecordCount = outputRecordCount,
@@ -66,14 +67,8 @@ namespace DG
          var defaultInteger = (int)Parameter.GetParameterValue(p, ParameterNames.DefaultInteger.ToString() );
          var defaultString = (string)Parameter.GetParameterValue(p, ParameterNames.DefaultString.ToString() );
 
-        //   I'm sure there is a better way, but this works for now.
-        var outputColumnCount = 0;
-        foreach (var obj in jsonToken["ColumnDefinitions"] )
-        {
-                outputColumnCount += 1;
-        }
-        //Still considering the layout of this.
-        TableDefinition.ColumnDefinitionCount = outputColumnCount;
+         //This will be in its own method?
+         var outputColumnCount = TableDefinition.ColumnDefinitionCount;
 
          for (int i = 0; i <= outputColumnCount - 1; i++)
          {
@@ -85,12 +80,19 @@ namespace DG
             string columnIdentityField = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnIdentityField"], JTokenType.String, defaultString);
 
             string columnDataType = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnDataType"], JTokenType.String, defaultString);
-           
-            string mimicFilename = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["MimicFilename"], JTokenType.String, defaultString);
-
+               
             int columnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
            
             string columnRatios = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnRatios"], JTokenType.String, defaultString);
+
+            //This is used for created Data
+            string columnLoadDataMimicMethod = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["LoadDataMimicMethod"], JTokenType.String, defaultString);
+
+            string columnDataMimicFilename = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["DataMimicFilename"], JTokenType.String, defaultString);
+
+            string columnStartWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["StartWith"], JTokenType.String, defaultString);
+
+            string columnEndWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["EndWith"], JTokenType.String, defaultString);
 
             TableDefinition.ColumnDefinitions.Add (new ColumnDefinition()
             {
@@ -104,9 +106,14 @@ namespace DG
                ColumnNullablePercentage = columnNullablePercentage,
                ColumnRatios = columnRatios,
 
-               ColumnDataMimicPathFileName = dataFoldersLocation + DataFolders.DataMimic + "\\" + mimicFilename,
-               ColumnMimicFilename = mimicFilename,
- 
+               ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
+               ColumnDataMimicFilename = columnDataMimicFilename,
+
+               ColumnDataMimicPathFileName = dataFoldersLocation + DataFolders.DataMimic + "\\" + columnDataMimicFilename,
+                
+               ColumnStartWith = columnStartWith,
+               ColumnEndWith = columnEndWith,
+
             });
 
          }
