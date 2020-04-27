@@ -15,7 +15,22 @@
                      0     -> All records may be randomly chosen
                      50/50 -> Even parts A/B (Yet randomly chosen)
                      100   -> All Records are to be different
-          
+                     
+                     
+      LoadDataMimicMethod  : {FILE, INCREMENTAL, RANDOM}
+
+      DataMimicFilename    : IF LoadDataMimicMethod = 'FILE' Then this must referencre a file by filename.filetype ie; Numbers.txt
+                                Entries are ignored for {INCREMENTAL, RANDOM}
+                                Blank Entries for FILE will default to an INTEGER value
+
+      StartWith            : When loading DataTypes {Date, Time, Number, Decimal (up to 1 decimal place only)} This is the Starting point for that Column.
+                                Blank entries will default to Date='1900-01-01', Time = 00:00:00:001, Number = 0, Decimal = 0.0
+                                 When mixed with LoadDataMimicMethod = RANDOM, Data will be randomly selected between [StartWith] AND [EndWith]
+                                
+      EndWith              : When loading DataTypes {Date, Time, Number, Decimal (up to 1 decimal place only)} This is the Ending point for that Column. 
+                               Blank entries will default to Date=Unlimited, Time = Midnight, Number = 50000, Decimal = 50000.0
+                               When mixed with LoadDataMimicMethod = RANDOM, Data will be randomly selected between [StartWith] AND [EndWith]
+                    
    ",
    
    "OutputFilename": "Presenter",
@@ -34,11 +49,14 @@
          "ColumnName": "Presenter_SK",
          "ColumnIdentityField":"Yes",
          "ColumnDataType":"INT",
-         
-         "MimicFilename" : "",
-         
          "ColumnNullablePercentage":"0",
          "ColumnRatios" : "100",
+
+         "LoadDataMimicMethod":"INCREMENTAL",
+         "DataMimicFilename" : "",
+         "StartWith":"",
+         "EndWith":"",
+         
       }
       ,
       {
@@ -46,12 +64,14 @@
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
-         
-         "MimicFilename" : "YesNo.txt",
-         
          "ColumnNullablePercentage":"15",
+         "ColumnRatios" : "50/50", 
+
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "YesNo.txt",
+         "StartWith":"",
+         "EndWith":"",
          
-         "ColumnRatios" : "50/50",
       }
       ,
       {
@@ -59,12 +79,13 @@
          "ColumnName": "Fingers",
          "ColumnIdentityField":"No",
          "ColumnDataType":"INT",
-         
-         "MimicFilename" : "1234567890.txt",
-         
          "ColumnNullablePercentage":"10",
-         
          "ColumnRatios" : "100",
+         
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "1234567890.txt",
+         "StartWith":"",
+         "EndWith":"",
       }
       ,
       {
@@ -72,12 +93,13 @@
          "ColumnName": "HasLunch",
          "ColumnIdentityField":"No",
          "ColumnDataType":"BOOLEAN",
-         
-         "MimicFilename" : "TrueFalse.txt",
-         
          "ColumnNullablePercentage":"10",
-         
          "ColumnRatios" : "100",
+
+         "LoadDataMimicMethod": "FILE",
+         "DataMimicFilename" : "TrueFalse.txt", 
+         "StartWith":"",
+         "EndWith":"",
       }
       ,
       {
@@ -85,65 +107,16 @@
          "ColumnName": "AtomicNucleusZiffNumber",
          "ColumnIdentityField":"No",
          "ColumnDataType":"DECIMAL",
-         
-         "MimicFilename" : "",
-         
          "ColumnNullablePercentage":"15",
-         
          "ColumnRatios" : "0,100",
+
+         "LoadDataMimicMethod":"RANDOM",
+         "DataMimicFilename" : "",
+         "StartWith":"1.0",
+         "EndWith":"100.0",
       }
-       ,
-      {
-         "ColumnPosition": "6",
-         "ColumnName": "Firstname",
-         "ColumnIdentityField":"No",
-         "ColumnDataType":"STRING",
-         
-         "MimicFilename" : "Firstname.txt",
-         
-         "ColumnNullablePercentage":"0",
-         
-         "ColumnRatios" : "100",
-      }
-      ,
-      {
-         "ColumnPosition": 7,
-         "ColumnName": "Middlename",
-         "ColumnIdentityField":"No",
-         "ColumnDataType":"STRING",
-         
-         "MimicFilename" : "Firstname.txt",
-         
-         "ColumnNullablePercentage":90,
-         
-         "ColumnRatios" : "99",
-      }
-       ,
-      {
-         "ColumnPosition": "8",
-         "ColumnName": "Surname",
-         "ColumnIdentityField":"No",
-         "ColumnDataType":"STRING",
-         
-         "MimicFilename" : "Firstname.txt",
-         
-         "ColumnNullablePercentage":"1",
-         
-         "ColumnRatios" : "100",
-      }
-      ,
-      {
-         "ColumnPosition": "9",
-         "ColumnName": "IdentifiedByBob",
-         "ColumnIdentityField":"No",
-         "ColumnDataType":"STRING",
-         
-         "MimicFilename" : "123YN.txt",
-         
-         "ColumnNullablePercentage":"7",
-         
-         "ColumnRatios" : "100",
-      }
+    
+
       
    ]
    
