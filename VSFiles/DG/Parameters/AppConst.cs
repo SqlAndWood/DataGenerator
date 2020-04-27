@@ -25,15 +25,8 @@
 
       public enum DefaultNumberRanges
       {
-         StartDate = 0,
-         EndDate = 999999999
-      }
-
-      //Unsure if needed
-      public enum DefaultNegativeNumberRanges
-      {
-         StartDate = -999999999,
-         EndDate = 0
+         StartNumber = 0,
+         EndNumber = 999999999
       }
 
 
