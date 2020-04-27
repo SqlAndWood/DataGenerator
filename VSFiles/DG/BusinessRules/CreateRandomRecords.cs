@@ -27,7 +27,7 @@ namespace DG
 
             if (colDef.ColumnMimicFilename != "")
             {
-               //string file = (string) Parameter.GetParameterValue(parameter, mockSourceDataFilename);
+               //this expects a file. Future will enable a on the fly creation of Random or Incremental as deisired.
                var file = colDef.ColumnDataMimicPathFileName;
                
                rrd[colDef.ColumnPosition - 1] = new List<dynamic>
@@ -49,9 +49,11 @@ namespace DG
          //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
          int startingValue = od.OutputIdentityStartValue;
          int incrementingValue = od.OutputIncrementValue;
-         
+
+
+
          //Now populate the details with data read into the file.  Using _od.TotalRecordCount
-         for (int i = 0; i < od.OutputRecordCount; i++)
+            for (int i = 0; i < od.OutputRecordCount; i++)
          {
 
             DataRow dr = DTable.NewRow();

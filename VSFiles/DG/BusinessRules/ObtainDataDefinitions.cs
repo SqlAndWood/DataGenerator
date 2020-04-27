@@ -78,7 +78,7 @@ namespace DG
          for (int i = 0; i <= outputColumnCount - 1; i++)
          {
             //NB: I only use variables to simplify data checking during run time.
-            int columnPosition = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
+            int columnPosition = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
 
             string columnName = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnName"], JTokenType.String, defaultString);
 
@@ -88,7 +88,7 @@ namespace DG
            
             string mimicFilename = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["MimicFilename"], JTokenType.String, defaultString);
 
-            int columnNullablePercentage = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
+            int columnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
            
             string columnRatios = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnRatios"], JTokenType.String, defaultString);
 

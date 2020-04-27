@@ -59,6 +59,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRules\IncrementDataTypes.cs" />
     <Compile Include="General\GeneralMethods.cs" />
     <Compile Include="BusinessRules\CreateRandomRecords.cs" />
     <Compile Include="BusinessRules\DataDefinitionFiles.cs" />

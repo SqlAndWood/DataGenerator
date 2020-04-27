@@ -23,85 +23,85 @@
    "OutputFileType":"CSV",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": "50000",
+   "OutputRecordCount": 50000,
    
-    "OutputIdentityStartValue":"0",
-    "OutputIncrementValue":"1",
+    "OutputIdentityStartValue":0,
+    "OutputIncrementValue":1,
          
    "ColumnDefinitions": [
       {
-         "ColumnPosition": "1",
+         "ColumnPosition": 1,
          "ColumnName": "Presenter_SK",
          "ColumnIdentityField":"Yes",
          "ColumnDataType":"INT",
          
          "MimicFilename" : "",
          
-         "ColumnNullablePercentage":"0",
+         "ColumnNullablePercentage":0,
          "ColumnRatios" : "100",
       }
       ,
       {
-         "ColumnPosition": "2",
+         "ColumnPosition": 2,
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
          
          "MimicFilename" : "YesNo.txt",
          
-         "ColumnNullablePercentage":"15",
+         "ColumnNullablePercentage":15,
          
          "ColumnRatios" : "50/50",
       }
       ,
       {
-         "ColumnPosition": "3",
+         "ColumnPosition": 3,
          "ColumnName": "Fingers",
          "ColumnIdentityField":"No",
          "ColumnDataType":"INT",
          
          "MimicFilename" : "1234567890.txt",
          
-         "ColumnNullablePercentage":"10",
+         "ColumnNullablePercentage":10,
          
          "ColumnRatios" : "100",
       }
       ,
       {
-         "ColumnPosition": "4",
+         "ColumnPosition": 4,
          "ColumnName": "HasLunch",
          "ColumnIdentityField":"No",
          "ColumnDataType":"BOOLEAN",
          
          "MimicFilename" : "TrueFalse.txt",
          
-         "ColumnNullablePercentage":"10",
+         "ColumnNullablePercentage":10,
          
          "ColumnRatios" : "100",
       }
       ,
       {
-         "ColumnPosition": "5",
+         "ColumnPosition": 5,
          "ColumnName": "AtomicNucleusZiffNumber",
          "ColumnIdentityField":"No",
          "ColumnDataType":"DECIMAL",
          
          "MimicFilename" : "",
          
-         "ColumnNullablePercentage":"15",
+         "ColumnNullablePercentage":15,
          
          "ColumnRatios" : "0,100",
       }
        ,
       {
-         "ColumnPosition": "6",
+         "ColumnPosition": 6,
          "ColumnName": "Firstname",
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
          
          "MimicFilename" : "Firstname.txt",
          
-         "ColumnNullablePercentage":"0",
+         "ColumnNullablePercentage":0,
          
          "ColumnRatios" : "100",
       }
@@ -120,27 +120,27 @@
       }
        ,
       {
-         "ColumnPosition": "8",
+         "ColumnPosition": 8,
          "ColumnName": "Surname",
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
          
          "MimicFilename" : "Firstname.txt",
          
-         "ColumnNullablePercentage":"1",
+         "ColumnNullablePercentage":1,
          
          "ColumnRatios" : "100",
       }
       ,
       {
-         "ColumnPosition": "9",
+         "ColumnPosition": 9,
          "ColumnName": "IdentifiedByBob",
          "ColumnIdentityField":"No",
          "ColumnDataType":"STRING",
          
          "MimicFilename" : "123YN.txt",
          
-         "ColumnNullablePercentage":"7",
+         "ColumnNullablePercentage":7,
          
          "ColumnRatios" : "100",
       }
