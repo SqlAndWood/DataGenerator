@@ -4,15 +4,7 @@ namespace DG
 {
    public class CreateIncrementingNumberList
     {
-
-      //    CreateIncrementingNumberList idt = new CreateIncrementingNumberList();
-      //    List<dynamic> numbersIncremental = new List<dynamic>();
-      //    datesIncremental = idt.GenerateIncrementingNumberList(
-      //                                                          AppConst.DefaultNumberRanges.StartNumber,
-      //                                                          AppConst.DefaultNumberRanges.EndNumber
-      //                                                         );
-
-
+       
       public List<dynamic> GenerateIncrementingNumberList(int start, int end)
         {
 

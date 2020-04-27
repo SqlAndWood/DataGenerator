@@ -5,9 +5,6 @@ namespace DG
 {
     public class CreateIncrementingCharacterList
     {
-      //    CreateIncrementingCharacterList idt = new CreateIncrementingCharacterList();
-      //    List<dynamic> CharactersIncremental = new List<dynamic>();
-      //    CharactersIncremental = idt.GenerateIncrementalCharacterList( AppConst.DefaultNumberRanges.EndNumber);
 
         public List<dynamic> GenerateIncrementalCharacterList(int end)
         {
@@ -29,7 +26,7 @@ namespace DG
             while (true) yield return ToBase26(++n);
         }
 
-        //Called by IEnumerable<string> generate()
+        //Called by IEnumerable<string> Generate()
         string ToBase26(long i)
         {
             if (i == 0) return ""; i--;

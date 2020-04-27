@@ -5,31 +5,19 @@ namespace DG
 {
    public class CreateIncrementingDateList
    {
-
-      //    CreateIncrementingDateList idt = new CreateIncrementingDateList();
-      //    List<dynamic> datesIncremental = new List<dynamic>();
-      //    datesIncremental = idt.GenerateIncrementingDateList(
-      //                                                          AppConst.DefaultDateRanges.StartDate,
-      //                                                          AppConst.DefaultDateRanges.EndDate
-      //                                                         );
-      
-
+      //Potential to create an overload method to accepts Dates instead of int
       public List<dynamic> GenerateIncrementingDateList(int start, int end)
         {
 
-            int sDated = start % 100;
-            int sDatem = (start / 100) % 100;
-            int sDatey = start / 10000;
-            var StartDate = new DateTime(sDatey, sDatem, sDated);
+ 
+      
+            var startDate = new DateTime(start % 100, (start / 100) % 100, start / 10000);
 
-            int eDated = end % 100;
-            int eDatem = (end / 100) % 100;
-            int eDatey = end / 10000;
-            var EndDate = new DateTime(eDatey, eDatem, eDated);
+            var endDate = new DateTime(end % 100, (end / 100) % 100, end / 10000);
 
             List <dynamic> datesIncremental = new List<dynamic>();
 
-            for (var dt = StartDate; dt <= EndDate; dt = dt.AddDays(1))
+            for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
             {
                datesIncremental.Add(dt);
             }

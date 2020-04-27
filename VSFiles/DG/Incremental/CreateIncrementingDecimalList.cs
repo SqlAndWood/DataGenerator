@@ -6,13 +6,6 @@ namespace DG
    public class CreateIncrementingDecimalList
     {
 
-       //CreateIncrementingDecimalList idt = new CreateIncrementingDecimalList();
-       //List<dynamic> numbersIncremental = new List<dynamic>();
-       //numbersIncremental = idt.GenerateIncrementingDecimalList(
-       //(int) AppConst.DefaultDecimalRanges.StartNumber,
-       //(int) AppConst.DefaultDecimalRanges.EndNumber,
-       //(int) AppConst.DefaultDecimalRanges.DecimalPlaces
-       //);
 
       public List<dynamic> GenerateIncrementingDecimalList(int start, int end, int decimalPlace)
       {

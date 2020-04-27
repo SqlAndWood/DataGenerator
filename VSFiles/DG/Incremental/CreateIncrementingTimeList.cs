@@ -5,16 +5,9 @@ namespace DG
 {
    public class CreateIncrementingTimeList
    {
-
-      //    CreateIncrementingTimeList idt = new CreateIncrementingTimeList();
-      //    List<dynamic> timeIncremental = new List<dynamic>();
-      //    timeIncremental = idt.GenerateIncrementingTimeList(
-      //                                                          AppConst.DefaultTimeRange.StartTime,
-      //                                                          AppConst.DefaultTimeRange.EndTime
-      //                                                         );
-
+      
       public List<dynamic> GenerateIncrementingTimeList(int start, int end)
-        {
+      {
             TimeSpan startTime = new TimeSpan(0, 0, start);
             TimeSpan stopTime = new TimeSpan(0, 0, end);
 
@@ -30,7 +23,7 @@ namespace DG
          }
 
          return timeIncremental;
-        }
+      }
         
     }
 }
