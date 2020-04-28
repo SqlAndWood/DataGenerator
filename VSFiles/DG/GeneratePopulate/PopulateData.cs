@@ -8,90 +8,95 @@ namespace DG
    {
 
       public DataTable DTable { get; set; }
+      private readonly Random _random;
 
+      private readonly DataRow _dr;
+
+      private int[] _j;
+      
       public PopulateData(ObtainDataDefinitions dd, List<dynamic>[] preLoadedFieldData)
       {
+         //TODO: Be aware this is MEMORY HUNGRY! I'd like to replace it with a less hungry object in the future.
          DTable = DefineDataTable.Create(dd);
-         
-         var od = dd.TableDefinition;
+         _random = new Random();
 
-         var random = new Random();
+         _j = new int[dd.TableDefinition.ColumnDefinitionCount];
 
-         dynamic value = "";
-
-         //This allows us to set Starting IDENTITY value, and increment  by a specific number (put into JSON File);.
-         int startingValue = od.OutputIdentityStartValue;
-         int incrementingValue = od.OutputIncrementValue;
-
-         //Now populate the details with data read into the file.  Using _od.TotalRecordCount
-         for (int i = 0; i < od.OutputRecordCount; i++)
+         for (int rowNumber = 0; rowNumber < dd.TableDefinition.OutputRecordCount; rowNumber++)
          {
+            
+            //TODO: Be aware this is MEMORY HUNGRY! I'd like to replace it with a less hungry object in the future.
+            _dr = DTable.NewRow();
 
-            DataRow dr = DTable.NewRow();
-
-            int columnCount = 1;
-
-            //Loop each known column
-            foreach (var colDef in od.ColumnDefinitions)
+            foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
             {
 
-               //  rrd[colDef.ColumnPosition - 1].
-               if (colDef.ColumnIdentityField.ToUpper() == "YES".ToUpper())
+               var colLoadDataMimicMethod = colDef.ColumnLoadDataMimicMethod.ToUpper();
+ 
+               switch (colLoadDataMimicMethod)
                {
-                  dr[colDef.ColumnName] = startingValue; //don't perform a test with this one.
-                  startingValue += incrementingValue;
-               }
-               else
-               {
-                  int randomNumber = (int)GeneralMethods.RandomNumberBetween(0, 100);
 
-                  if ((colDef.ColumnNullablePercentage == 100) || (randomNumber <= colDef.ColumnNullablePercentage))
-                  {
-                     value = DBNull.Value;
-                  }
-                  //else if?
-                  else if ((colDef.ColumnNullablePercentage == 0) || (randomNumber >= colDef.ColumnNullablePercentage))
-                  {
+                  case "FILE": //AppConst.LoadDataMimicMethod.File -> Load Randomly
+                  case "RANDOM": //AppConst.LoadDataMimicMethod.Random -> Load Randomly
+                     PopulateRecordAtRandom(colDef, preLoadedFieldData);
+                     break;
 
-                     //is there a better way to perform this action?
-                     switch (colDef.ColumnDataType.ToUpper())
-                     {
-                        //When a field contains a comma, we need to surround THAT field with " "A Comma, Provided Value" "
-                        case "INT":
-                           value = Int32.Parse(preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)]);
-                           break;
-                        case "STRING":
-                           //This does not solve the real issue.
-                           value = preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)].ToString()
-                              .Replace(",", string.Empty);
-                           break;
-                        case "BOOLEAN":
-                           value = Convert.ToBoolean(preLoadedFieldData[columnCount][0][random.Next(preLoadedFieldData[columnCount][0].Count)]);
-                           break;
-                        case "DECIMAL":
-                           var n = colDef.ColumnRatios;
-                           var arMinMax = n.Split(',');
-                           value = GeneralMethods.RandomNumberBetween(Int32.Parse(arMinMax[0]),
-                              Int32.Parse(arMinMax[1]));
-                           break;
-
-                        default:
-                           value = DBNull.Value;
-                           break;
-                     }
-
-                  }
-
-                  columnCount += 1;
-
-                  dr[colDef.ColumnName] = value;
+                  case "INCREMENTAL": //AppConst.LoadDataMimicMethod.Incremental;-> Load in Array Order a[i] = Value[i]
+                     PopulateRecordIncrementally(colDef, preLoadedFieldData, rowNumber);
+                     break;
 
                }
+
             }
 
-            DTable.Rows.Add(dr);
+            //Memory Hog
+            DTable.Rows.Add(_dr);
+
+         }
+      }
+
+      //Seems overkill to pass tableDef AND columnDefinitions.
+      private void PopulateRecordAtRandom(ColumnDefinition colDef, List<dynamic>[] preLoadedFieldData)
+      {
+  
+         //Set initially to NULL. Only replace the null if this 'Roll of the dice' indicates it should hold a value.
+         dynamic value = DBNull.Value;
+
+         //Each column has a % chance of being NULL. The DataDefinition ColumnNullablePercentage indicates that frequency.
+         if (colDef.ColumnNullablePercentage == 0 || (int) GeneralMethods.RandomNumberBetween(0, 100) >= colDef.ColumnNullablePercentage) 
+         {
+            //value = preLoadedFieldData[_ColumnPosition][_random.Next(preLoadedFieldData[_ColumnPosition].Count)];
+            value = preLoadedFieldData[colDef.ColumnPosition-1][_random.Next(preLoadedFieldData[colDef.ColumnPosition-1].Count)];
          }
 
+         //Memory Hog
+         _dr[colDef.ColumnName] = value;
+
+      }
+
+      //Would like to improve this so: 1,2, Null, 3, Null, 4 etc.
+      private void PopulateRecordIncrementally(ColumnDefinition colDef, List<dynamic>[] preLoadedFieldData, int rowNumber)
+      {
+
+         //Set initially to NULL. Only replace the null if this 'Roll of the dice' indicates it should hold a value.
+         dynamic value = DBNull.Value;
+
+         //Each column has a % chance of being NULL. The DataDefinition ColumnNullablePercentage indicates that frequency.
+         if (colDef.ColumnNullablePercentage == 0 || (int)GeneralMethods.RandomNumberBetween(0, 100) >= colDef.ColumnNullablePercentage)
+         {
+
+            //I need a way to wrap around numbers.
+            var wrapAroundNumber = _j[colDef.ColumnPosition - 1] % preLoadedFieldData[colDef.ColumnPosition - 1].Count;
+
+            value = preLoadedFieldData[colDef.ColumnPosition - 1][wrapAroundNumber];
+
+            //This is done to maintain an accurate 'Incremental' list of numbers. 
+            _j[colDef.ColumnPosition - 1] += 1;
+        
+         }
+        
+         //Memory Hog
+         _dr[colDef.ColumnName] = value;
       }
 
    }
