@@ -49,7 +49,7 @@
       {
          "ColumnPosition": "1",
          "ColumnName": "Presenter_SK",
-         "ColumnIdentityField":"Yes",
+       
          "ColumnDataType":"INT",
          "ColumnNullablePercentage":"0",
          "ColumnRatios" : "100",
@@ -65,7 +65,7 @@
       {
          "ColumnPosition": "2",
          "ColumnName": "Obtained",
-         "ColumnIdentityField":"No",
+        
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"0",
          "ColumnRatios" : "50/50", 
@@ -81,7 +81,7 @@
       {
          "ColumnPosition": "3",
          "ColumnName": "Fingers",
-         "ColumnIdentityField":"No",
+      
          "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
          "ColumnRatios" : "100",
@@ -96,7 +96,7 @@
       {
          "ColumnPosition": "4",
          "ColumnName": "HasLunch",
-         "ColumnIdentityField":"No",
+       
          "ColumnDataType":"BOOLEAN",
          "ColumnNullablePercentage":"10",
          "ColumnRatios" : "100",
@@ -111,7 +111,7 @@
       {
          "ColumnPosition": "5",
          "ColumnName": "AtomicNucleusZiffNumber",
-         "ColumnIdentityField":"No",
+        
          "ColumnDataType":"DECIMAL",
          "ColumnNullablePercentage":"15",
          "ColumnRatios" : "0,100",
@@ -126,7 +126,7 @@
       {
          "ColumnPosition": "6",
          "ColumnName": "Firstname",
-         "ColumnIdentityField":"No",
+   
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"1",
          "ColumnRatios" : "",
@@ -142,7 +142,7 @@
       {
          "ColumnPosition": "7",
          "ColumnName": "Surname",
-         "ColumnIdentityField":"No",
+       
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"5",
          "ColumnRatios" : "",
@@ -157,7 +157,7 @@
       {
          "ColumnPosition": "8",
          "ColumnName": "Goble-de-gook",
-         "ColumnIdentityField":"No",
+       
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"5",
          "ColumnRatios" : "",

@@ -66,8 +66,6 @@ namespace DG
 
             string columnName = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnName"], JTokenType.String, defaultString);
 
-            string columnIdentityField = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnIdentityField"], JTokenType.String, defaultString);
-
             string columnDataType = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnDataType"], JTokenType.String, defaultString);
                
             int columnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
@@ -91,7 +89,6 @@ namespace DG
                ColumnPosition = columnPosition,
                ColumnName = columnName,
 
-               ColumnIdentityField = columnIdentityField,
                ColumnDataType = columnDataType,
 
                ColumnNullablePercentage = columnNullablePercentage,
