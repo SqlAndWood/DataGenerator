@@ -5,7 +5,7 @@
       private static void Main()
       {
 
-         new DataGeneratorController();
+        new DataGeneratorController();
 
       }
 

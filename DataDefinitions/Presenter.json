@@ -40,7 +40,7 @@
    "OutputFileType":"CSV",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": "50000",
+   "OutputRecordCount": "500000",
    
    "OutputIdentityStartValue":"0",
    "OutputIncrementValue":"1",
@@ -116,13 +116,60 @@
          "ColumnNullablePercentage":"15",
          "ColumnRatios" : "0,100",
 
-         "LoadDataMimicMethod":"INCREMENTAL",
+         "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
-         "StartWith":"1.12",
-         "EndWith":"4.54",
-         "Length":"2",
+         "StartWith":"1.123",
+         "EndWith":"2.987",
+         "Length":"3",
       }
-    
+          ,
+      {
+         "ColumnPosition": "6",
+         "ColumnName": "Firstname",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"1",
+         "ColumnRatios" : "",
+
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Firstname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      
+      ,
+      {
+         "ColumnPosition": "7",
+         "ColumnName": "Surname",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"5",
+         "ColumnRatios" : "",
+
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Surname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+               ,
+      {
+         "ColumnPosition": "8",
+         "ColumnName": "Goble-de-gook",
+         "ColumnIdentityField":"No",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"5",
+         "ColumnRatios" : "",
+
+         "LoadDataMimicMethod":"RANDOM",
+         "DataMimicFilename" : "",
+         "StartWith":"0",
+         "EndWith":"25",
+         "Length":"250",
+      }
+      
    ]
+   
    
 }

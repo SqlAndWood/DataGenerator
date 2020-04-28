@@ -61,11 +61,13 @@
   <ItemGroup>
     <Compile Include="GeneratePopulate\GeneratePopulateController.cs" />
     <Compile Include="GeneratePopulate\PopulateData.cs" />
+    <Compile Include="Incremental\loremipsum.cs" />
     <Compile Include="Incremental\CreateFileList.cs" />
     <Compile Include="Incremental\CreateIncrementingBooleanList.cs" />
     <Compile Include="Incremental\CreateIncrementingStringList.cs" />
     <Compile Include="Incremental\CreateIncrementingDecimalList.cs" />
     <Compile Include="Incremental\CreateIncrementingTimeList.cs" />
+    <Compile Include="Incremental\RandomHelper.cs" />
     <Compile Include="Parameters\AppConst.cs" />
     <Compile Include="Incremental\CreateIncrementingDateList.cs" />
     <Compile Include="Incremental\CreateIncrementingNumberList.cs" />
