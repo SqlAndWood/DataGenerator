@@ -5,7 +5,6 @@ using System.Text;
 
 namespace DG
 {
-
    class SaveGeneratedData
    {
 
@@ -22,7 +21,8 @@ namespace DG
 
          foreach (DataRow row in dt.Rows)
          {
-            string[] fields = row.ItemArray.Select(field => field.ToString()).
+            string[] fields = row.ItemArray.
+               Select(field => field.ToString()).
                ToArray();
 
             sb.AppendLine(string.Join( "," , fields));
@@ -30,8 +30,11 @@ namespace DG
 
          //this is a parameter 
          string filename = obtainDataDefinitions.TableDefinition.DataGeneratedPath + obtainDataDefinitions.TableDefinition.OutputFilename + "." + obtainDataDefinitions.TableDefinition.OutputFileType;
-
-         File.WriteAllText(filename, sb.ToString());
+            
+        //If the folder does not exist, create it. if the folder does exist, do nothing.
+        DirectoryInfo di = Directory.CreateDirectory(obtainDataDefinitions.TableDefinition.DataGeneratedPath);
+  
+        File.WriteAllText(filename, sb.ToString());
 
       }
    }
