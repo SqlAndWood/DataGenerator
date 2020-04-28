@@ -8,17 +8,15 @@ namespace DG
    {
 
       public DataTable DTable { get; set; }
-      private readonly Random _random;
+      //private readonly Random _random;
 
       private readonly DataRow _dr;
 
       private int[] _j;
-      
-      public PopulateData(ObtainDataDefinitions dd, List<dynamic>[] preLoadedFieldData)
+            public PopulateData(ObtainDataDefinitions dd, List<dynamic>[] preLoadedFieldData)
       {
          //TODO: Be aware this is MEMORY HUNGRY! I'd like to replace it with a less hungry object in the future.
          DTable = DefineDataTable.Create(dd);
-         _random = new Random();
 
          _j = new int[dd.TableDefinition.ColumnDefinitionCount];
 
@@ -63,14 +61,19 @@ namespace DG
          dynamic value = DBNull.Value;
 
          //Each column has a % chance of being NULL. The DataDefinition ColumnNullablePercentage indicates that frequency.
-         if (colDef.ColumnNullablePercentage == 0 || (int) GeneralMethods.RandomNumberBetween(0, 100) >= colDef.ColumnNullablePercentage) 
+         if (colDef.ColumnNullablePercentage == 0 || (int)RandomHelper.Instance.Next(0, 100) >= colDef.ColumnNullablePercentage) 
          {
-            //value = preLoadedFieldData[_ColumnPosition][_random.Next(preLoadedFieldData[_ColumnPosition].Count)];
-            value = preLoadedFieldData[colDef.ColumnPosition-1][_random.Next(preLoadedFieldData[colDef.ColumnPosition-1].Count)];
-         }
+               
+                // var t= RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count);
 
-         //Memory Hog
-         _dr[colDef.ColumnName] = value;
+                //value = preLoadedFieldData[colDef.ColumnPosition-1][_random.Next(preLoadedFieldData[colDef.ColumnPosition-1].Count)];
+
+                value = preLoadedFieldData[colDef.ColumnPosition - 1][RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count)];
+
+            }
+
+            //Memory Hog
+            _dr[colDef.ColumnName] = value;
 
       }
 
@@ -82,7 +85,7 @@ namespace DG
          dynamic value = DBNull.Value;
 
          //Each column has a % chance of being NULL. The DataDefinition ColumnNullablePercentage indicates that frequency.
-         if (colDef.ColumnNullablePercentage == 0 || (int)GeneralMethods.RandomNumberBetween(0, 100) >= colDef.ColumnNullablePercentage)
+         if (colDef.ColumnNullablePercentage == 0 || (int)RandomHelper.Instance.Next(0, 100) >= colDef.ColumnNullablePercentage)
          {
 
             //I need a way to wrap around numbers.
