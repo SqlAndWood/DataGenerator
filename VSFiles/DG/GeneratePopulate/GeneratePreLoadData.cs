@@ -201,14 +201,21 @@ namespace DG
       private void LoadIncrementalString(ColumnDefinition colDef)
       {
 
+         var start = colDef.ColumnLength == ""
+            ? (int)AppConst.DefaultStringRanges.StartNumber
+            : int.Parse(colDef.ColumnStartWith);
+
+         var end = colDef.ColumnLength == ""
+            ? (int)AppConst.DefaultStringRanges.EndNumber
+            : int.Parse(colDef.ColumnEndWith);
+
          var length = colDef.ColumnLength == ""
-            ? (int)AppConst.DefaultNumberRanges.Length
+            ? (int)AppConst.DefaultStringRanges.Length
             : int.Parse(colDef.ColumnLength);
 
          CreateIncrementingStringList idt = new CreateIncrementingStringList();
-         List<dynamic> rs = new List<dynamic>();
 
-         rs = idt.GenerateIncrementalStringList(length);
+         var rs = idt.GenerateIncrementalStringList(start,end, length);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(rs);
          
