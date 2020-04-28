@@ -70,8 +70,7 @@ namespace DG
                
             int columnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
            
-            string columnRatios = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnRatios"], JTokenType.String, defaultString);
-
+          
             //This is used for created Data
             string columnLoadDataMimicMethod = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["LoadDataMimicMethod"], JTokenType.String, defaultString);
 
@@ -92,8 +91,7 @@ namespace DG
                ColumnDataType = columnDataType,
 
                ColumnNullablePercentage = columnNullablePercentage,
-               ColumnRatios = columnRatios,
-
+             
                ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
                ColumnDataMimicFilename = columnDataMimicFilename,
 

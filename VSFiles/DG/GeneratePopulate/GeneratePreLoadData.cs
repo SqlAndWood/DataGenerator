@@ -73,6 +73,7 @@ namespace DG
 
                      case "NUMERIC": 
                      case "DECIMAL":
+                     case "DOUBLE":
                         LoadIncrementalDecimal(colDef);
                         break;
 

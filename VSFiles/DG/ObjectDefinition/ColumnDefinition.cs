@@ -8,7 +8,7 @@
       public string ColumnDataType { get; set; }
       
       public int ColumnNullablePercentage { get; set; }
-      public string ColumnRatios { get; set; }
+     
 
       //This information is useful per Column.
       public string ColumnLoadDataMimicMethod { get; set; }

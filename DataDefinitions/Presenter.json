@@ -49,11 +49,9 @@
       {
          "ColumnPosition": "1",
          "ColumnName": "Presenter_SK",
-       
          "ColumnDataType":"INT",
          "ColumnNullablePercentage":"0",
-         "ColumnRatios" : "100",
-
+    
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
          "StartWith":"1",
@@ -65,11 +63,9 @@
       {
          "ColumnPosition": "2",
          "ColumnName": "Obtained",
-        
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"0",
-         "ColumnRatios" : "50/50", 
-
+       
          "LoadDataMimicMethod":"FILE",
          "DataMimicFilename" : "YesNo.txt",
          "StartWith":"",
@@ -81,11 +77,9 @@
       {
          "ColumnPosition": "3",
          "ColumnName": "Fingers",
-      
          "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
-         "ColumnRatios" : "100",
-         
+                
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
          "StartWith":"",
@@ -96,11 +90,9 @@
       {
          "ColumnPosition": "4",
          "ColumnName": "HasLunch",
-       
          "ColumnDataType":"BOOLEAN",
          "ColumnNullablePercentage":"10",
-         "ColumnRatios" : "100",
-
+        
          "LoadDataMimicMethod": "RANDOM",
          "DataMimicFilename" : "", 
          "StartWith":"",
@@ -111,11 +103,9 @@
       {
          "ColumnPosition": "5",
          "ColumnName": "AtomicNucleusZiffNumber",
-        
          "ColumnDataType":"DECIMAL",
          "ColumnNullablePercentage":"15",
-         "ColumnRatios" : "0,100",
-
+        
          "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
          "StartWith":"1.123",
@@ -126,11 +116,9 @@
       {
          "ColumnPosition": "6",
          "ColumnName": "Firstname",
-   
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"1",
-         "ColumnRatios" : "",
-
+        
          "LoadDataMimicMethod":"FILE",
          "DataMimicFilename" : "Firstname.txt",
          "StartWith":"",
@@ -142,11 +130,9 @@
       {
          "ColumnPosition": "7",
          "ColumnName": "Surname",
-       
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"5",
-         "ColumnRatios" : "",
-
+        
          "LoadDataMimicMethod":"FILE",
          "DataMimicFilename" : "Surname.txt",
          "StartWith":"",
@@ -156,17 +142,33 @@
                ,
       {
          "ColumnPosition": "8",
-         "ColumnName": "Goble-de-gook",
+         "ColumnName": "Day",
        
          "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"5",
-         "ColumnRatios" : "",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "DaysOfTheWeek.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+      
+        
+      {
+         "ColumnPosition": "9",
+         "ColumnName": "Temperature",
+       
+         "ColumnDataType":"DECIMAL",
+         "ColumnNullablePercentage":"0",
+        
 
          "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
-         "StartWith":"0",
-         "EndWith":"25",
-         "Length":"250",
+         "StartWith":"-3.2",
+         "EndWith":"45.7",
+         "Length":"1",
       }
       
    ]

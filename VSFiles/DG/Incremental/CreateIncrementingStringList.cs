@@ -22,7 +22,10 @@ namespace DG
                source = source.Substring(0, length);
             }
 
-            source = char.ToUpper(source[0]) + source.Substring(1);
+            if (source != "")
+            {
+               source = char.ToUpper(source[0]) + source.Substring(1);
+            }
 
             si.Add(source);
 
