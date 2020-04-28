@@ -38,8 +38,11 @@ namespace DG
 
             case "DATE":
             case "DATETIME":
-            case "TIME":
                returnValue = "System.DateTime";
+               break;
+
+            case "TIME":
+               returnValue = "System.TimeSpan";
                break;
 
 
