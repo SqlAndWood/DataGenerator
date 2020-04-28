@@ -15,9 +15,10 @@ namespace DG
             -> FILE => load File Listed in "DataMimicFilename"
             -> INCREMENTAL => Data Type {Date, Time, Number, Decimal (up to 1 decimal place only)}
 
-         //These are not considered with this Class (TBD), they play a part in how data is obtained later on.
-         "StartWith":"",
-         "EndWith":"",
+         These three fields are used to pre load the data sets, minimise the amount of memory required and the simplicity to randomly select in the next phase.
+            "StartWith"
+            "EndWith"
+            "Length"
        */
 
       private List<dynamic>[] PreLoadedFieldData;
@@ -27,13 +28,15 @@ namespace DG
          //Step one is to create the required [] count and populate with dummy data.
          PreLoadedFieldData = preLoadedFieldData;
          
+
+
          foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
          {
 
-            var ColLoadDataMimicMethod = colDef.ColumnLoadDataMimicMethod.ToUpper();
+            var colLoadDataMimicMethod = colDef.ColumnLoadDataMimicMethod.ToUpper();
             var colDataType = colDef.ColumnDataType.ToUpper();
 
-            switch (ColLoadDataMimicMethod)
+            switch (colLoadDataMimicMethod)
             {
                //When a FILE needs to be loaded.
                case "FILE":  //AppConst.LoadDataMimicMethod.File;
@@ -86,20 +89,22 @@ namespace DG
 
       }
 
-
       private void LoadFromFile(ColumnDefinition colDef)
       {
 
          var file = colDef.ColumnDataMimicPathFileName;
 
          //Note that no 'filtering' is put into place on loading from a file. 
+         var fileList = File.ReadLines(file).ToList();
 
-         PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>
-         {
-            File.ReadLines(file).ToList()
-         };
+         CreateFileList idt = new CreateFileList();
+
+         var fIncremental = idt.GenerateFileList(fileList);
+
+         PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(fIncremental);
 
       }
+
 
       // INCREMENTAL => Data Type { Date, Time, Number, Decimal (up to 1 decimal place only)}
       private void LoadIncrementalDate(ColumnDefinition colDef)
