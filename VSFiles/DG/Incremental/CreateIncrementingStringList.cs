@@ -1,56 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace DG
 {
-   
+
    public class CreateIncrementingStringList
-    {
+   {
 
-      public Random Random ; 
- 
-      public List<dynamic> GenerateIncrementalStringList(int length)
-        {
-            Random = new Random();
+      public List<dynamic> GenerateIncrementalStringList(int wordCountMin, int wordCountMax, int length)
+      {
+    
+         List<dynamic> si = new List<dynamic>();
 
-            List <dynamic> si = new List<dynamic>();
+         for (int i = 0; i < 10000; i++)
+         {
+            var source = string.Join(" ", Loremipsum.WordList(false).Take(RandomHelper.Instance.Next(wordCountMin, wordCountMax))).Replace(@",", "");
 
-            for (int i = 0; i < length; i++)
+            if (source.Length >= length)
             {
-               si.Add(CreateRandomString(length));
+               source = source.Substring(0, length);
             }
 
-            return si;
-        }
+            source = char.ToUpper(source[0]) + source.Substring(1);
 
-        private string CreateRandomString(int length)
-        {
+            si.Add(source);
 
-           {
-              //TODO: This min max to be determined by appConst.
-              int randomLength = (int)GeneralMethods.RandomNumberBetween(0, length);
+         }
 
-              StringBuilder strBuild = new StringBuilder();
+         return si;
 
-              for (int i = 0; i < randomLength; i++)
-              {
-                 double flt = Random.NextDouble();
-                 int shift = Convert.ToInt32(Math.Floor(25 * flt));
-
-                 //Had an idea to randomly insert upper or lower case
-                  int rand = (int)GeneralMethods.RandomNumberBetween(0, 6);
-                  var letter = rand == 0 ? Convert.ToChar(" ") : Convert.ToChar(shift + 65);
-
-                  letter = rand >= 2 ? char.ToLower(letter) : char.ToUpper(letter);
-
-               strBuild.Append(letter);
-
-              }
-
-              return strBuild.ToString();
-           }
       }
 
-    }
+   }
 }
