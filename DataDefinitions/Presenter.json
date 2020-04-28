@@ -47,7 +47,6 @@
          
    "ColumnDefinitions": [
       {
-         "ColumnPosition": "1",
          "ColumnName": "Presenter_SK",
          "ColumnDataType":"INT",
          "ColumnNullablePercentage":"0",
@@ -61,7 +60,6 @@
       }
       ,
       {
-         "ColumnPosition": "2",
          "ColumnName": "Obtained",
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"0",
@@ -75,7 +73,6 @@
       }
       ,
       {
-         "ColumnPosition": "3",
          "ColumnName": "Fingers",
          "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
@@ -88,8 +85,7 @@
       }
       ,
       {
-         "ColumnPosition": "4",
-         "ColumnName": "HasLunch",
+          "ColumnName": "HasLunch",
          "ColumnDataType":"BOOLEAN",
          "ColumnNullablePercentage":"10",
         
@@ -114,7 +110,6 @@
       }
           ,
       {
-         "ColumnPosition": "6",
          "ColumnName": "Firstname",
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"1",
@@ -128,7 +123,6 @@
       
       ,
       {
-         "ColumnPosition": "7",
          "ColumnName": "Surname",
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"5",
@@ -141,7 +135,6 @@
       }
                ,
       {
-         "ColumnPosition": "8",
          "ColumnName": "Day",
        
          "ColumnDataType":"STRING",
@@ -157,7 +150,6 @@
       
         
       {
-         "ColumnPosition": "9",
          "ColumnName": "Temperature",
        
          "ColumnDataType":"DECIMAL",

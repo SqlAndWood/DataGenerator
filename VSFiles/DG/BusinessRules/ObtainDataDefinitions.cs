@@ -62,7 +62,7 @@ namespace DG
          for (int i = 0; i <= outputColumnCount - 1; i++)
          {
             //NB: I only use variables to simplify data checking during run time.
-            int columnPosition = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
+            int columnPosition = i + 1;// ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
 
             string columnName = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnName"], JTokenType.String, defaultString);
 
