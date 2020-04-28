@@ -7,7 +7,7 @@ namespace DG
     {
 
 
-      public List<dynamic> GenerateIncrementingDecimalList(int start, int end, int decimalPlace)
+      public List<dynamic> GenerateIncrementingDecimalList(decimal start, decimal end, int decimalPlace)
       {
          //a basic test. needs improvement.
          if (end - start > AppConst.DefaultDecimalRanges.EndNumber - AppConst.DefaultDecimalRanges.StartNumber)

@@ -92,6 +92,8 @@ namespace DG
 
          var file = colDef.ColumnDataMimicPathFileName;
 
+         //Note that no 'filtering' is put into place on loading from a file. 
+
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>
          {
             File.ReadLines(file).ToList()
@@ -161,12 +163,12 @@ namespace DG
       {
 
          var startNumber = colDef.ColumnStartWith == ""
-            ? (int)AppConst.DefaultDecimalRanges.StartNumber
-            : int.Parse(colDef.ColumnStartWith);
+            ? (decimal)AppConst.DefaultDecimalRanges.StartNumber
+            : decimal.Parse(colDef.ColumnStartWith);
 
          var endNumber = colDef.ColumnEndWith == ""
-            ? (int)AppConst.DefaultDecimalRanges.EndNumber
-            : int.Parse(colDef.ColumnEndWith);
+            ? (decimal)AppConst.DefaultDecimalRanges.EndNumber
+            : decimal.Parse(colDef.ColumnEndWith);
 
          var decimalPlaces = colDef.ColumnLength == ""
             ? (int)AppConst.DefaultDecimalRanges.DecimalPlaces
