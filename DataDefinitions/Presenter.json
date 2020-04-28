@@ -41,9 +41,6 @@
    "OutputDelimeter": ",",
      
    "OutputRecordCount": "500000",
-   
-   "OutputIdentityStartValue":"0",
-   "OutputIncrementValue":"1",
          
    "ColumnDefinitions": [
       {

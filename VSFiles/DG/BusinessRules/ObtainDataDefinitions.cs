@@ -33,10 +33,6 @@ namespace DG
 
          var outputRecordCount = (int)jsonToken["OutputRecordCount"];
 
-         var outputIdentityStartValue = (int)jsonToken["OutputIdentityStartValue"];
-
-         var outputIncrementValue = (int)jsonToken["OutputIncrementValue"];
-
          var colCount = (int)(jsonToken["ColumnDefinitions"] ?? 0).Count();
 
          TableDefinition = new TableDefinition
@@ -46,8 +42,7 @@ namespace DG
             OutputFileType = outputFileType,
             OutputDelimiter = outputDelimiter,
             OutputRecordCount = outputRecordCount,
-            OutputIdentityStartValue = outputIdentityStartValue,
-            OutputIncrementValue = outputIncrementValue,
+           
             DataFoldersLocation = dataFoldersLocation,
             DataGeneratedPath = dataFoldersLocation + AppConst.DataFolders.DataGenerated + "\\",
             DataDefinitionsPath = dataDefinitionsPath

@@ -13,9 +13,6 @@ namespace DG
       public int ColumnDefinitionCount { get; set; } 
       public int OutputRecordCount { get; set; }
 
-      public int OutputIdentityStartValue { get; set; }
-      public int OutputIncrementValue { get; set; }
-
       public string DataFoldersLocation { get; set; }
       public string DataGeneratedPath { get; set; }
       public string DataDefinitionsPath { get; set; }
