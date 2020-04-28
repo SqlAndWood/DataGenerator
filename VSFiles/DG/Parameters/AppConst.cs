@@ -44,6 +44,13 @@
          DecimalPlaces = 3
       }
 
+      public enum DefaultStringRanges
+      {
+         StartNumber = 0,
+         EndNumber = 50,
+         Length = 250
+      }
+
       public enum LoadDataMimicMethod
       {
          File,
