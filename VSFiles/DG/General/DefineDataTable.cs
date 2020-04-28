@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 
 //https://www.codeproject.com/Articles/17169/Copy-Data-from-a-DataTable-to-a-SQLServer-Database
 namespace DG
@@ -19,15 +18,15 @@ namespace DG
             string s = SystemDataTypes.GetSystemType(cd.ColumnDataType);
             var column = new DataColumn(cd.ColumnName) {DataType = System.Type.GetType(s), ReadOnly = true, Unique = false};
             
-            if (cd.ColumnIdentityField.ToUpper() == "YES")
-            {
-               column.AllowDBNull = false;
-               AddPrimaryKey(cd, new List<string> { cd.ColumnName }, DTable);
-            }
-            else
-            {
+            //if (cd.ColumnIdentityField.ToUpper() == "YES")
+            //{
+            //   column.AllowDBNull = false;
+            //   AddPrimaryKey(cd, new List<string> { cd.ColumnName }, DTable);
+            //}
+            //else
+            //{
                column.AllowDBNull = true;
-            }
+           // }
             // Add the Column to the DataColumnCollection.
             DTable.Columns.Add(column);
 
@@ -37,25 +36,27 @@ namespace DG
 
       }
 
-      private static void AddPrimaryKey(ColumnDefinition cd, List<string> PrimaryKeyColumns, DataTable table)
-      {
+      //Primary keys are not part of this application
 
-         if (cd.ColumnIdentityField.ToUpper() == "YES")
-         {
-            DataColumn[] PrimaryKeyDataColumns = new DataColumn[PrimaryKeyColumns.Count];
+      //private static void AddPrimaryKey(ColumnDefinition cd, List<string> PrimaryKeyColumns, DataTable table)
+      //{
 
-            int lowerFirstArray = PrimaryKeyDataColumns.GetLowerBound(0);
-            int upperFirstArray = PrimaryKeyDataColumns.GetUpperBound(0);
+      //   if (cd.ColumnIdentityField.ToUpper() == "YES")
+      //   {
+      //      DataColumn[] PrimaryKeyDataColumns = new DataColumn[PrimaryKeyColumns.Count];
 
-            for (int i = lowerFirstArray; i <= upperFirstArray; i++)
-            {
-               PrimaryKeyDataColumns[i] = table.Columns[PrimaryKeyColumns[i]];
-            }
+      //      int lowerFirstArray = PrimaryKeyDataColumns.GetLowerBound(0);
+      //      int upperFirstArray = PrimaryKeyDataColumns.GetUpperBound(0);
 
-            table.PrimaryKey = PrimaryKeyDataColumns;
+      //      for (int i = lowerFirstArray; i <= upperFirstArray; i++)
+      //      {
+      //         PrimaryKeyDataColumns[i] = table.Columns[PrimaryKeyColumns[i]];
+      //      }
 
-         }
-      }
+      //      table.PrimaryKey = PrimaryKeyDataColumns;
+
+      //   }
+      //}
 
    }
 }
