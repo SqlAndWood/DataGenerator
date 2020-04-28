@@ -17,9 +17,9 @@
             //TODO: each loop should de reference these objects. 
             ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(p, dataDefinitionFiles, fileName);
             
-            GeneratePopulateController GPC = new GeneratePopulateController(dataDefinitions);
+            GeneratePopulateController gpc = new GeneratePopulateController(dataDefinitions);
 
-            new SaveGeneratedData(GPC.DTable, dataDefinitions);
+            new SaveGeneratedData(gpc.DTable, dataDefinitions);
             
          }
 

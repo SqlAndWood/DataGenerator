@@ -17,12 +17,10 @@ namespace DG
 
          //One dimension per Column. All of same 'Length'.
          List<dynamic>[] preLoadedFieldData = new List<dynamic>[obtainDataDefinitions.TableDefinition.ColumnDefinitions.Count()];
-
+         
          //This pre - loads appropriate data based on "LoadDataMimicMethod":{FILE, INCREMENTAL}
          GeneratePreLoadData pld = new GeneratePreLoadData(obtainDataDefinitions, preLoadedFieldData);
-         
-         //TODO: This code is being re-written, so this next class will fail 
-
+  
          //This populates records based on {FILE, INCREMENTAL, RANDOM} in conjunction with 'StartWith' and 'EndWith'
          PopulateData populateData = new PopulateData(obtainDataDefinitions, preLoadedFieldData);
 

@@ -57,7 +57,7 @@
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
          "StartWith":"1",
-         "EndWith":"",
+         "EndWith":"50000",
          "Length":"",
          
       }
@@ -66,14 +66,14 @@
          "ColumnPosition": "2",
          "ColumnName": "Obtained",
          "ColumnIdentityField":"No",
-         "ColumnDataType":"NUMBER",
-         "ColumnNullablePercentage":"15",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
          "ColumnRatios" : "50/50", 
 
-         "LoadDataMimicMethod":"INCREMENTAL",
-         "DataMimicFilename" : "",
-         "StartWith":"56",
-         "EndWith":"99",
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "YesNo.txt",
+         "StartWith":"",
+         "EndWith":"",
          "Length":"",
          
       }
@@ -86,7 +86,7 @@
          "ColumnNullablePercentage":"10",
          "ColumnRatios" : "100",
          
-         "LoadDataMimicMethod":"RANDOM",
+         "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
@@ -116,11 +116,11 @@
          "ColumnNullablePercentage":"15",
          "ColumnRatios" : "0,100",
 
-         "LoadDataMimicMethod":"RANDOM",
+         "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
-         "StartWith":"1.0",
-         "EndWith":"100.0",
-         "Length":"",
+         "StartWith":"1.12",
+         "EndWith":"4.54",
+         "Length":"2",
       }
     
    ]
