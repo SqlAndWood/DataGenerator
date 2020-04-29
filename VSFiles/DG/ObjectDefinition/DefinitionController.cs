@@ -12,7 +12,7 @@ namespace DG
       public DefinitionController(string fileName)
       {
 
-         var dataFoldersLocation = AppConst.GetValue("LocalPath").ToString() + "\\"; 
+         var dataFoldersLocation = AppConst.GetValue(AppConst.LocalPath).ToString() + "\\"; 
 
          var dataDefinitionsPath = dataFoldersLocation + AppConst.DataFolders.DataDefinitions + "\\"; 
     

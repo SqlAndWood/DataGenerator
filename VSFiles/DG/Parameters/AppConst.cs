@@ -11,6 +11,8 @@ namespace DG
             return String.Format(ConfigurationManager.AppSettings[paramName]);
         }
 
+        public static string LocalPath = "LocalPath";
+
         public enum DataFolders
       {
          DataGenerated,
