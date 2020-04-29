@@ -67,12 +67,7 @@ namespace DG
          //Each column has a % chance of being NULL. The DataDefinition ColumnNullablePercentage indicates that frequency.
          if (colDef.ColumnNullablePercentage == 0 || (int)RandomHelper.Instance.Next(0, 100) >= colDef.ColumnNullablePercentage) 
          {
-               
-    
-                //value = preLoadedFieldData[colDef.ColumnPosition-1][_random.Next(preLoadedFieldData[colDef.ColumnPosition-1].Count)];
-
-                value = preLoadedFieldData[colDef.ColumnPosition - 1][RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count)];
-
+            value = preLoadedFieldData[colDef.ColumnPosition - 1][RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count)];
          }
 
          //TODO: Remove this Memory Hog
@@ -91,7 +86,7 @@ namespace DG
          if (colDef.ColumnNullablePercentage == 0 || (int)RandomHelper.Instance.Next(0, 100) >= colDef.ColumnNullablePercentage)
          {
 
-            //The wraparound works fine (base 0) .. Thus StartWith = 0 is prefered over StartWith = 1
+            //The wraparound works fine (base 0) .. Thus StartWith = 0 is preferred over StartWith = 1
             var wrapAroundNumber = _j[colDef.ColumnPosition - 1] % preLoadedFieldData[colDef.ColumnPosition - 1].Count ;
 
             value = preLoadedFieldData[colDef.ColumnPosition - 1][wrapAroundNumber];

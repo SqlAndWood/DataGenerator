@@ -17,11 +17,11 @@ namespace DG
             Select(column => column.ColumnName).
             ToArray();
 
-        var Delimiter = (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == null || (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == ""
+        var delimiter = (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == null || (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == ""
             ? ","
             : (string)obtainDataDefinitions.TableDefinition.OutputDelimiter;
       
-         sb.AppendLine(string.Join(Delimiter, columnNames));
+         sb.AppendLine(string.Join(delimiter, columnNames));
 
          foreach (DataRow row in dt.Rows)
          {
@@ -30,7 +30,7 @@ namespace DG
                ToArray();
 
             //Enable end user to dictate the delimiter.
-            sb.AppendLine(string.Join(Delimiter, fields));
+            sb.AppendLine(string.Join(delimiter, fields));
 
          }
 
