@@ -6,7 +6,7 @@ namespace DG
    {
       public List<ColumnDefinition> ColumnDefinitions { get; set; }
 
-      public string OutputFilename { get; set; }  //Potentially deprecated, if we take the name of the actual file
+      public string OutputFilename { get; set; }
       public string OutputFileType { get; set; }
       public string OutputDelimiter { get; set;}
 

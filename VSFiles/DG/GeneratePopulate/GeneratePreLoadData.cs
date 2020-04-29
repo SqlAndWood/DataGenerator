@@ -28,8 +28,6 @@ namespace DG
          //Step one is to create the required [] count and populate with dummy data.
          PreLoadedFieldData = preLoadedFieldData;
          
-
-
          foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
          {
 
@@ -105,8 +103,7 @@ namespace DG
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(fIncremental);
 
       }
-
-
+        
       // INCREMENTAL => Data Type { Date, Time, Number, Decimal (up to 1 decimal place only)}
       private void LoadIncrementalDate(ColumnDefinition colDef)
       {

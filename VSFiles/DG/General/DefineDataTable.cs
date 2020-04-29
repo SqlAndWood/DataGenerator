@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 
 //https://www.codeproject.com/Articles/17169/Copy-Data-from-a-DataTable-to-a-SQLServer-Database
 namespace DG

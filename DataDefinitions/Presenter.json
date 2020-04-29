@@ -74,7 +74,7 @@
          "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
                 
-         "LoadDataMimicMethod":"INCREMENTAL",
+         "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
