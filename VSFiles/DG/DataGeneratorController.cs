@@ -1,21 +1,18 @@
 ﻿namespace DG
 {
 
-   class DataGeneratorController
+    class DataGeneratorController
    {
 
       public DataGeneratorController()
       {
+        
+         string[] aListOfFiles = System.IO.Directory.GetFiles(Config.GetValue("LocalPath").ToString() + "\\" + AppConst.DataFolders.DataDefinitions + "\\");
 
-         Parameter p = new Parameter();
-
-         var dataDefinitionFiles = new DataDefinitionFiles(p);
-
-         foreach (string fileName in dataDefinitionFiles.FilesInDirectory)
+         foreach (string fileName in aListOfFiles)
          {
 
-            //TODO: each loop should de reference these objects. 
-            ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(p, dataDefinitionFiles, fileName);
+            ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(fileName);
             
             GeneratePopulateController gpc = new GeneratePopulateController(dataDefinitions);
 

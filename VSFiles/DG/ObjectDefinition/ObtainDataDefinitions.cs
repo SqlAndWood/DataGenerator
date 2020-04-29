@@ -7,14 +7,13 @@ namespace DG
 
    class ObtainDataDefinitions
    {
-
       public TableDefinition TableDefinition { get; set; }
       
-      public ObtainDataDefinitions( Parameter p, DataDefinitionFiles dataDefinitionFiles,  string fileName)
+      public ObtainDataDefinitions(string fileName)
       {
 
-         var dataFoldersLocation = dataDefinitionFiles.DataFoldersLocation; //Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
-         var dataDefinitionsPath = dataDefinitionFiles.DataDefinitionsPath; // dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
+         var dataFoldersLocation = Config.GetValue("LocalPath").ToString() + "\\"; //Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
+         var dataDefinitionsPath = dataFoldersLocation + AppConst.DataFolders.DataDefinitions + "\\"; // dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
 
          JObject jsonToken;
 
@@ -47,11 +46,10 @@ namespace DG
             DataGeneratedPath = dataFoldersLocation + AppConst.DataFolders.DataGenerated + "\\",
             DataDefinitionsPath = dataDefinitionsPath
          };
+          
+         var defaultInteger = Config.GetValue(AppConst.ParameterNames.DefaultInteger.ToString()); //cast as int?
+         var defaultString = Config.GetValue(AppConst.ParameterNames.DefaultString.ToString()); 
 
-         var defaultInteger = (int)Parameter.GetParameterValue(p, AppConst.ParameterNames.DefaultInteger.ToString() );
-         var defaultString = (string)Parameter.GetParameterValue(p, AppConst.ParameterNames.DefaultString.ToString() );
-
-         //This will be in its own method?
          var outputColumnCount = TableDefinition.ColumnDefinitionCount;
 
          for (int i = 0; i <= outputColumnCount - 1; i++)
