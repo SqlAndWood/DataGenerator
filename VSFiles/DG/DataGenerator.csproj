@@ -60,6 +60,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessRules\Quoter.cs" />
     <Compile Include="DataActions\PopulateData.cs" />
     <Compile Include="Incremental\LoremIpsum.cs" />
     <Compile Include="Incremental\CreateFileList.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="ObjectDefinition\DefinitionTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scratchpad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
