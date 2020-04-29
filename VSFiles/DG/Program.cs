@@ -3,11 +3,15 @@
    class Program
    {
       private static void Main()
-      {    
+      {
 
-        new ProgramController();
+         if (Scratchpad.Testing())
+         {
+            new ProgramController();
+         }
 
+       
       }
 
-   }
+      }
 }
