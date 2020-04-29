@@ -1,9 +1,17 @@
-﻿namespace DG
+﻿using System;
+using System.Configuration;
+
+namespace DG
 {
-   public class AppConst
+   public static class AppConst
    {
 
-      public enum DataFolders
+        public static string GetValue(string paramName)
+        {
+            return String.Format(ConfigurationManager.AppSettings[paramName]);
+        }
+
+        public enum DataFolders
       {
          DataGenerated,
          DataDefinitions,
