@@ -14,24 +14,22 @@ namespace DG
 
          foreach (DefinitionColumn cd in ocd.TableDefinition.ColumnDefinitions)
          {
-            string s = SystemDataTypes.GetSystemType(cd.ColumnDataType);
-            var column = new DataColumn(cd.ColumnName)
-                                                         {
-                                                            DataType = System.Type.GetType(s), 
-                                                            ReadOnly = true, 
-                                                            Unique = false
-                                                         };
-            
-            column.AllowDBNull = true;
-        
-            dTable.Columns.Add(column);
+       
+            dTable.Columns.Add(
+                                 new DataColumn(cd.ColumnName) {
+                                                               DataType = System.Type.GetType(SystemDataTypes.GetSystemType(cd.ColumnDataType)), 
+                                                               ReadOnly = true, 
+                                                               Unique = false,
+                                                               AllowDBNull = true,
+                                                               }
+
+                              );
 
          }
 
          return dTable;
 
       }
-
 
    }
 }
