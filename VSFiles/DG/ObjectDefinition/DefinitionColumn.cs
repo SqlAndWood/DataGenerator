@@ -1,16 +1,16 @@
 ﻿namespace DG
 {
-   class ColumnDefinition
+   class DefinitionColumn
    {
-      public int ColumnPosition { get; set; }  //This may or may not be correct
-      public string ColumnName { get; set; } //There is a chance this overlaps with another columnName.
+      public int ColumnPosition { get; set; } 
+
+      //TODO: Given that ColumnNames must not be duplicated, provide mechanism to over-right duplicated column name.
+      public string ColumnName { get; set; } 
 
       public string ColumnDataType { get; set; }
       
       public int ColumnNullablePercentage { get; set; }
      
-
-      //This information is useful per Column.
       public string ColumnLoadDataMimicMethod { get; set; }
 
       public string ColumnDataMimicFilename { get; set; }

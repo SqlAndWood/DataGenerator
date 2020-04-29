@@ -5,16 +5,17 @@ using Newtonsoft.Json.Linq;
 namespace DG
 {
 
-   class ObtainDataDefinitions
+   class DefinitionController
    {
-      public TableDefinition TableDefinition { get; set; }
+      public DefinitionTable TableDefinition { get; set; }
       
-      public ObtainDataDefinitions(string fileName)
+      public DefinitionController(string fileName)
       {
 
-         var dataFoldersLocation = Config.GetValue("LocalPath").ToString() + "\\"; //Parameter.GetParameterValue(p, ParameterNames.DataFolders.ToString()) + "\\";
-         var dataDefinitionsPath = dataFoldersLocation + AppConst.DataFolders.DataDefinitions + "\\"; // dataFoldersLocation + "\\" + DataFolders.DataDefinitions + "\\";
+         var dataFoldersLocation = AppConst.GetValue("LocalPath").ToString() + "\\"; 
 
+         var dataDefinitionsPath = dataFoldersLocation + AppConst.DataFolders.DataDefinitions + "\\"; 
+    
          JObject jsonToken;
 
          using (System.IO.StreamReader reader = System.IO.File.OpenText(fileName))
@@ -23,7 +24,6 @@ namespace DG
             jsonToken = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
          }
 
-         //Populate from the JSON File into Variables.
          var outputFilename = (string)jsonToken["OutputFilename"];
      
          var outputFileType = ((string)jsonToken["OutputFileType"])?.ToLower();
@@ -34,7 +34,7 @@ namespace DG
 
          var colCount = (int)(jsonToken["ColumnDefinitions"] ?? 0).Count();
 
-         TableDefinition = new TableDefinition
+         TableDefinition = new DefinitionTable
          {
             OutputFilename = outputFilename,
             ColumnDefinitionCount = colCount,
@@ -47,8 +47,8 @@ namespace DG
             DataDefinitionsPath = dataDefinitionsPath
          };
           
-         var defaultInteger = Config.GetValue(AppConst.ParameterNames.DefaultInteger.ToString()); //cast as int?
-         var defaultString = Config.GetValue(AppConst.ParameterNames.DefaultString.ToString()); 
+         var defaultInteger = AppConst.GetValue(AppConst.ParameterNames.DefaultInteger.ToString()); //cast as int?
+         var defaultString = AppConst.GetValue(AppConst.ParameterNames.DefaultString.ToString()); 
 
          var outputColumnCount = TableDefinition.ColumnDefinitionCount;
 
@@ -75,26 +75,27 @@ namespace DG
 
             string columnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["Length"], JTokenType.String, defaultString);
 
-            TableDefinition.ColumnDefinitions.Add (new ColumnDefinition()
-            {
+            TableDefinition.ColumnDefinitions.Add (
+                new DefinitionColumn()
+                                        {
 
-               ColumnPosition = columnPosition,
-               ColumnName = columnName,
+                                           ColumnPosition = columnPosition,
+                                           ColumnName = columnName,
 
-               ColumnDataType = columnDataType,
+                                           ColumnDataType = columnDataType,
 
-               ColumnNullablePercentage = columnNullablePercentage,
+                                           ColumnNullablePercentage = columnNullablePercentage,
              
-               ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
-               ColumnDataMimicFilename = columnDataMimicFilename,
+                                           ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
+                                           ColumnDataMimicFilename = columnDataMimicFilename,
 
-               ColumnDataMimicPathFileName = dataFoldersLocation + AppConst.DataFolders.DataMimic + "\\" + columnDataMimicFilename,
+                                           ColumnDataMimicPathFileName = dataFoldersLocation + AppConst.DataFolders.DataMimic + "\\" + columnDataMimicFilename,
                 
-               ColumnStartWith = columnStartWith,
-               ColumnEndWith = columnEndWith,
-               ColumnLength = columnLength,
+                                           ColumnStartWith = columnStartWith,
+                                           ColumnEndWith = columnEndWith,
+                                           ColumnLength = columnLength,
 
-            });
+                                        });
 
          }
          

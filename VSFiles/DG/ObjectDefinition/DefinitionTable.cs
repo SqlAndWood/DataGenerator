@@ -2,9 +2,9 @@
 
 namespace DG
 {
-   class TableDefinition
+   class DefinitionTable
    {
-      public List<ColumnDefinition> ColumnDefinitions { get; set; }
+      public List<DefinitionColumn> ColumnDefinitions { get; set; }
 
       public string OutputFilename { get; set; }
       public string OutputFileType { get; set; }
@@ -17,9 +17,9 @@ namespace DG
       public string DataGeneratedPath { get; set; }
       public string DataDefinitionsPath { get; set; }
 
-      public TableDefinition()
+      public DefinitionTable()
       {
-         ColumnDefinitions = new List<ColumnDefinition>();
+         ColumnDefinitions = new List<DefinitionColumn>();
       }
 
    }
