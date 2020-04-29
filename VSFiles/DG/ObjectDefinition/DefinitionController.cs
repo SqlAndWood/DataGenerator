@@ -23,25 +23,15 @@ namespace DG
             //https://www.newtonsoft.com/json/help/html/LINQtoJSON.htm
             jsonToken = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
          }
-
-         var outputFilename = (string)jsonToken["OutputFilename"];
-     
-         var outputFileType = ((string)jsonToken["OutputFileType"])?.ToLower();
-       
-         var outputDelimiter = (string)jsonToken["OutputDelimiter"] ;
-
-         var outputRecordCount = (int)jsonToken["OutputRecordCount"];
-
-         var colCount = (int)(jsonToken["ColumnDefinitions"] ?? 0).Count();
-
+         
          TableDefinition = new DefinitionTable
          {
-            OutputFilename = outputFilename,
-            ColumnDefinitionCount = colCount,
-            OutputFileType = outputFileType,
-            OutputDelimiter = outputDelimiter,
-            OutputRecordCount = outputRecordCount,
-           
+            OutputFilename = (string)jsonToken["OutputFilename"],
+            ColumnDefinitionCount = (jsonToken["ColumnDefinitions"] ?? 0).Count(),
+            OutputFileType = ((string)jsonToken["OutputFileType"])?.ToLower(),
+            OutputDelimiter = (string)jsonToken["OutputDelimiter"],
+            OutputRecordCount = (int)jsonToken["OutputRecordCount"],
+
             DataFoldersLocation = dataFoldersLocation,
             DataGeneratedPath = dataFoldersLocation + AppConst.DataFolders.DataGenerated + "\\",
             DataDefinitionsPath = dataDefinitionsPath
@@ -54,46 +44,28 @@ namespace DG
 
          for (int i = 0; i <= outputColumnCount - 1; i++)
          {
-            //NB: I only use variables to simplify data checking during run time.
-            int columnPosition = i + 1;// ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
-
-            string columnName = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnName"], JTokenType.String, defaultString);
-
-            string columnDataType = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnDataType"], JTokenType.String, defaultString);
-               
-            int columnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger);
-           
-          
-            //This is used for created Data
-            string columnLoadDataMimicMethod = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["LoadDataMimicMethod"], JTokenType.String, defaultString);
-
+         
             string columnDataMimicFilename = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["DataMimicFilename"], JTokenType.String, defaultString);
-
-            string columnStartWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["StartWith"], JTokenType.String, defaultString);
-
-            string columnEndWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["EndWith"], JTokenType.String, defaultString);
-
-            string columnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["Length"], JTokenType.String, defaultString);
-
+            
             TableDefinition.ColumnDefinitions.Add (
                 new DefinitionColumn()
                                         {
 
-                                           ColumnPosition = columnPosition,
-                                           ColumnName = columnName,
+                                           ColumnPosition = i + 1, // ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnPosition"], JTokenType.Integer, i);
+                                           ColumnName = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnName"], JTokenType.String, defaultString),
 
-                                           ColumnDataType = columnDataType,
+                                           ColumnDataType = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["ColumnDataType"], JTokenType.String, defaultString),
 
-                                           ColumnNullablePercentage = columnNullablePercentage,
+                                           ColumnNullablePercentage = ConvertToken((int)jsonToken["ColumnDefinitions"]?[i]?["ColumnNullablePercentage"], JTokenType.Integer, defaultInteger),
              
-                                           ColumnLoadDataMimicMethod = columnLoadDataMimicMethod,
-                                           ColumnDataMimicFilename = columnDataMimicFilename,
+                                           ColumnLoadDataMimicMethod = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["LoadDataMimicMethod"], JTokenType.String, defaultString),
 
+                                           ColumnDataMimicFilename = columnDataMimicFilename,
                                            ColumnDataMimicPathFileName = dataFoldersLocation + AppConst.DataFolders.DataMimic + "\\" + columnDataMimicFilename,
                 
-                                           ColumnStartWith = columnStartWith,
-                                           ColumnEndWith = columnEndWith,
-                                           ColumnLength = columnLength,
+                                           ColumnStartWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["StartWith"], JTokenType.String, defaultString),
+                                           ColumnEndWith = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["EndWith"], JTokenType.String, defaultString),
+                                           ColumnLength = ConvertToken(jsonToken["ColumnDefinitions"]?[i]?["Length"], JTokenType.String, defaultString),
 
                                         });
 

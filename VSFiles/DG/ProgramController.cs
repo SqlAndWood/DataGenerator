@@ -5,7 +5,7 @@
 
       public ProgramController()
       {
-         //Grabs the list of JSON files in a specific folder. (actually, grabs all folders, regardless of filetype)
+         //Grabs the list of JSON files in a specific folder. (actually, grabs all folders, regardless of file type)
          string[] aListOfFiles = System.IO.Directory.GetFiles(AppConst.GetValue(AppConst.LocalPath).ToString() + "\\" + AppConst.DataFolders.DataDefinitions + "\\"); 
          
 
