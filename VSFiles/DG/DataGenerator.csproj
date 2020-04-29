@@ -76,7 +76,7 @@
     <Compile Include="BusinessRules\DefineDataTable.cs" />
     <Compile Include="DataActions\SaveData.cs" />
     <Compile Include="ObjectDefinition\DefinitionColumn.cs" />
-    <Compile Include="DataGeneratorController.cs" />
+    <Compile Include="ProgramController.cs" />
     <Compile Include="ObjectDefinition\DefinitionController.cs" />
     <Compile Include="BusinessRules\SystemDataTypes.cs" />
     <Compile Include="ObjectDefinition\DefinitionTable.cs" />
