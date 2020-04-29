@@ -16,9 +16,10 @@
 
             GenerateData gpc = new GenerateData(defineDataRequirements);
 
+            //Modify this to Save each line while being populated.
             PopulateData pp = new PopulateData(defineDataRequirements, gpc.PreLoadedFieldData);
 
-            new SaveData(pp.DTable, defineDataRequirements);
+            //new SaveData(pp.DTable, defineDataRequirements);
             
          }
       }
