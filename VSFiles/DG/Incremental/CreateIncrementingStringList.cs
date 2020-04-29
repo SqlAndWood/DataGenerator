@@ -15,7 +15,7 @@ namespace DG
 
          for (int i = 0; i < 10000; i++)
          {
-            var source = string.Join(" ", Loremipsum.WordList(false).Take(RandomHelper.Instance.Next(wordCountMin, wordCountMax))).Replace(@",", "");
+            var source = string.Join(" ", LoremIpsum.WordList(false).Take(RandomHelper.Instance.Next(wordCountMin, wordCountMax))).Replace(@",", "");
 
             if (source.Length >= length)
             {

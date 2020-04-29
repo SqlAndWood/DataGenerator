@@ -12,6 +12,7 @@ namespace DG
          providedDataType = providedDataType.ToUpper();
 
          var cleanDataType = InString(providedDataType, "SYSTEM.");
+
          if (cleanDataType == "") cleanDataType = providedDataType;
 
          switch (cleanDataType.ToUpper())
@@ -35,8 +36,9 @@ namespace DG
             case "STRING":
                returnValue = "System.String";
                break;
-
+            //TODO: Future iteration will see a separate DATE type.
             case "DATE":
+            
             case "DATETIME":
                returnValue = "System.DateTime";
                break;

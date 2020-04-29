@@ -8,11 +8,11 @@ namespace DG
       
       public List<dynamic> GenerateIncrementingTimeList(int start, int end)
       {
-            TimeSpan startTime = new TimeSpan(0, 0, start);
-            TimeSpan stopTime = new TimeSpan(0, 0, end);
+         TimeSpan startTime = new TimeSpan(0, 0, start);
+         TimeSpan stopTime = new TimeSpan(0, 0, end);
 
-            TimeSpan trackTime = startTime;
-            TimeSpan oneSecond = TimeSpan.FromSeconds(1);
+         TimeSpan trackTime = startTime;
+         TimeSpan oneSecond = TimeSpan.FromSeconds(1);
 
          List<dynamic> timeIncremental = new List<dynamic>();
 

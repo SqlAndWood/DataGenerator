@@ -9,8 +9,6 @@ namespace DG
       public List<dynamic> GenerateIncrementingDateList(int start, int end)
         {
 
- 
-      
             var startDate = new DateTime(start % 100, (start / 100) % 100, start / 10000);
 
             var endDate = new DateTime(end % 100, (end / 100) % 100, end / 10000);

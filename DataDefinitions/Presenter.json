@@ -40,7 +40,7 @@
    "OutputFileType":"CSV",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": "500000",
+   "OutputRecordCount": "5",
          
    "ColumnDefinitions": [
       {
@@ -50,8 +50,8 @@
     
          "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
-         "StartWith":"1",
-         "EndWith":"50000",
+         "StartWith":"0",
+         "EndWith":"5",
          "Length":"",
          
       }
@@ -74,7 +74,7 @@
          "ColumnDataType":"TIME",
          "ColumnNullablePercentage":"10",
                 
-         "LoadDataMimicMethod":"RANDOM",
+         "LoadDataMimicMethod":"INCREMENTAL",
          "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
@@ -158,6 +158,18 @@
          "StartWith":"-3.2",
          "EndWith":"45.7",
          "Length":"1",
+      }  ,
+      {
+         "ColumnName": "El'nino",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"80",
+       
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Animals.txt",
+         "StartWith":"1",
+         "EndWith":"5",
+         "Length":"15",
+         
       }
       
    ]

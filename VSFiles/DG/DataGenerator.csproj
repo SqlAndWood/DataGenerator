@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataActions\PopulateData.cs" />
-    <Compile Include="Incremental\loremipsum.cs" />
+    <Compile Include="Incremental\LoremIpsum.cs" />
     <Compile Include="Incremental\CreateFileList.cs" />
     <Compile Include="Incremental\CreateIncrementingBooleanList.cs" />
     <Compile Include="Incremental\CreateIncrementingStringList.cs" />

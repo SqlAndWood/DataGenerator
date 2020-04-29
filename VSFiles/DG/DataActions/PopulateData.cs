@@ -72,10 +72,10 @@ namespace DG
 
                 value = preLoadedFieldData[colDef.ColumnPosition - 1][RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count)];
 
-            }
+         }
 
-            //Memory Hog
-            _dr[colDef.ColumnName] = value;
+         //Memory Hog
+         _dr[colDef.ColumnName] = value;
 
       }
 
@@ -90,11 +90,11 @@ namespace DG
          if (colDef.ColumnNullablePercentage == 0 || (int)RandomHelper.Instance.Next(0, 100) >= colDef.ColumnNullablePercentage)
          {
 
-            //I need a way to wrap around numbers.
-            var wrapAroundNumber = _j[colDef.ColumnPosition - 1] % preLoadedFieldData[colDef.ColumnPosition - 1].Count;
+            //The wraparound works fine (base 0) .. Thus StartWith = 0 is prefered over StartWith = 1
+            var wrapAroundNumber = _j[colDef.ColumnPosition - 1] % preLoadedFieldData[colDef.ColumnPosition - 1].Count ;
 
             value = preLoadedFieldData[colDef.ColumnPosition - 1][wrapAroundNumber];
-
+ 
             //This is done to maintain an accurate 'Incremental' list of numbers. 
             _j[colDef.ColumnPosition - 1] += 1;
         

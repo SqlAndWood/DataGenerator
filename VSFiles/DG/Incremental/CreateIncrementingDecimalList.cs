@@ -5,8 +5,7 @@ namespace DG
 {
    public class CreateIncrementingDecimalList
     {
-
-
+      
       public List<dynamic> GenerateIncrementingDecimalList(decimal start, decimal end, int decimalPlace)
       {
          //a basic test. needs improvement.

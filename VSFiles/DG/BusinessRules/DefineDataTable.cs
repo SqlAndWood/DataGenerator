@@ -6,7 +6,7 @@ namespace DG
 
    class DefineDataTable
    {
-
+      //The DataTable is Memory Hungry. Future iterations should aim to remove the Data Table with a Custom Object Class to perform this on our behalf.
       public static DataTable Create(DefinitionController ocd)
       {
          

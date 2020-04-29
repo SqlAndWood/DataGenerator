@@ -6,14 +6,15 @@ namespace DG
    public static class AppConst
    {
 
+        public static string LocalPath = "LocalPath";
+
         public static string GetValue(string paramName)
         {
             return String.Format(ConfigurationManager.AppSettings[paramName]);
         }
 
-        public static string LocalPath = "LocalPath";
-
-        public enum DataFolders
+    
+      public enum DataFolders
       {
          DataGenerated,
          DataDefinitions,
