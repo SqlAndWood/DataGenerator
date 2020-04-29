@@ -7,6 +7,7 @@ namespace DG
    class PopulateData
    {
 
+      //TODO: Remove this Memory Hog
       public DataTable DTable { get; set; }
 
       private readonly DataRow _dr;
@@ -47,14 +48,14 @@ namespace DG
 
             }
 
-            //Memory Hog
+            //TODO: Remove this Memory Hog
             DTable.Rows.Add(_dr);
 
          }
 
 
      
-        }
+      }
 
       //Seems overkill to pass tableDef AND columnDefinitions.
       private void PopulateRecordAtRandom(DefinitionColumn colDef, List<dynamic>[] preLoadedFieldData)
@@ -74,7 +75,7 @@ namespace DG
 
          }
 
-         //Memory Hog
+         //TODO: Remove this Memory Hog
          _dr[colDef.ColumnName] = value;
 
       }
@@ -99,8 +100,8 @@ namespace DG
             _j[colDef.ColumnPosition - 1] += 1;
         
          }
-        
-         //Memory Hog
+
+         //TODO: Remove this Memory Hog
          _dr[colDef.ColumnName] = value;
       }
 

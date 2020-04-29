@@ -40,7 +40,7 @@
    "OutputFileType":"CSV",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": "5",
+   "OutputRecordCount": "1000000",
          
    "ColumnDefinitions": [
       {

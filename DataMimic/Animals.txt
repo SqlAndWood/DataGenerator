@@ -1,2 +1,4 @@
 Dog
 Cat
+Elephant
+Snail
