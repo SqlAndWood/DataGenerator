@@ -1,32 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace DG
 {
-
-   class GeneratePreLoadData
+    class GenerateData
    {
+        public List<dynamic>[] PreLoadedFieldData { get; set; }
 
-      //The Pre Load depends on several things.
-      /*
-         "LoadDataMimicMethod"
-            -> FILE => load File Listed in "DataMimicFilename"
-            -> INCREMENTAL => Data Type {Date, Time, Number, Decimal (up to 1 decimal place only)}
 
-         These three fields are used to pre load the data sets, minimise the amount of memory required and the simplicity to randomly select in the next phase.
-            "StartWith"
-            "EndWith"
-            "Length"
-       */
+        //The Pre Load depends on several things.
+        /*
+           "LoadDataMimicMethod"
+              -> FILE => load File Listed in "DataMimicFilename"
+              -> INCREMENTAL => Data Type {Date, Time, Number, Decimal (up to 1 decimal place only)}
 
-      private List<dynamic>[] PreLoadedFieldData;
+           These three fields are used to pre load the data sets, minimise the amount of memory required and the simplicity to randomly select in the next phase.
+              "StartWith"
+              "EndWith"
+              "Length"
+         */
 
-      public GeneratePreLoadData(ObtainDataDefinitions dd,  List<dynamic>[] preLoadedFieldData)
+ 
+      public GenerateData(DefinitionController dd)
       {
-         //Step one is to create the required [] count and populate with dummy data.
-         PreLoadedFieldData = preLoadedFieldData;
+
+            //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
+            PreLoadedFieldData = new List<dynamic>[dd.TableDefinition.ColumnDefinitions.Count()];
+
+            //Step one is to create the required [] count and populate with dummy data.
+            //PreLoadedFieldData = preLoadedFieldData;
          
          foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
          {
@@ -88,7 +91,7 @@ namespace DG
 
       }
 
-      private void LoadFromFile(ColumnDefinition colDef)
+      private void LoadFromFile(DefinitionColumn colDef)
       {
 
          var file = colDef.ColumnDataMimicPathFileName;
@@ -105,7 +108,7 @@ namespace DG
       }
         
       // INCREMENTAL => Data Type { Date, Time, Number, Decimal (up to 1 decimal place only)}
-      private void LoadIncrementalDate(ColumnDefinition colDef)
+      private void LoadIncrementalDate(DefinitionColumn colDef)
       {
          
          var startDate = colDef.ColumnStartWith == ""
@@ -124,7 +127,7 @@ namespace DG
          
       }
 
-      private void LoadIncrementalTime(ColumnDefinition colDef)
+      private void LoadIncrementalTime(DefinitionColumn colDef)
       {
 
          var startTime = colDef.ColumnStartWith == ""
@@ -143,7 +146,7 @@ namespace DG
 
       }
 
-      private void LoadIncrementalNumber(ColumnDefinition colDef)
+      private void LoadIncrementalNumber(DefinitionColumn colDef)
       {
 
          var startNumber = colDef.ColumnStartWith == ""
@@ -162,7 +165,7 @@ namespace DG
 
       }
 
-      private void LoadIncrementalDecimal(ColumnDefinition colDef)
+      private void LoadIncrementalDecimal(DefinitionColumn colDef)
       {
 
          var startNumber = colDef.ColumnStartWith == ""
@@ -185,7 +188,7 @@ namespace DG
 
       }
 
-      private void LoadIncrementalBoolean(ColumnDefinition colDef)
+      private void LoadIncrementalBoolean(DefinitionColumn colDef)
       {
 
          CreateIncrementingBooleanList idt = new CreateIncrementingBooleanList();
@@ -196,7 +199,7 @@ namespace DG
 
       }
 
-      private void LoadIncrementalString(ColumnDefinition colDef)
+      private void LoadIncrementalString(DefinitionColumn colDef)
       {
 
          var start = colDef.ColumnLength == ""

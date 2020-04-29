@@ -1,29 +1,27 @@
 ﻿namespace DG
 {
-
     class DataGeneratorController
-   {
+    {
 
       public DataGeneratorController()
       {
-        
-         string[] aListOfFiles = System.IO.Directory.GetFiles(Config.GetValue("LocalPath").ToString() + "\\" + AppConst.DataFolders.DataDefinitions + "\\");
+         //Grabs the list of JSON files in a specific folder. (actually, grabs all folders, regardless of filetype)
+         string[] aListOfFiles = System.IO.Directory.GetFiles(AppConst.GetValue("LocalPath").ToString() + "\\" + AppConst.DataFolders.DataDefinitions + "\\");
 
          foreach (string fileName in aListOfFiles)
          {
 
-            ObtainDataDefinitions dataDefinitions = new ObtainDataDefinitions(fileName);
-            
-            GeneratePopulateController gpc = new GeneratePopulateController(dataDefinitions);
+            DefinitionController defineDataRequirements = new DefinitionController(fileName);
 
-            new SaveGeneratedData(gpc.DTable, dataDefinitions);
+            GenerateData gpc = new GenerateData(defineDataRequirements);
+
+            PopulateData pp = new PopulateData(defineDataRequirements, gpc.PreLoadedFieldData);
+
+            new SaveData(pp.DTable, defineDataRequirements);
             
          }
-
       }
-
    }
-
 }
 /*
  *

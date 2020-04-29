@@ -5,10 +5,10 @@ using System.Text;
 
 namespace DG
 {
-   class SaveGeneratedData
+   class SaveData
    {
 
-      public SaveGeneratedData(DataTable dt, ObtainDataDefinitions obtainDataDefinitions)
+      public SaveData(DataTable dt, DefinitionController obtainDataDefinitions)
       {
 
          StringBuilder sb = new StringBuilder();
