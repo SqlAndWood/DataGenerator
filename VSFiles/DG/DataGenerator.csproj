@@ -60,8 +60,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneratePopulate\GeneratePopulateController.cs" />
-    <Compile Include="GeneratePopulate\PopulateData.cs" />
+    <Compile Include="DataActions\PopulateData.cs" />
     <Compile Include="Incremental\loremipsum.cs" />
     <Compile Include="Incremental\CreateFileList.cs" />
     <Compile Include="Incremental\CreateIncrementingBooleanList.cs" />
@@ -73,17 +72,14 @@
     <Compile Include="Incremental\CreateIncrementingDateList.cs" />
     <Compile Include="Incremental\CreateIncrementingNumberList.cs" />
     <Compile Include="Incremental\CreateIncrementingCharacterList.cs" />
-    <Compile Include="General\GeneralMethods.cs" />
-    <Compile Include="GeneratePopulate\GeneratePreLoadData.cs" />
-    <Compile Include="ObjectDefinition\DataFolderLocations.cs" />
-    <Compile Include="General\DefineDataTable.cs" />
-    <Compile Include="BusinessRules\SaveGeneratedData.cs" />
-    <Compile Include="ObjectDefinition\ColumnDefinition.cs" />
+    <Compile Include="DataActions\GenerateData.cs" />
+    <Compile Include="BusinessRules\DefineDataTable.cs" />
+    <Compile Include="DataActions\SaveData.cs" />
+    <Compile Include="ObjectDefinition\DefinitionColumn.cs" />
     <Compile Include="DataGeneratorController.cs" />
-    <Compile Include="ObjectDefinition\ObtainDataDefinitions.cs" />
-    <Compile Include="Parameters\Config.cs" />
-    <Compile Include="General\SystemDataTypes.cs" />
-    <Compile Include="ObjectDefinition\TableDefinition.cs" />
+    <Compile Include="ObjectDefinition\DefinitionController.cs" />
+    <Compile Include="BusinessRules\SystemDataTypes.cs" />
+    <Compile Include="ObjectDefinition\DefinitionTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

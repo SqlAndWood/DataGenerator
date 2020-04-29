@@ -7,12 +7,12 @@ namespace DG
    class DefineDataTable
    {
 
-      public static DataTable Create(ObtainDataDefinitions ocd)
+      public static DataTable Create(DefinitionController ocd)
       {
          
          DataTable dTable = new DataTable(ocd.TableDefinition.OutputFilename);
 
-         foreach (ColumnDefinition cd in ocd.TableDefinition.ColumnDefinitions)
+         foreach (DefinitionColumn cd in ocd.TableDefinition.ColumnDefinitions)
          {
             string s = SystemDataTypes.GetSystemType(cd.ColumnDataType);
             var column = new DataColumn(cd.ColumnName)
