@@ -1,64 +1,115 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Text;
 
 namespace DG
 {
    class PopulateData
    {
 
-      //TODO: Remove this Memory Hog
-      public DataTable DTable { get; set; }
+      private  int[] _j;
 
-      private readonly DataRow _dr;
+      private SaveData _sd;
 
-      private int[] _j;
-        
       public PopulateData(DefinitionController dd, List<dynamic>[] preLoadedFieldData)
       {
-         //TODO: Be aware this is MEMORY HUNGRY! I'd like to replace it with a less hungry object in the future.
-         DTable = DefineDataTable.Create(dd);
 
+         _sd = new SaveData(dd);
+
+         _sd.InitiliseFile(CreateHeading(dd));
+
+         //This is really a deeper loop, where each record will be saved to the file (append)
+         CreateRecord(dd, preLoadedFieldData);
+
+      }
+
+      private string CreateHeading(DefinitionController dd)
+      {
+
+         string[] fields = new string[dd.TableDefinition.ColumnDefinitionCount];
+     
+         foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
+         {
+            fields[colDef.ColumnPosition-1] += colDef.ColumnName;
+         }
+
+         StringBuilder columnHeadings = new StringBuilder();
+         columnHeadings.AppendLine(string.Join(",", fields));
+
+         return columnHeadings.ToString();
+      }
+
+
+      //Populate File with records
+      private void CreateRecord(DefinitionController dd, List<dynamic>[] preLoadedFieldData)
+      {
+         
          _j = new int[dd.TableDefinition.ColumnDefinitionCount];
 
          for (int rowNumber = 0; rowNumber < dd.TableDefinition.OutputRecordCount; rowNumber++)
          {
-            
-            //TODO: Be aware this is MEMORY HUNGRY! I'd like to replace it with a less hungry object in the future.
-            _dr = DTable.NewRow();
+
+            List<dynamic> dr = new List<dynamic>( );
 
             foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
             {
 
                var colLoadDataMimicMethod = colDef.ColumnLoadDataMimicMethod.ToUpper();
- 
+
                switch (colLoadDataMimicMethod)
                {
 
                   case "FILE": //AppConst.LoadDataMimicMethod.File -> Load Randomly
                   case "RANDOM": //AppConst.LoadDataMimicMethod.Random -> Load Randomly
-                     PopulateRecordAtRandom(colDef, preLoadedFieldData);
+                     dr.Add( PopulateRecordAtRandom(colDef, preLoadedFieldData) );
                      break;
 
                   case "INCREMENTAL": //AppConst.LoadDataMimicMethod.Incremental;-> Load in Array Order a[i] = Value[i]
-                     PopulateRecordIncrementally(colDef, preLoadedFieldData, rowNumber);
+                     dr.Add( PopulateRecordIncrementally(colDef, preLoadedFieldData, rowNumber) );
                      break;
 
                }
 
             }
 
-            //TODO: Remove this Memory Hog
-            DTable.Rows.Add(_dr);
+            SaveRecord(dd, dr);
 
          }
 
+      }
 
-     
+      private void SaveRecord(DefinitionController dd, List<dynamic> dr)
+      {
+
+         dynamic holingCell = "";
+
+         foreach (var ob in dr)
+         {
+            var l = ob.GetType();
+
+            if (l.Equals(typeof(string)))
+            {
+               string qs = ob.ToString();
+               holingCell += qs.SurroundWithDoubleQuotes() + ",";
+            }
+            else
+            {
+               holingCell += ob + ",";
+            }
+
+         }
+         string lineToWrite = holingCell.ToString();
+         int strLength = lineToWrite.Length;
+         lineToWrite = lineToWrite.Substring(0, strLength - 1);
+
+
+         _sd.CacheWriter(lineToWrite);
+
+
       }
 
       //Seems overkill to pass tableDef AND columnDefinitions.
-      private void PopulateRecordAtRandom(DefinitionColumn colDef, List<dynamic>[] preLoadedFieldData)
+      private dynamic PopulateRecordAtRandom(DefinitionColumn colDef, List<dynamic>[] preLoadedFieldData)
       {
   
          //Set initially to NULL. Only replace the null if this 'Roll of the dice' indicates it should hold a value.
@@ -70,13 +121,13 @@ namespace DG
             value = preLoadedFieldData[colDef.ColumnPosition - 1][RandomHelper.Instance.Next(preLoadedFieldData[colDef.ColumnPosition - 1].Count)];
          }
 
-         //TODO: Remove this Memory Hog
-         _dr[colDef.ColumnName] = value;
+         return value;
+       
 
       }
 
       //Would like to improve this so: 1,2, Null, 3, Null, 4 etc.
-      private void PopulateRecordIncrementally(DefinitionColumn colDef, List<dynamic>[] preLoadedFieldData, int rowNumber)
+      private dynamic PopulateRecordIncrementally(DefinitionColumn colDef, List<dynamic>[] preLoadedFieldData, int rowNumber)
       {
 
          //Set initially to NULL. Only replace the null if this 'Roll of the dice' indicates it should hold a value.
@@ -96,8 +147,8 @@ namespace DG
         
          }
 
-         //TODO: Remove this Memory Hog
-         _dr[colDef.ColumnName] = value;
+         return value;
+         
       }
 
    }

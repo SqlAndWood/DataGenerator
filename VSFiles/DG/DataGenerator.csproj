@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="BusinessRules\Quoter.cs" />
     <Compile Include="DataActions\PopulateData.cs" />
+    <Compile Include="Incremental\CreateIncrementingDateList.cs" />
     <Compile Include="Incremental\LoremIpsum.cs" />
     <Compile Include="Incremental\CreateFileList.cs" />
     <Compile Include="Incremental\CreateIncrementingBooleanList.cs" />
@@ -70,11 +71,10 @@
     <Compile Include="Incremental\CreateIncrementingTimeList.cs" />
     <Compile Include="Incremental\RandomHelper.cs" />
     <Compile Include="Parameters\AppConst.cs" />
-    <Compile Include="Incremental\CreateIncrementingDateList.cs" />
+    <Compile Include="Incremental\CreateIncrementingDateTimeList.cs" />
     <Compile Include="Incremental\CreateIncrementingNumberList.cs" />
     <Compile Include="Incremental\CreateIncrementingCharacterList.cs" />
     <Compile Include="DataActions\GenerateData.cs" />
-    <Compile Include="BusinessRules\DefineDataTable.cs" />
     <Compile Include="DataActions\SaveData.cs" />
     <Compile Include="ObjectDefinition\DefinitionColumn.cs" />
     <Compile Include="ProgramController.cs" />

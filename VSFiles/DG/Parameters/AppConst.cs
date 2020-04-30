@@ -6,12 +6,13 @@ namespace DG
    public static class AppConst
    {
 
-        public static string LocalPath = "LocalPath";
-
-        public static string GetValue(string paramName)
-        {
-            return String.Format(ConfigurationManager.AppSettings[paramName]);
-        }
+     public static string LocalPath = "LocalPath";
+     public static string FileCacheAmount = "FileCacheAmount";
+     
+     public static string GetValue(string paramName)
+     {
+         return String.Format(ConfigurationManager.AppSettings[paramName]);
+     }
 
     
       public enum DataFolders
@@ -31,7 +32,7 @@ namespace DG
       public enum DefaultDateRanges
       {
          StartDate = 19000101,
-         EndDate = 20991231
+         EndDate = 20201231
       }
 
       public enum DefaultNumberRanges

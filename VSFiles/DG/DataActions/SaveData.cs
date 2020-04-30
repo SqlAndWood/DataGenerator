@@ -1,52 +1,108 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace DG
 {
    class SaveData
    {
-
-      public SaveData(DataTable dt, DefinitionController obtainDataDefinitions)
+      private readonly string _filename;
+      private List<string> _cachedListToWrite;
+      public int CacheAmount;
+      
+      public SaveData(DefinitionController obtainDataDefinitions)
       {
 
-         StringBuilder sb = new StringBuilder();
+         CacheAmount = int.Parse(AppConst.GetValue(AppConst.FileCacheAmount).ToString());
 
-         string[] columnNames = dt.Columns.Cast<DataColumn>().
-            Select(column => column.ColumnName).
-            ToArray();
+         _filename = obtainDataDefinitions.TableDefinition.DataGeneratedPath + obtainDataDefinitions.TableDefinition.OutputFilename + "." + obtainDataDefinitions.TableDefinition.OutputFileType;
 
-        var delimiter = (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == null || (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == ""
-            ? ","
-            : (string)obtainDataDefinitions.TableDefinition.OutputDelimiter;
-      
-         sb.AppendLine(string.Join(delimiter, columnNames));
+         //If the folder does not exist, create it. if the folder does exist, do nothing.
+         DirectoryInfo di = Directory.CreateDirectory(obtainDataDefinitions.TableDefinition.DataGeneratedPath);
 
-         foreach (DataRow row in dt.Rows)
+      }
+
+      //TODO: Issue when File already exists
+      public void InitiliseFile( string lineToWrite)
+      {
+         _cachedListToWrite = new List<string>();
+
+         //Note that this does not close the file if it is open, but it does prevent an error message.
+         //TODO: it may also be why file is not being overwritten
+         // if (IsFileLocked(_filename))
+         //  {
+         File.WriteAllText(_filename, lineToWrite);
+         //  }
+      }
+
+      public void CacheWriter(string line)//need a force boolean.
+      {
+        
+         _cachedListToWrite.Add(line);
+         
+         if (_cachedListToWrite.Count >= CacheAmount)
          {
-            string[] fields = row.ItemArray.
-               Select(field => field.ToString()).
-               ToArray();
 
-            //Enable end user to dictate the delimiter.
-            sb.AppendLine(string.Join(delimiter, fields));
+            using (StreamWriter sw = File.AppendText(_filename))
+            {
+               foreach (string l in _cachedListToWrite)
+               {
+                  sw.WriteLine(l);
+               }
+            }
 
-         }
-
-         //this is a parameter 
-         string filename = obtainDataDefinitions.TableDefinition.DataGeneratedPath + obtainDataDefinitions.TableDefinition.OutputFilename + "." + obtainDataDefinitions.TableDefinition.OutputFileType;
-            
-        //If the folder does not exist, create it. if the folder does exist, do nothing.
-        DirectoryInfo di = Directory.CreateDirectory(obtainDataDefinitions.TableDefinition.DataGeneratedPath);
-
-        //Note that this does not close the file if it is open, but it does prevent an error message.
-         if (IsFileLocked(filename))
-         {
-            File.WriteAllText(filename, sb.ToString());
+            _cachedListToWrite.Clear();
          }
 
       }
+
+      public void AppendFile( string lineToWrite)
+      {
+         using (StreamWriter sw = File.AppendText(_filename))
+         {
+            sw.WriteLine(lineToWrite);
+         }
+      }
+
+
+      //public SaveData(DataTable dt, DefinitionController obtainDataDefinitions)
+      //{
+
+      //   StringBuilder sb = new StringBuilder();
+
+      //   string[] columnNames = dt.Columns.Cast<DataColumn>().
+      //      Select(column => column.ColumnName).
+      //      ToArray();
+
+      //  var delimiter = (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == null || (string)obtainDataDefinitions.TableDefinition.OutputDelimiter == ""
+      //      ? ","
+      //      : (string)obtainDataDefinitions.TableDefinition.OutputDelimiter;
+
+      //   sb.AppendLine(string.Join(delimiter, columnNames));
+
+      //   foreach (DataRow row in dt.Rows)
+      //   {
+      //      string[] fields = row.ItemArray.
+      //         Select(field => field.ToString()).
+      //         ToArray();
+
+      //      //Enable end user to dictate the delimiter.
+      //      sb.AppendLine(string.Join(delimiter, fields));
+
+      //   }
+
+      //   //this is a parameter 
+      //   string filename = obtainDataDefinitions.TableDefinition.DataGeneratedPath + obtainDataDefinitions.TableDefinition.OutputFilename + "." + obtainDataDefinitions.TableDefinition.OutputFileType;
+
+      //  //If the folder does not exist, create it. if the folder does exist, do nothing.
+      //  DirectoryInfo di = Directory.CreateDirectory(obtainDataDefinitions.TableDefinition.DataGeneratedPath);
+
+      //  //Note that this does not close the file if it is open, but it does prevent an error message.
+      //   if (IsFileLocked(filename))
+      //   {
+      //      File.WriteAllText(filename, sb.ToString());
+      //   }
+
+      //}
 
       private  bool IsFileLocked(string filename)
       {
