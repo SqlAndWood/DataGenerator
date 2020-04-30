@@ -68,21 +68,34 @@
          "Length":"",
          
       }
+           ,
+      {
+         "ColumnName": "EventDate",
+         "ColumnDataType":"DATE",
+         "ColumnNullablePercentage":"0",
+                
+         "LoadDataMimicMethod":"RANDOM",
+         "DataMimicFilename" : "",
+         "StartWith":"19800101",
+         "EndWith":"20201231",
+         "Length":"",
+      }
       ,
       {
-         "ColumnName": "Fingers",
+         "ColumnName": "EventTime",
          "ColumnDataType":"TIME",
-         "ColumnNullablePercentage":"10",
+         "ColumnNullablePercentage":"0",
                 
-         "LoadDataMimicMethod":"INCREMENTAL",
+         "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
          "StartWith":"",
          "EndWith":"",
          "Length":"",
       }
+      
       ,
       {
-          "ColumnName": "HasLunch",
+         "ColumnName": "HasLunch",
          "ColumnDataType":"BOOLEAN",
          "ColumnNullablePercentage":"10",
         
