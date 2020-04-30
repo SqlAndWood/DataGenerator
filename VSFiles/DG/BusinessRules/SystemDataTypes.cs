@@ -36,9 +36,10 @@ namespace DG
             case "STRING":
                returnValue = "System.String";
                break;
-            //TODO: Future iteration will see a separate DATE type.
+
+            //Note that there is no such object called a DATE. The DATETIME object consists of DATE and TIME. A Date is ToString("yyyy-MM-dd") value.
+            //No plan to separate out these two in the future.
             case "DATE":
-            
             case "DATETIME":
                returnValue = "System.DateTime";
                break;

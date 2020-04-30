@@ -7,8 +7,7 @@ namespace DG
     class GenerateData
    {
         public List<dynamic>[] PreLoadedFieldData { get; set; }
-
-
+      
         //The Pre Load depends on several things.
         /*
            "LoadDataMimicMethod"
@@ -21,16 +20,12 @@ namespace DG
               "Length"
          */
 
- 
       public GenerateData(DefinitionController dd)
       {
 
-            //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
-            PreLoadedFieldData = new List<dynamic>[dd.TableDefinition.ColumnDefinitions.Count()];
+         //This still might prove to be more useful as an Object, but will that just be storing the same information yet again?
+         PreLoadedFieldData = new List<dynamic>[dd.TableDefinition.ColumnDefinitions.Count()];
 
-            //Step one is to create the required [] count and populate with dummy data.
-            //PreLoadedFieldData = preLoadedFieldData;
-         
          foreach (var colDef in dd.TableDefinition.ColumnDefinitions)
          {
 
@@ -50,6 +45,7 @@ namespace DG
                   //Load the Data, based on the required Data Types.
                   switch (colDataType)
                   { 
+
                      case "STRING":
                         LoadIncrementalString(colDef);
                         break; //No such thing to create random String.  Use a file. Or should I allow a fake String generator to be created?

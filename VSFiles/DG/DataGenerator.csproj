@@ -69,7 +69,7 @@
     <Compile Include="Incremental\CreateIncrementingStringList.cs" />
     <Compile Include="Incremental\CreateIncrementingDecimalList.cs" />
     <Compile Include="Incremental\CreateIncrementingTimeList.cs" />
-    <Compile Include="Incremental\RandomHelper.cs" />
+    <Compile Include="BusinessRules\RandomHelper.cs" />
     <Compile Include="Parameters\AppConst.cs" />
     <Compile Include="Incremental\CreateIncrementingDateTimeList.cs" />
     <Compile Include="Incremental\CreateIncrementingNumberList.cs" />
