@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace DG
 {
-   public class CreateIncrementingDateList
+   public class CreateIncrementingDateTimeList
    {
       //Potential to create an overload method to accepts Dates instead of int
-      public List<dynamic> GenerateIncrementingDateList(int start, int end)
+      public List<dynamic> GenerateIncrementingDateTimeList(int start, int end)
         {
            
          var startDate = new DateTime(start / 10000 , (start / 100) % 100, start % 100); 
@@ -16,10 +16,7 @@ namespace DG
 
          for (var dt = startDate; dt <= endDate; dt = dt.AddDays(1))
          {
-   
-            datesIncremental.Add(dt.ToString("yyyy-MM-dd"));
-          
-
+            datesIncremental.Add(dt);
          }
 
          return datesIncremental;

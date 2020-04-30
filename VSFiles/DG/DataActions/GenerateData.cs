@@ -58,8 +58,12 @@ namespace DG
                         LoadIncrementalBoolean(colDef);
                         break; 
 
-                     case "DATE":
+                     case "DATE": //Need to create a dedicated date
                         LoadIncrementalDate(colDef);
+                        break;
+
+                     case "DATETIME":
+                        LoadIncrementalDateTime(colDef);
                         break;
 
                      case "TIME":
@@ -108,7 +112,7 @@ namespace DG
       }
         
       // INCREMENTAL => Data Type { Date, Time, Number, Decimal (up to 1 decimal place only)}
-      private void LoadIncrementalDate(DefinitionColumn colDef)
+      private void LoadIncrementalDateTime(DefinitionColumn colDef)
       {
          
          var startDate = colDef.ColumnStartWith == ""
@@ -119,12 +123,30 @@ namespace DG
             ? (int) AppConst.DefaultDateRanges.EndDate
             : int.Parse(colDef.ColumnEndWith);
 
+         CreateIncrementingDateTimeList idt = new CreateIncrementingDateTimeList();
+
+         var datesIncremental = idt.GenerateIncrementingDateTimeList(startDate, endDate);
+
+         PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(datesIncremental);
+         
+      }
+      private void LoadIncrementalDate(DefinitionColumn colDef)
+      {
+
+         var startDate = colDef.ColumnStartWith == ""
+            ? (int)AppConst.DefaultDateRanges.StartDate
+            : int.Parse(colDef.ColumnStartWith);
+
+         var endDate = colDef.ColumnEndWith == ""
+            ? (int)AppConst.DefaultDateRanges.EndDate
+            : int.Parse(colDef.ColumnEndWith);
+
          CreateIncrementingDateList idt = new CreateIncrementingDateList();
 
          var datesIncremental = idt.GenerateIncrementingDateList(startDate, endDate);
 
          PreLoadedFieldData[colDef.ColumnPosition - 1] = new List<dynamic>(datesIncremental);
-         
+
       }
 
       private void LoadIncrementalTime(DefinitionColumn colDef)
