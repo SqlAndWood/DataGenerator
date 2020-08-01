@@ -2,3 +2,4 @@ Dog
 Cat
 Elephant
 Snail
+Giraffe
