@@ -35,15 +35,15 @@
                     
    ",
    
-   "OutputFilename": "Presenter",
+   "OutputFilename": "Perinatal",
    "OutputFileType":"CSV",
    "OutputDelimeter": ",",
      
-   "OutputRecordCount": "1000000000",
+   "OutputRecordCount": "1000000",
          
    "ColumnDefinitions": [
       {
-         "ColumnName": "DD_SK",
+         "ColumnName": "SBRFormNumber",
          "ColumnDataType":"INT",
          "ColumnNullablePercentage":"0",
     
@@ -53,50 +53,84 @@
          "EndWith":"1000000",
          "Length":"",
          
-      }
-      ,
+      },
       {
-         "ColumnName": "Obtained",
+         "ColumnName": "Surname",
          "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"21",
-       
+         "ColumnNullablePercentage":"01",
+        
          "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "YesNo.txt",
-         "StartWith":"",
-         "EndWith":"",
-         "Length":"",
-         
-      }
-           ,
-      {
-         "ColumnName": "EventDate",
-         "ColumnDataType":"DATE",
-         "ColumnNullablePercentage":"12",
-                
-         "LoadDataMimicMethod":"RANDOM",
-         "DataMimicFilename" : "",
-         "StartWith":"19800101",
-         "EndWith":"20201231",
-         "Length":"",
-      }
-      ,
-      {
-         "ColumnName": "EventTime",
-         "ColumnDataType":"TIME",
-         "ColumnNullablePercentage":"48",
-                
-         "LoadDataMimicMethod":"RANDOM",
-         "DataMimicFilename" : "",
+         "DataMimicFilename" : "Surname.txt",
          "StartWith":"",
          "EndWith":"",
          "Length":"",
       }
-      
       ,
       {
-         "ColumnName": "Passed",
+         "ColumnName": "GivenName",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Firstname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+       {
+         "ColumnName": "BabySurname",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Surname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+       ,
+      {
+         "ColumnName": "BabyGivenName",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Firstname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+      {
+         "ColumnName": "BabyGivenName",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Firstname.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+   
+      ,
+      {
+         "ColumnName": "StreetAddress",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Address.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+      {
+         "ColumnName": "Suburb",
          "ColumnDataType":"BOOLEAN",
-         "ColumnNullablePercentage":"2",
+         "ColumnNullablePercentage":"0",
         
          "LoadDataMimicMethod": "RANDOM",
          "DataMimicFilename" : "", 
@@ -106,107 +140,127 @@
       }
       ,
       {
-         "ColumnPosition": "5",
-         "ColumnName": "ZiffNumber",
-         "ColumnDataType":"DECIMAL",
-         "ColumnNullablePercentage":"5",
+         "ColumnName": "Postcode",
+         "ColumnDataType":"BOOLEAN",
+         "ColumnNullablePercentage":"0",
         
+         "LoadDataMimicMethod": "RANDOM",
+         "DataMimicFilename" : "", 
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+      {
+         "ColumnName": "Hospital",
+         "ColumnDataType":"BOOLEAN",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod": "RANDOM",
+         "DataMimicFilename" : "", 
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+       {
+         "ColumnName": "MotherURNumber",
+         "ColumnDataType":"INT",
+         "ColumnNullablePercentage":"0",
+    
          "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
-         "StartWith":"1000",
-         "EndWith":"9000",
-         "Length":"3",
-      }
-          ,
+         "StartWith":"0",
+         "EndWith":"1000000",
+         "Length":"",
+         
+      } 
+      ,       
       {
-         "ColumnName": "Firstname",
+  
+         "ColumnName": "Plurality",
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"0",
         
          "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "Firstname.txt",
+         "DataMimicFilename" : "LowNumber.txt",
          "StartWith":"",
          "EndWith":"",
          "Length":"",
       }
-      
-      ,
-      {
-         "ColumnName": "Middlename",
-         "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"85",
-        
-         "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "Firstname.txt",
-         "StartWith":"",
-         "EndWith":"",
-         "Length":"",
-      }
-      
-      ,
-      {
-         "ColumnName": "Surname",
-         "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"2",
-        
-         "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "Surname.txt",
-         "StartWith":"",
-         "EndWith":"",
-         "Length":"",
-      }
-               ,
-      {
-         "ColumnName": "Day",
+      ,  
        
+      {
+  
+         "ColumnName": "BabyDateOfBirth",
          "ColumnDataType":"STRING",
          "ColumnNullablePercentage":"0",
         
          "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "DaysOfTheWeek.txt",
+         "DataMimicFilename" : "DatesYoungPerson.txt",
+         "StartWith":"",
+         "EndWith":"",
+         "Length":"",
+      }
+      ,
+           
+      {
+  
+         "ColumnName": "Sex",
+         "ColumnDataType":"STRING",
+         "ColumnNullablePercentage":"0",
+        
+         "LoadDataMimicMethod":"FILE",
+         "DataMimicFilename" : "Sex.txt",
          "StartWith":"",
          "EndWith":"",
          "Length":"",
       }
       ,
       
-      {
-         "ColumnName": "Temperature",
+       {
+         "ColumnName": "BirthWeight",
        
          "ColumnDataType":"DECIMAL",
          "ColumnNullablePercentage":"0",
 
          "LoadDataMimicMethod":"RANDOM",
          "DataMimicFilename" : "",
-         "StartWith":"-3.2",
-         "EndWith":"45.7",
-         "Length":"1",
-      }  ,
-      {
-         "ColumnName": "PetType",
-         "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"81",
-       
-         "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "Animals.txt",
-         "StartWith":"",
-         "EndWith":"",
+         "StartWith":"1",
+         "EndWith":"2",
+         "Length":"2",
+      }  
+  
+       ,
+       {
+         "ColumnName": "ID",
+         "ColumnDataType":"INT",
+         "ColumnNullablePercentage":"0",
+    
+         "LoadDataMimicMethod":"RANDOM",
+         "DataMimicFilename" : "",
+         "StartWith":"0",
+         "EndWith":"1000000",
          "Length":"",
          
-      }
-      ,
+      } 
+      
+      
+      ,       
       {
-         "ColumnName": "CoffeeType",
+  
+         "ColumnName": "MotherDateOfBirth",
          "ColumnDataType":"STRING",
-         "ColumnNullablePercentage":"36",
-       
+         "ColumnNullablePercentage":"0",
+        
          "LoadDataMimicMethod":"FILE",
-         "DataMimicFilename" : "Coffee.txt",
+         "DataMimicFilename" : "DatesMother.txt",
          "StartWith":"",
          "EndWith":"",
          "Length":"",
       }
       
+
    ]
    
    
